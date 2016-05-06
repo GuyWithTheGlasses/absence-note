@@ -1,0 +1,18 @@
+{
+  "name": "framework",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "bleepbloopsify <bleepbloopsify@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/bower",
+    "test",
+    "tests"
+  ]
+}
