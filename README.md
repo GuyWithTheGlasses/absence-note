@@ -1,4 +1,9 @@
-# Framework
+# absence-note  
+Online absence note system  
 
-Basis for all nodejs projects using servers and
-authentication with passport
+Brought to you by:  
+###TeaTime  
+Leon Chou  
+Johnny So  
+Roy Xu  
+Kevin Yan  
