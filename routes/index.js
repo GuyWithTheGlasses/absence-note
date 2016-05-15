@@ -3,7 +3,7 @@ var router = express.Router();
 
 var handler = require('../handlers/index');
 
-router.get('/', handler.public.index.get);
+router.get('/', handler.index.index.get);
 
 router.get('/login', handler.accounts.login.get);
 router.get('/register', handler.accounts.register.get);
