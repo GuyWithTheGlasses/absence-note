@@ -1,0 +1,81 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'email-verification' ]
+2 info using npm@2.14.20
+3 info using node@v4.4.1
+4 verbose install initial load of /home/leon/Documents/projects/absence-note/package.json
+5 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/bcrypt/package.json
+6 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/body-parser/package.json
+7 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/connect-mongo/package.json
+8 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/cookie-parser/package.json
+9 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/debug/package.json
+10 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/expect.js/package.json
+11 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/express/package.json
+12 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/express-session/package.json
+13 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/gulp/package.json
+14 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/hogan-express/package.json
+15 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/mongoose/package.json
+16 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/morgan/package.json
+17 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/passport/package.json
+18 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/passport-facebook/package.json
+19 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/passport-local/package.json
+20 verbose installManyTop reading scoped package data from /home/leon/Documents/projects/absence-note/node_modules/serve-favicon/package.json
+21 info package.json expect.js@0.3.1 No license field.
+22 info package.json passport-local@1.0.0 No license field.
+23 verbose readDependencies loading dependencies from /home/leon/Documents/projects/absence-note/package.json
+24 silly cache add args [ 'email-verification', null ]
+25 verbose cache add spec email-verification
+26 silly cache add parsed spec Result {
+26 silly cache add   raw: 'email-verification',
+26 silly cache add   scope: null,
+26 silly cache add   name: 'email-verification',
+26 silly cache add   rawSpec: '',
+26 silly cache add   spec: 'latest',
+26 silly cache add   type: 'tag' }
+27 silly addNamed email-verification@latest
+28 verbose addNamed "latest" is being treated as a dist-tag for email-verification
+29 info addNameTag [ 'email-verification', 'latest' ]
+30 silly mapToRegistry name email-verification
+31 silly mapToRegistry using default registry
+32 silly mapToRegistry registry https://registry.npmjs.org/
+33 silly mapToRegistry uri https://registry.npmjs.org/email-verification
+34 verbose addNameTag registry:https://registry.npmjs.org/email-verification not in flight; fetching
+35 verbose request uri https://registry.npmjs.org/email-verification
+36 verbose request no auth needed
+37 info attempt registry request try #1 at 12:21:38 PM
+38 verbose request id 35fca109da49b3c8
+39 http request GET https://registry.npmjs.org/email-verification
+40 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=connect ECONNREFUSED 127.0.0.1:8080
+41 info attempt registry request try #2 at 12:21:48 PM
+42 http request GET https://registry.npmjs.org/email-verification
+43 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=connect ECONNREFUSED 127.0.0.1:8080
+44 info attempt registry request try #3 at 12:22:48 PM
+45 http request GET https://registry.npmjs.org/email-verification
+46 verbose stack Error: tunneling socket could not be established, cause=connect ECONNREFUSED 127.0.0.1:8080
+46 verbose stack     at ClientRequest.onError (/usr/lib/node_modules/npm/node_modules/request/node_modules/tunnel-agent/index.js:176:17)
+46 verbose stack     at ClientRequest.g (events.js:260:16)
+46 verbose stack     at emitOne (events.js:77:13)
+46 verbose stack     at ClientRequest.emit (events.js:169:7)
+46 verbose stack     at Socket.socketErrorListener (_http_client.js:256:9)
+46 verbose stack     at emitOne (events.js:77:13)
+46 verbose stack     at Socket.emit (events.js:169:7)
+46 verbose stack     at emitErrorNT (net.js:1250:8)
+46 verbose stack     at nextTickCallbackWith2Args (node.js:442:9)
+46 verbose stack     at process._tickCallback (node.js:356:17)
+47 verbose cwd /home/leon/Documents/projects/absence-note
+48 error Linux 4.4.0-21-generic
+49 error argv "/usr/bin/nodejs" "/usr/bin/npm" "install" "--save" "email-verification"
+50 error node v4.4.1
+51 error npm  v2.14.20
+52 error code ECONNRESET
+53 error network tunneling socket could not be established, cause=connect ECONNREFUSED 127.0.0.1:8080
+53 error network This is most likely not a problem with npm itself
+53 error network and is related to network connectivity.
+53 error network In most cases you are behind a proxy or have bad network settings.
+53 error network
+53 error network If you are behind a proxy, please make sure that the
+53 error network 'proxy' config is set properly.  See: 'npm help config'
+54 verbose exit [ 1, true ]

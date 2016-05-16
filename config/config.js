@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 module.exports = {
   "db":{
-    'url':'mongodb://localhost:27017/test'//Replace this with something more suitable
+    'url':'mongodb://localhost:27017/absence'
   },
   'morgan':{
     'format':':method :status ":url" :response-time[3]ms ||| Size: :res[content-length]octets ',
