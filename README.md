@@ -1,9 +1,8 @@
 # absence-note  
 Online absence note system  
 
-
 Brought to you by:  
-**TeaTime**    
+###TeaTime  
 Leon Chou  
 Johnny So  
 Roy Xu  

@@ -1,8 +1,9 @@
 var passport = require('../app').passport;
+var templates = require('../config/templates');
 module.exports = {
   'login': {
     get: function(req, res, next) {
-      return next();
+      res.render(templates.login);
     },
     post: function(req, res, next) {
       passport.authenticate('local-login', function(err, user, info) {
