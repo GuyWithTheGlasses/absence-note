@@ -3,17 +3,17 @@ var passport = require('../app').passport;
 var templates = require('../config/templates');
 
 
-module.exports.accounts = require('./accounts');
-module.exports.index = {
-  index:{
-    get:function(req, res, next){
+module.exports = {
+  'index':{
+    get:function(req, res){
       res.render(templates.index);
     },
     post:function(req, res, next){
       console.log('Posted to index!');
-      res.send(messages.index.post);
+      next();
     }
   }
 };
+module.exports.accounts = require('./accounts');
 
 module.exports.error = require('./error');
