@@ -14,7 +14,6 @@ var accountSchema = mongoose.Schema({
     password:String,
     email:String
   },
-  facebook:{}
 });
 
 /**
