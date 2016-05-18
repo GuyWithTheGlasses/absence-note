@@ -13,7 +13,6 @@ module.exports = {
         req.login(user, function(err, id) {
           if (err) return next(err);
           req.session.id = id;
-          console.log(req.session);
           return res.json(messages.login.success);
         });
       })(req, res, next);
@@ -23,12 +22,11 @@ module.exports = {
     get: function(req, res, next) {
       return next();
     },
-    post:function(req, res, next){
-      console.log(messages);
-      passport.authenticate('local-register', function (err, user, info) {
+    post: function(req, res, next) {
+      passport.authenticate('local-register', function(err, user, info) {
         if (err) return next(err);
         if (!user) return res.json(messages.register.failed(info));
-        req.login(user, function (err, id) {
+        req.login(user, function(err, id) {
           if (err) return next(err);
           req.session.id = id;
           return res.json(messages.register.success);
@@ -36,12 +34,12 @@ module.exports = {
       })(req, res, next);
     }
   },
-  'logout':{
-    get:function(req,res,next){
+  'logout': {
+    get: function(req, res, next) {
       req.logout();
       next();
     },
-    post:function(req,res,next){
+    post: function(req, res, next) {
       req.logout();
       res.send(messages.logout.post);
     }

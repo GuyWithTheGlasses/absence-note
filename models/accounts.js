@@ -13,6 +13,7 @@ var accountSchema = mongoose.Schema({
   password: String, // hashed
   email: String, // To be verified
   type: String, // Admin, Student, Teacher
+  verified: Boolean
 });
 
 /**
@@ -28,7 +29,7 @@ accountSchema.methods.generateHash = function(password, callback) {
 };
 
 /**
- * Checks passwords
+ * Checks passwordsWeakx
  * @param  {String}   password
  * @param  {Function} callback returns whether the check was correct or falsy
  */
@@ -36,6 +37,14 @@ accountSchema.methods.authenticate = function(password, callback) {
   bcrypt.compare(password, this.password, function(err, match) {
     expect(err).to.equal(undefined);
     return callback(match);
+  });
+};
+
+accountSchema.methods.register = function(callback){
+  if(!this.type) this.type = 'Student';
+  this.verified = !(this.type == 'Admin' || this.type == 'Teacher') ;
+  this.save(function(err){
+    return callback(err);
   });
 };
 
