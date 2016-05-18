@@ -2,7 +2,7 @@ var LocalStrategy = require('passport-local');
 var config = require('./config');
 var expect = require('expect.js');
 
-var Account = require('../models/account');
+var Account = require('../models/accounts').Account;
 
 module.exports = function (passport) {
   passport.serializeUser(function (account, done) {
@@ -19,16 +19,16 @@ module.exports = function (passport) {
     function (req, username, password, done) {
       process.nextTick(function () {
         Account.findOne({
-          'local.username': username
+          'username': username
         }, function (err, user) {
           if (err) return done(err);
-          if (user && user.local.username) return done(null, false, 'Username Taken');
+          if (user && user.username) return done(null, false, 'Username Taken');
           var newAccount = new Account();
-          newAccount.local.username = username;
-          if (req.body.email) newAccount.local.email = req.body.email;
+          newAccount.username = username;
+          if (req.body.email) newAccount.email = req.body.email;
           else return done(null, false, "Missing Email");
           newAccount.generateHash(password, function (hash) {
-            newAccount.local.password = hash;
+            newAccount.password = hash;
             console.log(newAccount);
             newAccount.save(function (err) {
               expect(err).to.equal(null);
@@ -44,7 +44,7 @@ module.exports = function (passport) {
     function (req, username, password, done) {
       process.nextTick(function () {
         Account.findOne({
-          'local.username': username
+          'username': username
         }, function (err, user) {
           if (err || !user) return done(err || "User not found");
           user.authenticate(password, function (match) {

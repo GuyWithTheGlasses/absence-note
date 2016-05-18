@@ -9,10 +9,10 @@ module.exports = {
     },
     'id':{
       get:function(req, res){
-        res.render(templates.admin.absence);
+        res.send('/absences/id posted with ' + req.params.id);
       },
       post:function(req,res){
-        res.send('/absences/id posted');
+        res.send('/absences/id posted with ' + req.params.id);
       }
     }
   }
