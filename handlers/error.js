@@ -12,11 +12,10 @@ module.exports = {
     });
   },
   'production': function(err, req, res, next) {
-    console.log('hi');
     res.status(err.status || 500);
     res.render('error', {
-      message:'hi',
-      error:{}
+      message:'err',
+      error:JSON.stringify(err)
     });
   }
 };

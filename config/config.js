@@ -58,10 +58,11 @@ module.exports = {
       "passwordField": "password",
       "passReqToCallback": true
     },
-    'googleAuth':{
+    'googleAuth': {
       'clientID': process.env.GOOGLE_CLIENT_ID || 'hi',
       'clientSecret': process.env.GOOGLE_CLIENT_SECRET || 'hi',
-      'callbackURL': '/auth/google/callback'
+      'callbackURL': '/auth/google/callback',
+      // "passReqToCallback": true
     }
   },
 };

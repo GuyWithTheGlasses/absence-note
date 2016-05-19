@@ -3,36 +3,10 @@ var templates = require('../config/templates');
 var messages = require('../config/messages');
 module.exports = {
   'login': {
-    get: function(req, res, next) {
-      res.render(templates.login);
-    },
-    post: function(req, res, next) {
-      passport.authenticate('local-login', function(err, user, info) {
-        if (err) return next(err);
-        if (!user) return res.json(messages.login.failed(info));
-        req.login(user, function(err, id) {
-          if (err) return next(err);
-          req.session.id = id;
-          return res.json(messages.login.success);
-        });
-      })(req, res, next);
-    }
+    get: passport.authenticate('google', { scope: ['profile', 'email'] })
   },
-  'register': {
-    get: function(req, res, next) {
-      return next();
-    },
-    post: function(req, res, next) {
-      passport.authenticate('local-register', function(err, user, info) {
-        if (err) return next(err);
-        if (!user) return res.json(messages.register.failed(info));
-        req.login(user, function(err, id) {
-          if (err) return next(err);
-          req.session.id = id;
-          return res.json(messages.register.success);
-        });
-      })(req, res, next);
-    }
+  'authgooglecallback': {
+    get: passport.authenticate('google', {successRedirect:'/', failureRedirect:'/'}),
   },
   'logout': {
     get: function(req, res, next) {
