@@ -15,3 +15,5 @@ Kevin Yan
 ----added the accounts.js in models directory
 ----working homepage button
 ----setting the environment
+- May 18
+---- GOOGLE AUTH
