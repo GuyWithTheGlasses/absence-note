@@ -58,28 +58,10 @@ module.exports = {
       "passwordField": "password",
       "passReqToCallback": true
     },
+    'googleAuth':{
+      'clientID': process.env.GOOGLE_CLIENT_ID || 'hi',
+      'clientSecret': process.env.GOOGLE_CLIENT_SECRET || 'hi',
+      'callbackURL': '/auth/google/callback'
+    }
   },
-  "nev": function(account) {
-    return {
-      'verificationURL': '/verifyemail',
-      'persistentUserModel': account,
-      'tempUserCollection': 'smth',
-
-      'transportOptions': {
-        'service': 'Gmail',
-        'auth': {
-          'user': 'stuy-absence-notes@gmail.com',
-          'pass': process.env.GMAIL_PASSWORD
-        }
-      },
-
-      'verifyMailOptions': {
-        'from': 'Do Not Reply stuy-absence-notes@gmail.com',
-        'subject': 'Please Confirm Account',
-        'html': 'Click the following link to confirm your account',
-        'text': 'Please confirm your accoutn by clicking the following link'
-      }
-
-    };
-  }
 };

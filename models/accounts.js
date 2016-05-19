@@ -12,6 +12,12 @@ var accountSchema = mongoose.Schema({
   username: String, // should be uniform tbh
   password: String, // hashed
   email: String, // To be verified
+  google:{
+    id:String,
+    token:String,
+    name:String,
+    emails:[String]
+  },
   type: String, // Admin, Student, Teacher
   verified: Boolean
 });
@@ -86,12 +92,7 @@ var teacherSchema = mongoose.Schema({
   // }],
 
   // list of already approved absence forms
-  approved_absences: [{
-    student_name: String,
-    period: Number,
-    date: String,
-    excuse: String
-  }]
+  approved_absences: [Number]
 });
 
 var Teacher = Account.discriminator('Teacher', teacherSchema);

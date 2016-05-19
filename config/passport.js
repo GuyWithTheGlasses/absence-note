@@ -1,4 +1,6 @@
 var LocalStrategy = require('passport-local');
+var GoogleStrategy = require('passport-google-oauth');
+
 var config = require('./config');
 var expect = require('expect.js');
 
@@ -11,6 +13,25 @@ module.exports = function(passport) {
   passport.deserializeUser(function(id, done) {
     Account.findById(id, function(err, account) {
       return done(err, account);
+    });
+  });
+
+  passport.use(new GoogleStrategy(config.passport.googleAuth),
+  function(token, refreshToken, profile, done){
+    process.nextTick(function(){
+      Account.findOne({'google.id':profile.id}, function(err, account){
+        if(err) return done(err);
+        if(account) return done(account);
+        var newAccount = new Account();
+        newAccount.google.id = profile.id;
+        newAccount.google.token = token;
+        newAccount.google.name = profile.displayName;
+        newAccount.google.emails = profile.emails;
+        newAccount.register(function(err){
+          if(err) return done(err);
+          return done(null, newAccount);
+        });
+      });
     });
   });
 
