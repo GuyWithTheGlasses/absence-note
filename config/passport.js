@@ -1,5 +1,5 @@
 var LocalStrategy = require('passport-local');
-var GoogleStrategy = require('passport-google-oauth');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var config = require('./config');
 var expect = require('expect.js');
@@ -16,7 +16,7 @@ module.exports = function(passport) {
     });
   });
 
-  passport.use(new GoogleStrategy(config.passport.googleAuth),
+  passport.use(new GoogleStrategy(config.passport.googleAuth,
   function(token, refreshToken, profile, done){
     process.nextTick(function(){
       Account.findOne({'google.id':profile.id}, function(err, account){
@@ -33,7 +33,7 @@ module.exports = function(passport) {
         });
       });
     });
-  });
+  }));
 
   passport.use('local-register', new LocalStrategy(
     config.passport.localRegister,
