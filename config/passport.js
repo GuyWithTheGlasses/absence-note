@@ -1,4 +1,3 @@
-var LocalStrategy = require('passport-local');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var config = require('./config');
@@ -26,15 +25,26 @@ module.exports = function(passport) {
         accounts.Account.findOne({ 'google.id': profile.id }, function(err, account) {
           if (err) return done(err);
           if (account) return done(null, account);
+
+          // Parses google's email lists into something useable
+          var profileemails = [];
+          for (var emailkey in profile.emails) {
+            profileemails.push(profile.emails[emailkey].value);
+          }
+
+          // Defines account based on email lists
           var newAccount;
-          if (intersect(profile.emails, emails.Administrator).length !== 0) newAccount = new accounts.Account();
-          else if (intersect(profile.emails, emails.Teacher).length !== 0) newAccount = new accounts.Teacher();
+          if (intersect(profileemails, emails.Administrator).length !== 0) newAccount = new accounts.Account();
+          else if (intersect(profileemails, emails.Teacher).length !== 0) newAccount = new accounts.Teacher();
           else newAccount = new accounts.Student();
+
+          // To make sure I get only what I want
           newAccount.google.id = profile.id;
           newAccount.google.token = token;
           newAccount.google.name = profile.displayName;
-          console.log(profile.emails);
           newAccount.google.emails = profile.emails;
+
+          //Saves to db
           newAccount.save(function(err) {
             if (err) return done(err);
             return done(null, newAccount);
