@@ -1,6 +1,6 @@
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-var mongoose = require('mongoose');
+var session = require( 'express-session' );
+var MongoStore = require( 'connect-mongo' )( session );
+var mongoose = require( 'mongoose' );
 // var accounts = require('../models/accounts');
 
 module.exports = {
@@ -35,9 +35,9 @@ module.exports = {
     "resave": false,
     "saveUninitialized": false,
     "secret": process.env.SECRET || "kek",
-    "store": new MongoStore({
+    "store": new MongoStore( {
       "mongooseConnection": mongoose.connection
-    }),
+    } ),
     "unset": "keep",
     "cookie": {
       "secure": false, // Must be HTTPS
@@ -57,21 +57,15 @@ module.exports = {
       "usernameField": "username",
       "passwordField": "password",
       "passReqToCallback": true
-    },
-    'googleAuth': {
-      'clientID': process.env.GOOGLE_CLIENT_ID || 'hi',
-      'clientSecret': process.env.GOOGLE_CLIENT_SECRET || 'hi',
-      'callbackURL': '/auth/google/callback',
-      // "passReqToCallback": true
     }
   },
   'nodemailer': {
-    'smtp':function(){
+    'smtp': function() {
       var username = process.env.GMAIL_USERNAME || 'lol@gmail.com';
       var password = process.env.GMAIL_PASSWORD || 'lol';
       return 'smtps://' + username + ':' + password + '@smtp.gmail.com';
     },
-    emailOptions: function(options) {
+    emailOptions: function( options ) {
       sender = process.env.GMAIL_SENDER || 'Stuy Absence Note';
       username = process.env.GMAIL_USERNAME || 'some_user@gmail.com';
       return {

@@ -1,7 +1,15 @@
 {{#yield-styles}}
+<link href="./style/css/index.css" rel="stylesheet">
 {{/yield-styles}}
 
 {{#yield-content}}
-<h1>Hi!</h1>
-{{user}}
+<h1 class="title">Stuyvesant High School</h1>
+<h3 class="subtitle">Online Absence Note System</h3>
+<form class="login-form">
+  <input class="input" type="text" name="email" placeholder="E-Mail">
+  <input class="input" type="password" name="password" placeholder="Password">
+
+  <button type="submit" class="form-submit-ajax">Login</button>
+  <a href="#">Register</a>
+</form>
 {{/yield-content}}
