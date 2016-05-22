@@ -29,11 +29,7 @@ module.exports = function(passport) {
           var profileemails = [];
           for (var emailkey in profile.emails) {
             var emObj = profile.emails[emailkey];
-            if(emObj.type == 'account'){
-              // Checking for stuy.edu emails here
-              if(emObj.email.substr(-9) == '@stuy.edu') profileemails.push(emObj.email);
-              else return done('Must be stuy.edu email');
-            }
+            profileemails.push(emObj.value);
           }
 
           // Parses administrator and teacher email files into something more useable
@@ -49,8 +45,13 @@ module.exports = function(passport) {
           var newAccount;
           if (intersect(profileemails, adminEmails).length !== 0) newAccount = new accounts.Account();
           else if (intersect(profileemails, teacherEmails).length !== 0) newAccount = new accounts.Teacher();
-          else newAccount = new accounts.Student();
-
+          else {
+            for (var emailIndex in profileemails) {
+              //Checking for stuy.edu ending here
+              if (profileemails[emailIndex].slice(-9) !== '@stuy.edu') return done('Must be stuy.edu email');
+              newAccount = new accounts.Student();
+            }
+          }
           // To make sure I get only what I want
           newAccount.google.id = profile.id;
           newAccount.google.token = token;

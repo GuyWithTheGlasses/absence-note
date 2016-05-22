@@ -10,5 +10,4 @@ app.use('/teacher', require('./routes/teachers'));
 app.use('/admin', require('./routes/admin'));
 app.use('/', require('./routes'));
 
-
 module.exports = app;

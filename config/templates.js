@@ -7,7 +7,7 @@ module.exports = {
     'absence':'index'
   },
   'students':{
-    'index':'student',
+    'index':'index',
     'absencenote':'absencenote'
   },
   'teachers':{

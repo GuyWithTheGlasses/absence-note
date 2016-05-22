@@ -1,10 +1,9 @@
 var config = require('./config');
 var path = require('path');
 
-module.exports = function(app, dirname){
+module.exports = function(app, dirname) {
 
   var mongoose = require('mongoose');
-  // var nev = require('email-verification')(mongoose);
   mongoose.connect(config.db.url);
 
   var morgan = require('morgan');
@@ -35,7 +34,25 @@ module.exports = function(app, dirname){
   app.use(passport.initialize());
   app.use(passport.session());
 
+  var nodemailer = require('nodemailer');
+  var transporter = nodemailer.createTransport(config.nodemailer.smtp());
+  var transport = {
+    emailOptions: config.nodemailer.emailOptions,
+    sendMail: function(options, callback) {
+      emailoptions = this.emailOptions(options);
+      console.log(emailoptions);
+      transporter.sendMail(emailoptions, callback);
+    }
+  };
+  transporter.verify(function(error, success) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email server is ready to take our messages');
+    }
+  });
   return {
-    passport:passport
+    passport: passport,
+    transport: transport
   };
 };

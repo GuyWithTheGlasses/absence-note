@@ -2,13 +2,14 @@ var templates = require('../../config/templates');
 module.exports = {
   'check': {
     'loggedIn':function(req,res,next){
-      if(req.isAuthenticated) return next();
+      console.log('hi');
+      if(req.isAuthenticated()) return next();
       else return res.redirect('/login');
     }
   },
   'index': {
     'get': function(req, res, next) {
-      return next();
+      res.render(templates.students.index);
     }
   },
   'absencenote':{
