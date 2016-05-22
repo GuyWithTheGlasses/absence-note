@@ -3,6 +3,8 @@ var router = express.Router();
 
 var handler = require('../../handlers/admin');
 
+router.use(handler.check);
+
 router.get('/absences/:id', handler.absences.id.get);
 router.post('/absences/:id', handler.absences.id.post);
 

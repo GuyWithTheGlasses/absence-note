@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-var handlers = require('../handlers/users/index');
+var handlers = require('../../handlers/teachers');
+
+router.use(handlers.check.loggedIn);
 
 router.get('/', handlers.index.get);
-router.post('/', handlers.index.post);
 
 module.exports = router;

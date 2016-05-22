@@ -1,9 +1,9 @@
 module.exports = {
-  'Teacher': [
-    'mykolyk@stuycs.org',
-  ],
-  'Administrator': [
-    'bleepbloopsify@gmail.com',
-    'ccintron@stuy.edu',
-  ],
+  'Teachers': {
+    'Brown-Mykolyk': 'mykolyk@stuycs.org',
+  },
+  'Administrators': {
+    'Leon': 'bleepbloopsify@gmail.com',
+    'Cintron': 'ccintron@stuy.edu',
+  },
 };
