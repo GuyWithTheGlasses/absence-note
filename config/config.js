@@ -1,7 +1,7 @@
 var session = require( 'express-session' );
 var MongoStore = require( 'connect-mongo' )( session );
 var mongoose = require( 'mongoose' );
-var accounts = require( '../models/accounts' );
+// var accounts = require('../models/accounts');
 
 module.exports = {
   "db": {
@@ -57,34 +57,12 @@ module.exports = {
       "usernameField": "username",
       "passwordField": "password",
       "passReqToCallback": true
-    },
-    "FacebookAuth": {
-      'clientID': process.env.FACEBOOK_APP_ID || '',
-      'clientSecret': process.env.FACEBOOK_APP_SECRET || '',
-      'callbackURL': "/auth/facebook/callback"
     }
   },
-  "nev": function( account ) {
-    return {
-      'verificationURL': '/verifyemail',
-      'persistentUserModel': accounts,
-      'tempUserCollection': 'smth',
-
-      'transportOptions': {
-        'service': 'Gmail',
-        'auth': {
-          'user': 'stuy-absence-notes@gmail.com',
-          'pass': 'make_the_account_first'
-        }
-      },
-
-      'verifyMailOptions': {
-        'from': 'Do Not Reply <stuy-absence-notes@gmail.com',
-        'subject': 'Please Confirm Account',
-        'html': 'Click the following link to confirm your account',
-        'text': 'Please confirm your accoutn by clicking the following link'
-      }
-
-    };
+  'googleAuth': {
+    'clientID': process.env.GOOGLE_CLIENT_ID || 'hi',
+    'clientSecret': process.env.GOOGLE_CLIENT_SECRET || 'hi',
+    'callbackURL': '/auth/google/callback',
+    // "passReqToCallback": true
   }
 };

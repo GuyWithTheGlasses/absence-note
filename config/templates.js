@@ -1,5 +1,9 @@
 module.exports = {
   'index':'index',
   'login':'loginandregister',
-  'register':'loginandregister'
+  'register':'loginandregister',
+  'admin':{
+    'absences':'index',
+    'absence':'index'
+  }
 };

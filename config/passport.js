@@ -1,58 +1,56 @@
-var LocalStrategy = require('passport-local');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
 var config = require('./config');
+var emails = require('../emails');
+var accounts = require('../models/accounts');
+
 var expect = require('expect.js');
+var intersect = require('intersect');
 
-var Account = require('../models/account');
 
-module.exports = function (passport) {
-  passport.serializeUser(function (account, done) {
+module.exports = function(passport) {
+  passport.serializeUser(function(account, done) {
     return done(null, account.id);
   });
-  passport.deserializeUser(function (id, done) {
-    Account.findById(id, function (err, account) {
+  passport.deserializeUser(function(id, done) {
+    accounts.Account.findById(id, function(err, account) {
       return done(err, account);
     });
   });
 
-  passport.use('local-register', new LocalStrategy(
-    config.passport.localRegister,
-    function (req, username, password, done) {
-      process.nextTick(function () {
-        Account.findOne({
-          'local.username': username
-        }, function (err, user) {
+  passport.use('google', new GoogleStrategy(config.passport.googleAuth,
+    function(token, refreshToken, profile, done) {
+      console.log('hlee');
+      process.nextTick(function() {
+        accounts.Account.findOne({ 'google.id': profile.id }, function(err, account) {
           if (err) return done(err);
-          if (user && user.local.username) return done(null, false, 'Username Taken');
-          var newAccount = new Account();
-          newAccount.local.username = username;
-          if (req.body.email) newAccount.local.email = req.body.email;
-          else return done(null, false, "Missing Email");
-          newAccount.generateHash(password, function (hash) {
-            newAccount.local.password = hash;
-            console.log(newAccount);
-            newAccount.save(function (err) {
-              expect(err).to.equal(null);
-              return done(null, newAccount);
-            });
+          if (account) return done(null, account);
+
+          // Parses google's email lists into something useable
+          var profileemails = [];
+          for (var emailkey in profile.emails) {
+            profileemails.push(profile.emails[emailkey].value);
+          }
+
+          // Defines account based on email lists
+          var newAccount;
+          if (intersect(profileemails, emails.Administrator).length !== 0) newAccount = new accounts.Account();
+          else if (intersect(profileemails, emails.Teacher).length !== 0) newAccount = new accounts.Teacher();
+          else newAccount = new accounts.Student();
+
+          // To make sure I get only what I want
+          newAccount.google.id = profile.id;
+          newAccount.google.token = token;
+          newAccount.google.name = profile.displayName;
+          newAccount.google.emails = profile.emails;
+
+          //Saves to db
+          newAccount.save(function(err) {
+            if (err) return done(err);
+            return done(null, newAccount);
           });
         });
       });
-    }));
-
-  passport.use('local-login', new LocalStrategy(
-    config.passport.localLogin,
-    function (req, username, password, done) {
-      process.nextTick(function () {
-        Account.findOne({
-          'local.username': username
-        }, function (err, user) {
-          if (err || !user) return done(err || "User not found");
-          user.authenticate(password, function (match) {
-            if (match) return done(null, user);
-            else return done(null, false, "Password and Username do not match");
-          });
-        });
-      });
-    }));
-
+    }
+  ));
 };

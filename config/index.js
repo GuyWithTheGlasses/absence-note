@@ -4,7 +4,7 @@ var path = require('path');
 module.exports = function(app, dirname){
 
   var mongoose = require('mongoose');
-  var nev = require('email-verification')(mongoose);
+  // var nev = require('email-verification')(mongoose);
   mongoose.connect(config.db.url);
 
   var morgan = require('morgan');
