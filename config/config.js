@@ -57,7 +57,13 @@ module.exports = {
       "usernameField": "username",
       "passwordField": "password",
       "passReqToCallback": true
-    }
+    },
+    'googleAuth': {
+      'clientID': process.env.GOOGLE_CLIENT_ID || 'hi',
+      'clientSecret': process.env.GOOGLE_CLIENT_SECRET || 'hi',
+      'callbackURL': '/auth/google/callback'
+        // "passReqToCallback": true
+    },
   },
   'nodemailer': {
     'smtp': function() {
@@ -76,5 +82,5 @@ module.exports = {
         'html': options && options.html || '<html> <h1> hi </h1> </html>'
       };
     }
-  },
+  }
 };
