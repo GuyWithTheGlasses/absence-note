@@ -8,7 +8,8 @@ module.exports = {
   },
   'students':{
     'index':'index',
-    'absencenote':'absencenote'
+    'createabsencenote':'createabsencenote',
+    'viewabsencenote':'viewabsencenote'
   },
   'teachers':{
     'index':'teacher',
