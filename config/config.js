@@ -59,10 +59,22 @@ module.exports = {
       "passReqToCallback": true
     }
   },
-  'googleAuth': {
-    'clientID': process.env.GOOGLE_CLIENT_ID || 'hi',
-    'clientSecret': process.env.GOOGLE_CLIENT_SECRET || 'hi',
-    'callbackURL': '/auth/google/callback',
-    // "passReqToCallback": true
-  }
+  'nodemailer': {
+    'smtp': function() {
+      var username = process.env.GMAIL_USERNAME || 'lol@gmail.com';
+      var password = process.env.GMAIL_PASSWORD || 'lol';
+      return 'smtps://' + username + ':' + password + '@smtp.gmail.com';
+    },
+    emailOptions: function( options ) {
+      sender = process.env.GMAIL_SENDER || 'Stuy Absence Note';
+      username = process.env.GMAIL_USERNAME || 'some_user@gmail.com';
+      return {
+        'from': username,
+        'to': options && options.to || 'leonchou123@gmail.com',
+        'subject': options && options.subject || 'Do not reply: This is a notification from Stuyvesant\'s absence note system',
+        // 'text': options.text || 'test email',
+        'html': options && options.html || '<html> <h1> hi </h1> </html>'
+      };
+    }
+  },
 };

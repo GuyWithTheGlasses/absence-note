@@ -20,7 +20,6 @@ module.exports = function(passport) {
 
   passport.use('google', new GoogleStrategy(config.passport.googleAuth,
     function(token, refreshToken, profile, done) {
-      console.log('hlee');
       process.nextTick(function() {
         accounts.Account.findOne({ 'google.id': profile.id }, function(err, account) {
           if (err) return done(err);
@@ -29,15 +28,30 @@ module.exports = function(passport) {
           // Parses google's email lists into something useable
           var profileemails = [];
           for (var emailkey in profile.emails) {
-            profileemails.push(profile.emails[emailkey].value);
+            var emObj = profile.emails[emailkey];
+            profileemails.push(emObj.value);
           }
 
+          // Parses administrator and teacher email files into something more useable
+          var adminEmails = [];
+          for (var adminKey in emails.Administrators) {
+            adminEmails.push(emails.Administrators.adminKey);
+          }
+          var teacherEmails = [];
+          for (var teacherKey in emails.Teachers) {
+            teacherEmails.push(emails.Teachers.teacherKey);
+          }
           // Defines account based on email lists
           var newAccount;
-          if (intersect(profileemails, emails.Administrator).length !== 0) newAccount = new accounts.Account();
-          else if (intersect(profileemails, emails.Teacher).length !== 0) newAccount = new accounts.Teacher();
-          else newAccount = new accounts.Student();
-
+          if (intersect(profileemails, adminEmails).length !== 0) newAccount = new accounts.Account();
+          else if (intersect(profileemails, teacherEmails).length !== 0) newAccount = new accounts.Teacher();
+          else {
+            for (var emailIndex in profileemails) {
+              //Checking for stuy.edu ending here
+              if (profileemails[emailIndex].slice(-9) !== '@stuy.edu') return done('Must be stuy.edu email');
+              newAccount = new accounts.Student();
+            }
+          }
           // To make sure I get only what I want
           newAccount.google.id = profile.id;
           newAccount.google.token = token;

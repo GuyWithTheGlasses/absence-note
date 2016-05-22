@@ -14,8 +14,8 @@ module.exports = {
   'production': function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
-      message:'err',
-      error:JSON.stringify(err)
+      message: 'err',
+      error: JSON.stringify(err)
     });
   }
 };

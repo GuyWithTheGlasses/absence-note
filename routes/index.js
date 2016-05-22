@@ -11,15 +11,11 @@ router.use(function(req,res,next){//testing
 router.get('/', handler.index.get);
 router.post('/', handler.index.post);
 
+//login and register taken care of with google accounts
 router.get('/login', handler.accounts.login.get);
 router.get('/auth/google/callback', handler.accounts.authgooglecallback.get);
 
-
-
-
 router.get('/logout', handler.accounts.logout.get);
-// router.get('/register', handler.accounts.register.get);
-// router.post('/register', handler.accounts.register.post);
 
 router.use(handler.error['404']);
 if(process.env.DEVELOPMENT) router.use(handler.error.development);

@@ -5,5 +5,13 @@ module.exports = {
   'admin':{
     'absences':'index',
     'absence':'index'
+  },
+  'students':{
+    'index':'index',
+    'createabsencenote':'createabsencenote',
+    'viewabsencenote':'viewabsencenote'
+  },
+  'teachers':{
+    'index':'teacher',
   }
 };
