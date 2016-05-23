@@ -1,5 +1,5 @@
 {{#yield-styles}}
-<link href="./style/css/absence.css" rel="stylesheet">
+<link type="text/css" href="./style/css/absence.css" rel="stylesheet">
 {{/yield-styles}}
 
 {{#yield-content}}
@@ -19,7 +19,7 @@
     <br>
     <input type="radio" name="excused" value="absence-excuse">Absence
     <input type="radio" name="excused" value="lateness-excuse">Lateness
-    <div id="check">(check one)</div>
+    <div id="check" class="check">(check one)</div>
     <label>Corrections:</label>
     <br>
     <input type="radio" name="excused" value="absence-correction">Absence
@@ -157,6 +157,7 @@
   </table>
   <button id="submit" class="btn">Submit</button>
 </form>
+{{/yield-content}}
 
 {{#yield-scripts}}
   <script src="foreach.js"></script>

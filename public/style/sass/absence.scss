@@ -1,34 +1,29 @@
+@import 'style';
+
 button {
-  background-color: #00b359;
-  position: absolute;
+  background-color: $button-bg;
+  font-size: 50px;
   margin: 1% 0 2% 29%;
   padding: 30px;
-  font-size: 50px;
+  position: absolute;
 }
 
-#check {
-  padding-top: 6px;
+.check {
+  font-style: italic;
   padding-bottom: 6px;
   padding-left: 20px;
-  font-style: italic;
+  padding-top: 6px;
 }
 
-#courses,
 .form-entry {
+  font-size: 25px;
+  padding-bottom: 5px;
   padding-left: 29%;
   padding-top: 5px;
-  padding-bottom: 5px;
-  font-size: 25px;
-}
-
-#error {
-  padding-left: 29%;
-  color: red;
 }
 
 form {
   margin-top: 1%;
-  font-family: Helveltica Neue, Helvetica, sans-serif;
 }
 
 input {
@@ -41,6 +36,6 @@ td {
 }
 
 .table-head {
-  text-align: center;
   font-weight: bold;
+  text-align: center;
 }
