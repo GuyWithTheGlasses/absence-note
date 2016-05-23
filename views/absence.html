@@ -7,7 +7,7 @@
 
   <h1 class="heading">New Absence Note</h1>
 
-  <div id="login-info">You are logged in as:
+  <div id="login-info">You are logged in as
     <a href="Dunno what goes here">Logout</a>
   </div>
 
@@ -15,50 +15,56 @@
 
 <form id="form-main">
   <div class="form-entry">
-    <label for="excused">Excused:</label>
-    <br>
-    <input type="radio" name="excused" value="absence-excuse">Absence
-    <input type="radio" name="excused" value="lateness-excuse">Lateness
-    <div id="check" class="check">(check one)</div>
-    <label>Corrections:</label>
-    <br>
-    <input type="radio" name="excused" value="absence-correction">Absence
-    <input type="radio" name="excused" value="lateness-correction">Lateness
-    <input type="radio" name="excused" value="cuts">Cuts
+    <div class="radio-boxes">
+      <label for="excused">Excused</label>
+      <br>
+      <br>
+      <input type="radio" name="excused" value="absence-excuse">Absence
+      <input type="radio" name="excused" value="lateness-excuse">Lateness
+      <br>
+    </div>
+    <div class="radio-boxes">
+      <label>Corrections</label>
+      <br>
+      <br>
+      <input type="radio" name="excused" value="absence-correction">Absence
+      <input type="radio" name="excused" value="lateness-correction">Lateness
+      <input type="radio" name="excused" value="cuts">Cuts
+    </div>
   </div>
 
   <div class="form-entry">
-    <label for="student">Name:</label>
+    <label for="student">Name</label>
     <br>
-    <input type="text" name="student">
+    <input class="input" type="text" name="student">
   </div>
 
   <div class="form-entry">
-    <label for="OSIS">OSIS#:</label>
+    <label for="OSIS">OSIS#</label>
     <br>
-    <input type="number" name="OSIS">
+    <input class="input" type="number" name="OSIS">
     <!-- verify that is 9-digit number -->
   </div>
 
   <div class="form-entry">
-    <label for="excused_date">Date of Absence, Lateness, or Cut:</label>
+    <label for="excused_date">Date of Absence, Lateness, or Cut</label>
     <br>
-    <input type="text" name="excused_date">
+    <input class="input" type="text" name="excused_date">
   </div>
 
   <div class="form-entry">
-    <label for="excuse">Explanation:</label>
+    <label for="excuse">Explanation</label>
     <br>
-    <input type="text" name="excuse">
+    <input class="input" type="text" name="excuse">
   </div>
 
   <div class="form-entry">
-    <label for="parent.name">Parent's Name:</label>
+    <label for="parent.name">Parent's Name</label>
     <br>
-    <input type="text" name="parent.name">
+    <input class="input" type="text" name="parent.name">
   </div>
 
-  <table id="courses">
+  <table class="courses">
     <tr>
       <td></td>
       <td class="table-head">Teacher's Name</td>
@@ -67,91 +73,91 @@
     <tr>
       <td>Pd. 1</td>
       <td>
-        <input type="text" name="1name">
+        <input class="input" type="text" name="1name">
       </td>
       <td>
-        <input type="text" name="1code">
+        <input class="input" type="text" name="1code">
       </td>
     </tr>
     <tr>
       <td>Pd. 2</td>
       <td>
-        <input type="text" name="2name">
+        <input class="input" type="text" name="2name">
       </td>
       <td>
-        <input type="text" name="2code">
+        <input class="input" type="text" name="2code">
       </td>
     </tr>
     <tr>
       <td>Pd. 3</td>
       <td>
-        <input type="text" name="3name">
+        <input class="input" type="text" name="3name">
       </td>
       <td>
-        <input type="text" name="3code">
+        <input class="input" type="text" name="3code">
       </td>
     </tr>
     <tr>
       <td>Pd. 4</td>
       <td>
-        <input type="text" name="4name">
+        <input class="input" type="text" name="4name">
       </td>
       <td>
-        <input type="text" name="4code">
+        <input class="input" type="text" name="4code">
       </td>
     </tr>
     <tr>
       <td>Pd. 5</td>
       <td>
-        <input type="text" name="5name">
+        <input class="input" type="text" name="5name">
       </td>
       <td>
-        <input type="text" name="5code">
+        <input class="input" type="text" name="5code">
       </td>
     </tr>
     <tr>
       <td>Pd. 6</td>
       <td>
-        <input type="text" name="6name">
+        <input class="input" type="text" name="6name">
       </td>
       <td>
-        <input type="text" name="6code">
+        <input class="input" type="text" name="6code">
       </td>
     </tr>
     <tr>
       <td>Pd. 7</td>
       <td>
-        <input type="text" name="7name">
+        <input class="input" type="text" name="7name">
       </td>
       <td>
-        <input type="text" name="7code">
+        <input class="input" type="text" name="7code">
       </td>
     </tr>
     <tr>
       <td>Pd. 8</td>
       <td>
-        <input type="text" name="8name">
+        <input class="input" type="text" name="8name">
       </td>
       <td>
-        <input type="text" name="8code">
+        <input class="input" type="text" name="8code">
       </td>
     </tr>
     <tr>
       <td>Pd. 9</td>
       <td>
-        <input type="text" name="9name">
+        <input class="input" type="text" name="9name">
       </td>
       <td>
-        <input type="text" name="9code">
+        <input class="input" type="text" name="9code">
       </td>
     </tr>
     <tr>
       <td>Pd. 10</td>
       <td>
-        <input type="text" name="10name">
+        <input class="input" type="text" name="10name">
       </td>
       <td>
-        <input type="text" name="10code">
+        <input class="input" type="text" name="10code">
       </td>
     </tr>
   </table>
