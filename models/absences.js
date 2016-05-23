@@ -15,7 +15,9 @@ var absenceSchema = mongoose.Schema({
     "Date of Signature": String
   }),
   schedule : new mongoose.Schema({
-    "Course Code": String
+    'Period' : Number,
+    'Teacher' : String,
+    'Course Code': String
   }),
   approved : Boolean;
 });
@@ -24,20 +26,24 @@ absenceSchema.methods.add = function(err){
     if (err) throw err;
 
     absence = this.objectId;
-    accounts.Student.findOne({ 'OSIS' : this.OSIS}, function(err, student){
-	if (err) throw err;
-
-	// add to the student's absences
-	student.absences.push(absence);
-
-	// save the student
-	student.save(function(err){
+    accounts.Student.findOneAndUpdate(
+	{ OSIS : this.OSIS},
+	{ absences.push(absence) },
+	function(err, student){
 	    if (err) throw err;
-	    console.log("Absence successfully saved to student");
+	    console.log("Absence successfully saved to"+this.student);
 	});
     });
     
-    //accounts.Teacher.findOne({ 
+    for (course in this.schedule){
+	accounts.Teacher.findOneAndUpdate(
+	    { google.name : course['Teacher'] }.where(course['Course Code'] in courses),
+	    { pending_requests.push(absence) },
+	    function (err, teacher){
+		if (err) throw err,
+		console.log("Absence successfully added to"+teacher.google.name);
+	    });
+    };
     
     this.save(function(err){
 	if (err){
