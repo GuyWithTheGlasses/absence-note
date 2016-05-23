@@ -38,6 +38,8 @@ var teacherSchema = mongoose.Schema({
   pending_requests: [mongoose.Schema.Types.ObjectId], // reference to the absences collection
   // list of already approved absence forms
   approved_absences: [mongoose.Schema.Types.ObjectId],
+  // list of courses taught
+  courses: [String]
   type:{type:String, default:'Teacher'}
 });
 
