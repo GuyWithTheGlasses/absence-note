@@ -8,7 +8,6 @@ Johnny So
 Roy Xu  
 Kevin Yan  
 
-(idk how to markdown so fix later pls)
 # Changelog
 - May 17
 ----fixed models error in config & module.js
@@ -17,3 +16,9 @@ Kevin Yan
 ----setting the environment
 - May 18
 ---- GOOGLE AUTH
+---- Schemas created (Account, Student, Teacher)
+- May 22
+---- Home Page changed to support google auth
+---- Created launch screen for students and admins
+---- Created absence note form
+---- Absences model finished (schema & add method)
