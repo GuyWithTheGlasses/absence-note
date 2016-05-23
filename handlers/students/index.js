@@ -17,7 +17,6 @@ var Absence = require('../../models/absences').Absence;
 module.exports = {
   'check': {
     'loggedIn': function(req, res, next) {
-      console.log('hi');
       if (req.isAuthenticated()) return next();
       else return res.redirect('/login');
     }
@@ -44,8 +43,8 @@ module.exports = {
       note.excused_date = req.body.excused_date;
       note.excuse = req.body.excuse;
       note.parent = req.user.parent[0];
-      note.teachers = req.user.teachers;
-      note.save(function(err){
+      note.schedule = req.user.schedule;
+      note.add(function(err){
         if(err) return res.send(err);
         return res.send({
           'success':true,

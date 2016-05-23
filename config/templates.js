@@ -1,5 +1,6 @@
 module.exports = {
   'index': 'index',
+  'logout':'index',
   'admin': {
     'index': 'admin',
     'absences': 'index',

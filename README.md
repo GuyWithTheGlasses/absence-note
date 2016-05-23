@@ -17,3 +17,9 @@ Kevin Yan
 ----setting the environment
 - May 18
 ---- GOOGLE AUTH
+---- Schemas created (Account, Student, Teacher)
+- May 22
+---- Home Page changed to support google auth
+---- Created launch screen for students and admins
+---- Created absence note form
+---- Absences model finished (schema & add method)

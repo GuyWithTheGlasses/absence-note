@@ -2,8 +2,9 @@
 <link type="text/css" href="./style/css/index.css" rel="stylesheet">
 {{/yield-styles}}
 
-{{{yield-header}}}
+{{#yield-header}}
+{{/yield-header}}
 
 {{#yield-content}}
-<button type="submit" class="btn login-btn">Get Started</button>
+<a href="/login"><button type="submit" class="btn login-btn">Get Started</button></a>
 {{/yield-content}}

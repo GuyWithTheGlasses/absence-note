@@ -10,15 +10,21 @@ module.exports = {
     }
   },
   'absences': {
-    get: function(req, res) {
-      res.render(templates.admin.absences);
+    get: function(req, res, next) {
+      Absence.find({}, function(err, absences){
+        if(err) return next(err);
+        return res.render(templates.admin.absences, {absences:absences});
+      });
     },
     post: function(req, res) {
       res.send('/absences posted');
     },
     'id': {
-      get: function(req, res) {
-        res.send('/absences/id posted with ' + req.params.id);
+      get: function(req, res, next) {
+        Absence.findById(req.params.id, function(err, absence){
+          if(err) return next(err);
+          return res.json(absence);
+        });
       },
       post: function(req, res) {
         res.send('/absences/id posted with ' + req.params.id);
