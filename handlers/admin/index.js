@@ -5,7 +5,7 @@ module.exports = {
     get:function(req,res){
       Absence.find(function(err, docs){
         if(err) return next(err);
-        else return res.render(templates.index, {absences:docs});
+        else return res.render(templates.admin.index, {absences:docs});
       });
     }
   },

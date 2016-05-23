@@ -3,6 +3,7 @@ module.exports = {
   'login':'loginandregister',
   'register':'loginandregister',
   'admin':{
+    'index':'index',
     'absences':'index',
     'absence':'index'
   },
