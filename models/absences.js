@@ -14,43 +14,37 @@ var absenceSchema = mongoose.Schema({
     'Name': String,
     "Date of Signature": String
   }),
-  schedule : new mongoose.Schema({
-    'Period' : Number,
-    'Teacher' : String,
+  schedule: new mongoose.Schema({
+    'Period': Number,
+    'Teacher': String,
     'Course Code': String
   }),
-  approved : Boolean;
+  approved: Boolean
 });
 
-absenceSchema.methods.add = function(err){
-    if (err) throw err;
+absenceSchema.methods.add = function(callback) {
+  absence = this.objectId;
+  accounts.Student.findOneAndUpdate({ OSIS: this.OSIS }, { $push: { "absences": absence } },
+    function(err, student) {
+      if (err) return callback(err);
+    }
+  );
 
-    absence = this.objectId;
-    accounts.Student.findOneAndUpdate(
-	{ OSIS : this.OSIS},
-	{ absences.push(absence) },
-	function(err, student){
-	    if (err) throw err;
-	    console.log("Absence successfully saved to"+this.student);
-	});
-    });
-    
-    for (course in this.schedule){
-	accounts.Teacher.findOneAndUpdate(
-	    { google.name : course['Teacher'] }.where(course['Course Code'] in courses),
-	    { pending_requests.push(absence) },
-	    function (err, teacher){
-		if (err) throw err,
-		console.log("Absence successfully added to"+teacher.google.name);
-	    });
-    };
-    
-    this.save(function(err){
-	if (err){
-	    console.log("Error in saving");
-	    throw err;
-    });
-}
+  for (var courseIndex in this.schedule) {
+    var course = this.schedule[courseIndex];
+    accounts.Teacher.findOneAndUpdate({ "google.name": course.Teacher }, { $push: { "pending_requests": absence } },
+      function(err, teacher) {
+        if (err) console.log(err);
+      });
+  }
+
+  this.save(function(err) {
+    if (err) {
+      console.log("Error in saving");
+      callback(err);
+    }else return callback();
+  });
+};
 
 var Absence = mongoose.model('Absence', absenceSchema);
 module.exports.Absence = Absence;
