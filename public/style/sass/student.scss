@@ -1,0 +1,52 @@
+@import 'style';
+$title: #000;
+$text: #000;
+$button-bg: #00b359;
+
+.title {
+  color: $title;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.subtitle {
+  color: $title;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.container {
+  border: 1px solid $text;
+  height: 400px;
+  margin: 40px auto 0;
+  width: 400px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-grow: 1;
+}
+
+.option {
+  border: 1px solid $text;
+  color: $text;
+  font-size: 24px;
+  line-height: 200px;
+  text-align: center;
+  text-decoration: none;
+  width: 200px;
+
+  &:hover {
+    background-color: $button-bg;
+  }
+}

@@ -1,0 +1,46 @@
+button {
+  background-color: #00b359;
+  position: absolute;
+  margin: 1% 0 2% 29%;
+  padding: 30px;
+  font-size: 50px;
+}
+
+#check {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 20px;
+  font-style: italic;
+}
+
+#courses,
+.form-entry {
+  padding-left: 29%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 25px;
+}
+
+#error {
+  padding-left: 29%;
+  color: red;
+}
+
+form {
+  margin-top: 1%;
+  font-family: Helveltica Neue, Helvetica, sans-serif;
+}
+
+input {
+  font-size: 25px;
+}
+
+label,
+td {
+  font-weight: bold;
+}
+
+.table-head {
+  text-align: center;
+  font-weight: bold;
+}
