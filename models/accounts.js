@@ -39,7 +39,7 @@ var teacherSchema = mongoose.Schema({
   // list of already approved absence forms
   approved_absences: [mongoose.Schema.Types.ObjectId],
   // list of courses taught
-  courses: [String]
+  courses: [String],
   type:{type:String, default:'Teacher'}
 });
 
