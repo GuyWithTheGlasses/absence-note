@@ -5,8 +5,14 @@
 
 $font: 'Montserrat';
 
-$text: #000;
+$text: #fff;
 $underline: #d2d2d2;
+
+$button-text: #fff;
+$button-border: #e6e6e6;
+
+$button-shadow1: rgba(0, 0, 0, .2);
+$button-shadow2: rgba(0, 0, 0, .19);
 
 body {
   font-family: $font;
@@ -30,4 +36,21 @@ input {
   &:focus {
     outline: none;
   }
+}
+
+.btn {
+  border: 0;
+  box-shadow: 0 2px 4px 0 $button-shadow1, 0 2px 6px 0 $button-shadow2;
+  color: $button-text;
+  text-align: center;
+  transition-duration: .2s;
+}
+
+.btn:hover {
+  box-shadow: 0 5px 10px 0 $button-shadow1, 0 5px 15px 0 $button-shadow2;
+  cursor: pointer;
+}
+
+.btn:focus {
+  outline: none;
 }
