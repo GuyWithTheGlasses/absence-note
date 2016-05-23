@@ -1,5 +1,5 @@
 {{#yield-styles}}
-<link type="text/css" href="./style/css/absence.css" rel="stylesheet">
+<link type="text/css" href="../style/css/absence.css" rel="stylesheet">
 {{/yield-styles}}
 
 {{#yield-content}}
@@ -160,14 +160,8 @@
 {{/yield-content}}
 
 {{#yield-scripts}}
-  <script src="foreach.js"></script>
-  <script src="ajax.js"></script>
-  <script>
-    var submitbtn = document.getElementById("submit");
-    var form = document.getElementById("form-main");
-    var error = document.getElementById("error");
-    submitbtn.addEventListener("click", function() {
-      submit(form, error);
-    });
-  </script>
+  <script src="../lib/foreach.js"></script>
+  <script src="../lib/ajax.js"></script>
+  <script src="js/absence.js"></script>
+  <!-- Kevin look in there for code^  ( its in student dir in public ) -->
 {{/yield-scripts}}

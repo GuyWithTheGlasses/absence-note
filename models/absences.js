@@ -14,12 +14,12 @@ var absenceSchema = mongoose.Schema({
     'Name': String,
     "Date of Signature": String
   }),
-  schedule: new mongoose.Schema({
+  schedule: [new mongoose.Schema({
     'Period': Number,
     'Teacher': String,
     'Course Code': String
-  }),
-  approved: Boolean
+  })],
+  approved: {type:Boolean, default:false}
 });
 
 absenceSchema.methods.add = function(callback) {

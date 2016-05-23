@@ -11,7 +11,7 @@ module.exports = {
   'logout': {
     get: function(req, res, next) {
       req.logout();
-      next();
+      res.render(templates.logout);
     },
     post: function(req, res, next) {
       req.logout();
