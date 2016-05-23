@@ -5,6 +5,8 @@ var handler = require('../../handlers/admin');
 
 router.use(handler.check);
 
+router.get('/', handler.index.get);
+
 router.get('/absences/:id', handler.absences.id.get);
 router.post('/absences/:id', handler.absences.id.post);
 

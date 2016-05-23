@@ -44,13 +44,7 @@ module.exports = function(app, dirname) {
       transporter.sendMail(emailoptions, callback);
     }
   };
-  transporter.verify(function(error, success) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email server is ready to take our messages');
-    }
-  });
+  
   return {
     passport: passport,
     transport: transport
