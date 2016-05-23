@@ -1,5 +1,19 @@
 var templates = require('../../config/templates');
 var Absence = require('../../models/absences').Absence;
+
+// var note = new Absence();
+// note.student = 'Leon Chou';
+// note.OSIS = 203766068;
+// note.excused = 'ABSENCE';
+// note.corrections = null;
+// note.submission_date = "05/21";
+// note.excused_date  = "05/14";
+// note.excuse = "Went to dentist";
+// note.save(function(err){
+//   if(err) return console.log(err);
+//   return;
+// });
+
 module.exports = {
   'check': {
     'loggedIn': function(req, res, next) {
@@ -29,6 +43,8 @@ module.exports = {
       note.submission_date = req.body.submission_date;
       note.excused_date = req.body.excused_date;
       note.excuse = req.body.excuse;
+      note.parent = req.user.parent[0];
+      note.teachers = req.user.teachers;
       note.save(function(err){
         if(err) return res.send(err);
         return res.send({

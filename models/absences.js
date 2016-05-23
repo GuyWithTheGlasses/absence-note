@@ -5,7 +5,6 @@ var absenceSchema = mongoose.Schema({
   OSIS: Number,
   homeroom: String,
   excused: String,
-  corrections: String,
   submission_date: String,
   excused_date: String,
   excuse: String,
