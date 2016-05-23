@@ -1,42 +1,46 @@
 @import 'style';
 $button-bg: #00b359;
+$title: #000;
 
-button {
-  background-color: $button-bg;
-  font-size: 50px;
-  margin: 1% 0 2% 29%;
-  padding: 30px;
-  position: absolute;
+label {
+  font-size: 22px;
 }
 
-.check {
-  font-style: italic;
-  padding-bottom: 6px;
-  padding-left: 20px;
-  padding-top: 6px;
+.input {
+  width: 300px;
+}
+
+.title {
+  color: $title;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.subtitle {
+  color: $title;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .form-entry {
-  font-size: 25px;
-  padding-bottom: 5px;
-  padding-left: 29%;
-  padding-top: 5px;
-}
-
-form {
-  margin-top: 1%;
-}
-
-input {
-  font-size: 25px;
-}
-
-label,
-td {
-  font-weight: bold;
+  font-size: 18px;
+  margin: 10px auto;
+  text-align: center;
+  width: 400px;
 }
 
 .table-head {
   font-weight: bold;
   text-align: center;
+}
+
+.courses {
+  margin: 50px auto 0;
+}
+
+.radio-boxes {
+  margin-bottom: 30px;
 }
