@@ -1,5 +1,5 @@
 module.exports = {
-  'index': 'index',
+  'index': 'index2',
   'admin': {
     'index': 'admin',
     'absences': 'index',
