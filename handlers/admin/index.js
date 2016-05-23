@@ -1,5 +1,14 @@
-var template = require('../../config/templates');
+var templates = require('../../config/templates');
+var Absence = require('../../models/absences').Absence;
 module.exports = {
+  'index':{
+    get:function(req,res){
+      Absence.find(function(err, docs){
+        if(err) return next(err);
+        else return res.render(templates.index, {absences:docs});
+      });
+    }
+  },
   'absences': {
     get: function(req, res) {
       res.render(templates.admin.absences);
