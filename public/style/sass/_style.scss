@@ -44,13 +44,13 @@ input {
   color: $button-text;
   text-align: center;
   transition-duration: .2s;
-}
 
-.btn:hover {
-  box-shadow: 0 5px 10px 0 $button-shadow1, 0 5px 15px 0 $button-shadow2;
-  cursor: pointer;
-}
+  &:hover {
+    box-shadow: 0 5px 10px 0 $button-shadow1, 0 5px 15px 0 $button-shadow2;
+    cursor: pointer;
+  }
 
-.btn:focus {
-  outline: none;
+  &:focus {
+    outline: none;
+  }
 }

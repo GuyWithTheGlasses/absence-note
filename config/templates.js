@@ -1,18 +1,16 @@
 module.exports = {
-  'index':'index',
-  'login':'loginandregister',
-  'register':'loginandregister',
-  'admin':{
-    'index':'index',
-    'absences':'index',
-    'absence':'index'
+  'index': 'index',
+  'admin': {
+    'index': 'admin',
+    'absences': 'index',
+    'absence': 'index'
   },
-  'students':{
-    'index':'index',
-    'createabsencenote':'createabsencenote',
-    'viewabsencenote':'viewabsencenote'
+  'students': {
+    'index': 'student',
+    'createabsencenote': 'createabsencenote',
+    'viewabsencenote': 'viewabsencenote'
   },
-  'teachers':{
-    'index':'teacher',
+  'teachers': {
+    'index': 'teacher',
   }
 };
