@@ -17,3 +17,9 @@ Kevin Yan
 ----setting the environment
 - May 18
 ---- GOOGLE AUTH
+- May 19
+---- Nothing
+- May 20
+---- Absence and Student / Teacher / Admin Schemas created
+- May 21
+---- Frontpage completed
