@@ -1,12 +1,15 @@
 @import 'style';
 $button-bg: #00b359;
 $title: #000;
+$textarea-bg: #fff;
+$textarea-line: #ccc;
 
 label {
   font-size: 22px;
 }
 
 .input {
+  margin-top: 10px;
   width: 300px;
 }
 
@@ -29,7 +32,7 @@ label {
   font-size: 18px;
   margin: 10px auto;
   text-align: center;
-  width: 400px;
+  width: 600px;
 }
 
 .table-head {
@@ -50,6 +53,20 @@ label {
   display: block;
   font-size: 20px;
   height: 40px;
-  margin: 20px auto 40px;
+  margin: 40px auto 60px;
   width: 200px;
+}
+
+.explanation {
+  background-image: linear-gradient($textarea-bg, $textarea-bg 30px, $textarea-line 30px, $textarea-line 31px, $textarea-bg 31px);
+  background-size: 100% 31px;
+  border: 0;
+  height: 180px;
+  line-height: 31px;
+  resize: none;
+  width: 100%;
+}
+
+.explanation:focus {
+  outline: none;
 }

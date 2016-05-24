@@ -12,6 +12,9 @@ button {
 input {
   font-family: "Montserrat"; }
 
+textarea {
+  font-family: "Montserrat"; }
+
 .input {
   border: 0;
   border-bottom: 1px solid #d2d2d2;
@@ -31,6 +34,9 @@ input {
     cursor: pointer; }
   .btn:focus {
     outline: none; }
+
+.title-link {
+  text-decoration: none; }
 
 .title {
   color: #000;

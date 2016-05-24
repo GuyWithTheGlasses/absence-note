@@ -12,6 +12,9 @@ button {
 input {
   font-family: "Montserrat"; }
 
+textarea {
+  font-family: "Montserrat"; }
+
 .input {
   border: 0;
   border-bottom: 1px solid #d2d2d2;
@@ -32,10 +35,14 @@ input {
   .btn:focus {
     outline: none; }
 
+.title-link {
+  text-decoration: none; }
+
 label {
   font-size: 22px; }
 
 .input {
+  margin-top: 10px;
   width: 300px; }
 
 .title {
@@ -55,7 +62,7 @@ label {
   font-size: 18px;
   margin: 10px auto;
   text-align: center;
-  width: 400px; }
+  width: 600px; }
 
 .table-head {
   font-weight: bold;
@@ -72,5 +79,17 @@ label {
   display: block;
   font-size: 20px;
   height: 40px;
-  margin: 20px auto 40px;
+  margin: 40px auto 60px;
   width: 200px; }
+
+.explanation {
+  background-image: linear-gradient(#fff, #fff 30px, #ccc 30px, #ccc 31px, #fff 31px);
+  background-size: 100% 31px;
+  border: 0;
+  height: 180px;
+  line-height: 31px;
+  resize: none;
+  width: 100%; }
+
+.explanation:focus {
+  outline: none; }
