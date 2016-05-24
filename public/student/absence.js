@@ -5,13 +5,14 @@ var ERROR_MESSAGE = 'error-message';
 var setupForms = function(event){
   forEachInClass(document, ABSENCE_FORM_CLASS, function(form){
     form.onsubmit = form.onsubmit || function(event){event.preventDefault();};
+      
     var submitForm = function(event){
       submit(form, {
         url:'/students/absencenote',
         method:'POST',
         success:function(res){
           res = JSON.parse(res);
-          if(res.success) return genNote(res.note);
+          if(res.success) return window.location.href = '/student/absencenote/' + res.note_id;
           else {
             forEachInClass(form, ABSENCE_FORM_CLASS, function(element){
               element.innerHTML = res;
@@ -20,7 +21,10 @@ var setupForms = function(event){
         },
         complete:function(){
         }
-      });
+      }, ERROR_MESSAGE);
     };
+    forEachInClass(form, SUBMIT_BUTTON, function(button){
+	button.addEventListener('click', submitForm);
+    });
   });
 };

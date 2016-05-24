@@ -66,3 +66,11 @@ label {
 
 .radio-boxes {
   margin-bottom: 30px; }
+
+.btn {
+  background-color: #00b359;
+  display: block;
+  font-size: 20px;
+  height: 40px;
+  margin: 20px auto 40px;
+  width: 200px; }

@@ -2,6 +2,9 @@
 <link type="text/css" href="./style/css/index.css" rel="stylesheet">
 {{/yield-styles}}
 
+{{#yield-header}}
+{{/yield-header}}
+
 {{#yield-content}}
 
 {{absences}} <br /> <br />
@@ -10,6 +13,5 @@
 <a href="/admin/absences/{{_id}}">{{submission_date}}</a> <br />
 {{/absences}}
 
-
-<a href="/login"><button  type="submit" class="btn login-btn">Get Started</button></a>
+<a href="/login"><button type="submit" class="btn login-btn">Get Started</button></a>
 {{/yield-content}}
