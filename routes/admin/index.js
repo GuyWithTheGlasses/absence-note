@@ -3,7 +3,7 @@ var router = express.Router();
 
 var handler = require('../../handlers/admin');
 
-router.use(handler.check);
+// router.use(handler.check);
 
 router.get('/', handler.index.get);
 

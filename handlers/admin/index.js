@@ -21,6 +21,7 @@ module.exports = {
     },
     'id': {
       get: function(req, res, next) {
+        console.log(req.params.id);
         Absence.findById(req.params.id, function(err, absence){
           if(err) return next(err);
           return res.json(absence);

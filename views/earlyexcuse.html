@@ -18,25 +18,8 @@
   <div id="error"></div> -->
 
 <form id="form-main">
-  <h1 class="title">Absence Note</h1>
-  <div class="form-entry">
-    <div class="radio-boxes">
-      <label for="excused">Excused</label>
-      <br>
-      <br>
-      <input type="radio" name="excused" value="absence-excuse">Absence
-      <input type="radio" name="excused" value="lateness-excuse">Lateness
-      <br>
-    </div>
-    <div class="radio-boxes">
-      <label>Corrections</label>
-      <br>
-      <br>
-      <input type="radio" name="excused" value="absence-correction">Absence
-      <input type="radio" name="excused" value="lateness-correction">Lateness
-      <input type="radio" name="excused" value="cuts">Cuts
-    </div>
-  </div>
+
+  <h1 class="title">Early Excuse Note</h1>
 
   <div class="form-entry">
     <label for="student">Name</label>
@@ -52,13 +35,19 @@
   </div>
 
   <div class="form-entry">
-    <label for="excused_date">Date of Absence, Lateness, or Cut</label>
+    <label for="excused_date">Date of Excuse</label>
     <br>
     <input class="input" type="text" name="excused_date">
   </div>
 
   <div class="form-entry">
-    <label for="excuse">Explanation</label>
+    <label for="excused_date">Time of Excuse</label>
+    <br>
+    <input class="input" type="text" name="excused_date">
+  </div>
+
+  <div class="form-entry">
+    <label for="excuse">Reason For Leaving</label>
     <br>
     <textarea class="explanation" name="excuse"></textarea>
   </div>
@@ -166,7 +155,7 @@
       </td>
     </tr>
   </table>
-  <button id="submit" class="btn form-submit-ajax">Submit</button>
+  <button id="submit" class="btn">Submit</button>
 </form>
 {{/yield-content}}
 

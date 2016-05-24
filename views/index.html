@@ -6,5 +6,12 @@
 {{/yield-header}}
 
 {{#yield-content}}
+
+{{absences}} <br /> <br />
+
+{{#absences}}
+<a href="/admin/absences/{{_id}}">{{submission_date}}</a> <br />
+{{/absences}}
+
 <a href="/login"><button type="submit" class="btn login-btn">Get Started</button></a>
 {{/yield-content}}
