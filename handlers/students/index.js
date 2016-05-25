@@ -1,6 +1,8 @@
 var templates = require('../../config/templates');
 var Absence = require('../../models/absences').Absence;
+var config = require('../../config/forms');
 
+var intersect = require('intersect');
 // var note = new Absence();
 // note.student = 'Leon Chou';
 // note.OSIS = 203766068;
@@ -28,22 +30,24 @@ module.exports = {
   },
   'absencenote': {
     get: function(req, res, next) {
-      if (!req.user) return next('Missing User');
+      if(!req.user) return res.redirect('/login');
+      if(!req.user.OSIS || !req.user.homeroom || !req.user.parents)
       res.render(templates.students.createabsencenote, { user: req.user });
     },
     post: function(req, res) {
-      var student = req.user.google.name;
-      var note = new Absence();
-      note.student = student;
-      note.OSIS = req.body.OSIS;
-      note.homeroom = req.user.homeroom;
-      note.excused = req.body.excused || null;
-      note.corrections = req.body.corrections || null;
-      note.submission_date = req.body.submission_date;
-      note.excused_date = req.body.excused_date;
-      note.excuse = req.body.excuse;
-      note.parent = req.user.parent[0];
-      note.schedule = req.user.schedule;
+      var student = req.user;
+      // var note = new Absence(req.body);
+      var formparams = config.absencenote.params;
+      var absence = req.body;
+      for(var key in form){
+        if( !(form.key in formparams) ){
+          delete form.key;
+        }
+      }
+      absence.student = student.google.name;
+      note.OSIS = student.OSIS;
+      note.homeroom = student.homeroom;
+      note.schedule = req.body.schedule;
       note.add(function(err){
         if(err) return res.send(err);
         return res.send({

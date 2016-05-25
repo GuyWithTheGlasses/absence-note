@@ -21,10 +21,10 @@ var studentSchema = mongoose.Schema({
   // personal constant student data
   OSIS: Number,
   homeroom: String,
-  parents: [{
+  parents: [new mongoose.Schema({
     name: String,
     phone: String
-  }],
+  })],
   // list of absences
   absences: [mongoose.Schema.Types.ObjectId], // id number referencing other collection
   type:{type:String, default:'Student'}

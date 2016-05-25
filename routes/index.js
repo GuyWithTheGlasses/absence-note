@@ -4,6 +4,7 @@ var router = express.Router();
 var handler = require('../handlers/index');
 
 router.get('/logout', handler.accounts.logout.get);
+router.use(handler.check);
 
 // router.use(function(req,res,next){//redirects to specific type
 //   if(req.user && req.isAuthenticated()){
