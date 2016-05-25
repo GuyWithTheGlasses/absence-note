@@ -23,8 +23,8 @@ var absenceSchema = mongoose.Schema({
 });
 
 absenceSchema.methods.add = function(callback) {
-  absence = this.objectId;
-  accounts.Student.findOneAndUpdate({ OSIS: this.OSIS }, { $push: { "absences": absence } },
+  absence = this;
+  accounts.Student.findOneAndUpdate({ OSIS: this.OSIS }, { $push: { "absences": absence._id } },
     function(err, student) {
       if (err) return callback(err);
     }
@@ -44,6 +44,24 @@ absenceSchema.methods.add = function(callback) {
       callback(err);
     }else return callback();
   });
+};
+
+absenceSchema.methods.approve = function(callback){
+    absence = this;
+    absence.approved = true;
+    for (var courseIndex in this.scheule){
+	var course = this.schedule[courseIndex];
+	accounts.Teacher.findOneAndUpdate({ "google.name": course.Teacher },
+					  { $push: { "approved_absences": absence.objectId },
+					    $pull: {"pending_requests": absence.objectId} }, function(err, teacher){
+						if (err)
+						    return callback(err);
+					    });
+    }
+    absence.save(function(err){
+	if (err)
+	    return callback(err);
+    });
 };
 
 var Absence = mongoose.model('Absence', absenceSchema);
