@@ -18,20 +18,22 @@ var intersect = require('intersect');
 
 module.exports = {
   'check': {
-    'loggedIn': function(req, res, next) {
-      if (req.isAuthenticated()) return next();
-      else return res.redirect('/login');
+    'loggedIn': function( req, res, next ) {
+      if ( req.isAuthenticated() ) return next();
+      else return res.redirect( '/login' );
     }
   },
   'index': {
-    'get': function(req, res, next) {
-      res.render(templates.students.index, { user: req.user });
+    'get': function( req, res, next ) {
+      res.render( templates.students.index, {
+        user: req.user
+      } );
     }
   },
   'absencenote': {
     get: function(req, res, next) {
       if(!req.user) return res.redirect('/login');
-      if(!req.user.OSIS || !req.user.homeroom || !req.user.parents)
+      if(!req.user.OSIS || !req.user.homeroom || !req.user.parents) return res.redirect('/');
       res.render(templates.students.createabsencenote, { user: req.user });
     },
     post: function(req, res) {
@@ -56,9 +58,19 @@ module.exports = {
         });
       });
     },
-    'id':{
-      get:function(req,res,next){},
-      post:function(req,res,next){}
+    'id': {
+      get: function( req, res, next ) {},
+      post: function( req, res, next ) {}
+    }
+  },
+  'earlyexcuse': {
+    'id': {
+      get: function( req, res, next ) {
+        res.render( templates.students.earlyexcusenote );
+      }
+    },
+    get: function( req, res, next ) {
+      res.render( templates.students.earlyexcuseform );
     }
   }
 };

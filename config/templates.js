@@ -1,6 +1,6 @@
 module.exports = {
   'index': 'index',
-  'logout':'index',
+  'logout': 'index',
   'admin': {
     'index': 'admin',
     'absences': 'index',
@@ -9,7 +9,9 @@ module.exports = {
   'students': {
     'index': 'student',
     'createabsencenote': 'absence',
-    'viewabsencenote': 'viewabsencenote'
+    'viewabsencenote': 'viewabsencenote',
+    'earlyexcusenote': 'earlyexcuse',
+    'earlyexcuseform': 'earlyexcuse'
   },
   'teachers': {
     'index': 'teacher',
