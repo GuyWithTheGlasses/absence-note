@@ -7,18 +7,19 @@ var Absence = require( '../../models/absences' ).Absence;
 // note.excused = 'ABSENCE';
 // note.corrections = null;
 // note.submission_date = "05/21";
-// note.excused_date  = "05/14";
+// note.excused_date = "05/14";
 // note.excuse = "Went to dentist";
-// note.save(function(err){
-//   if(err) return console.log(err);
+// note.save( function( err ) {
+//   if ( err ) return console.log( err );
 //   return;
-// });
+// } );
 
 module.exports = {
   'check': {
     'loggedIn': function( req, res, next ) {
       if ( req.isAuthenticated() ) return next();
       else return res.redirect( '/login' );
+      next();
     }
   },
   'index': {
@@ -30,7 +31,7 @@ module.exports = {
   },
   'absencenote': {
     get: function( req, res, next ) {
-      if ( !req.user ) return next( 'Missing User' );
+      // if ( !req.user ) return next( 'Missing User' );
       res.render( templates.students.createabsencenote, {
         user: req.user
       } );
