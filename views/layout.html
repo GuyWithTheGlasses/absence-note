@@ -13,6 +13,9 @@
       <h3 class="subtitle">Online Absence Note System</h3>
     </a>
     {{/yield-header}}
+    {{#yield-user}}
+      <a class="logout" href="/logout">Logout</a>
+    {{/yield-user}}
     {{{yield-content}}}
   </body>
   {{{yield-scripts}}}

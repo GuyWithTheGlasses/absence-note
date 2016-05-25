@@ -34,7 +34,7 @@ module.exports = {
   'absencenote': {
     get: function( req, res, next ) {
       if ( !req.user ) return res.redirect( '/login' );
-      if ( !req.user.OSIS || !req.user.homeroom || !req.user.parents ) return res.redirect( '/' );
+      // if ( !req.user.OSIS || !req.user.homeroom || !req.user.parents ) return res.redirect( '/' );
       res.render( templates.students.createabsencenote, {
         user: req.user
       } );

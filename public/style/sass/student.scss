@@ -18,10 +18,17 @@ $button-bg: #00b359;
   text-align: center;
 }
 
+.logout {
+  color: $text;
+  float: right;
+  margin-right: 30px;
+  margin-top: -100px;
+  text-decoration: none;
+}
+
 .container {
-  border: 1px solid $text;
   height: 400px;
-  margin: 40px auto 0;
+  margin: 100px auto 0;
   width: 400px;
 }
 
@@ -41,12 +48,37 @@ $button-bg: #00b359;
   border: 1px solid $text;
   color: $text;
   font-size: 24px;
+  height: 200px;
   line-height: 200px;
   text-align: center;
   text-decoration: none;
-  width: 200px;
+  width: 202px;
 
   &:hover {
     background-color: $button-bg;
   }
+}
+
+.diamond {
+  transform: rotate(-45deg);
+  transform-origin: 50% 50%;
+}
+
+.diamond-text {
+  margin: 0;
+  transform: rotate(45deg);
+  transform-origin: 50% 50%;
+}
+
+.left {
+  border-bottom: 0;
+  border-right: 0;
+}
+
+.right {
+  border-left: 0;
+}
+
+.top {
+  border-bottom: 0;
 }
