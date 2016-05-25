@@ -30,4 +30,5 @@ Kevin Yan
 ---- Created launch screen for students and admins
 ---- Created absence note form
 ---- Absences model finished (schema & add method)
->>>>>>> 8b8ac35fc9a9fd242cbe5317efe6a35bcaf90cb8
+- May 24
+---- Finished early excuse note

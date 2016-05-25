@@ -12,6 +12,20 @@ module.exports = {
       console.log('Posted to index!');
       next();
     }
+  },
+  'check':function(req, res, next){
+    if(req.isAuthenticated && req.user){
+      switch(req.user.type){
+        case 'Student':
+          return res.redirect('/student');
+        case 'Teacher':
+          return res.redirect('/teacher');
+        case 'Admin':
+          return res.redirect('/admin');
+        default:
+          return res.redirect('/logout');
+      }
+    } else return next();
   }
 };
 module.exports.accounts = require('./accounts');
