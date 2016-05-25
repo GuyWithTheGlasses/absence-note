@@ -10,6 +10,7 @@ var setupForms = function(event){
       submit(form, {
         url:'/students/absencenote',
         method:'POST',
+	data:getData(form),
         success:function(res){
           res = JSON.parse(res);
           if(res.success) return window.location.href = '/student/absencenote/' + res.note_id;
@@ -28,3 +29,10 @@ var setupForms = function(event){
     });
   });
 };
+
+
+var getData = function(form){
+    return;
+};
+
+document.addEventListener('DOMContentLoaded', setupForms);
