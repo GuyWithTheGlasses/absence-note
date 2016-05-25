@@ -1,24 +1,27 @@
 {{#yield-styles}}
-<link type="text/css" href="./style/css/student.css" rel="stylesheet">
+<link type="text/css" href="../style/css/student.css" rel="stylesheet">
 {{/yield-styles}}
+
+{{#yield-header}}
+{{/yield-header}}
 
 {{#yield-content}}
 <div class="container">
-  <div class="flex-container">
+  <div class="diamond">
     <div class="row">
-      <a href="#" class="option early-excuse">
-        View Early Excuse Notes
+      <a href="/student/earlyexcuse" class="left option">
+        <p class="diamond-text">Absence</p>
       </a>
-      <a href="#" class="option absence">
-        View Absence Notes
+      <a href="/student/absencenote" class="top option">
+        <p class="diamond-text">Profile</p>
       </a>
     </div>
     <div class="row">
-      <a href="#" class="option pending">
-        Pending Excuse Notes
+      <a href="#" class="bottom option">
+        <p class="diamond-text">History</p>
       </a>
-      <a href="#" class="option past">
-        Summary
+      <a href="#" class="right option">
+        <p class="diamond-text">Early Excuse</p>
       </a>
     </div>
   </div>
