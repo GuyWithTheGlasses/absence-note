@@ -38,6 +38,17 @@ textarea {
 .title-link {
   text-decoration: none; }
 
+.title-container {
+  text-align: center; }
+
+.title {
+  display: inline-block;
+  margin: 20px 0 0; }
+
+.subtitle {
+  display: inline-block;
+  margin: 5px 0 0; }
+
 body {
   background: url("../../img/stuyvesant.jpg") center center no-repeat;
   background-size: cover;

@@ -8,7 +8,7 @@ module.exports = {
   },
   'students': {
     'index': 'student',
-    'createabsencenote': 'absence1',
+    'createabsencenote': 'absence',
     'viewabsencenote': 'viewabsencenote',
     'earlyexcusenote': 'earlyexcuse',
     'earlyexcuseform': 'earlyexcuse'

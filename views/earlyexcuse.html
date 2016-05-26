@@ -7,55 +7,29 @@
 
 
 {{#yield-content}}
-<!-- <img id="logo" src="stuy_logo.png"></img>
-
-  <h1 class="heading">New Absence Note</h1>
-
-  <div id="login-info">You are logged in as
-    <a href="Dunno what goes here">Logout</a>
-  </div>
-
-  <div id="error"></div> -->
-
 <form id="form-main">
-
-  <h1 class="title">Early Excuse Note</h1>
-
+  <h1 class="note title">Early Excuse Note</h1>
   <div class="form-entry">
-    <label for="student">Name</label>
-    <br>
-    <input class="input" type="text" name="student">
+    <h3 class="label">Type</h3>
+    <div class="type-box">
+      <button id="lateness" class="excusemestopreading btn">Excused</button>
+      <button id="correction" class="excusemestopreading btn">Correction</button>
+    </div>
   </div>
 
   <div class="form-entry">
-    <label for="OSIS">OSIS#</label>
-    <br>
-    <input class="input" type="text" name="OSIS">
-    <!-- verify that is 9-digit number -->
-  </div>
-
-  <div class="form-entry">
-    <label for="excused_date">Date of Excuse</label>
-    <br>
+    <h3 class="label">Date of Excuse</h3>
     <input class="input" type="text" name="excused_date">
   </div>
 
   <div class="form-entry">
-    <label for="excused_date">Time of Excuse</label>
-    <br>
+    <h3 class="label">Time of Excuse</h3>
     <input class="input" type="text" name="excused_date">
   </div>
 
   <div class="form-entry">
-    <label for="excuse">Reason For Leaving</label>
-    <br>
+    <h3 class="label">Explanation</h3>
     <textarea class="explanation" name="excuse"></textarea>
-  </div>
-
-  <div class="form-entry">
-    <label for="parent.name">Parent's Name</label>
-    <br>
-    <input class="input" type="text" name="parent.name">
   </div>
 
   <table class="courses">
@@ -65,7 +39,10 @@
       <td class="table-head">Course Code</td>
     </tr>
     <tr>
-      <td>Pd. 1</td>
+      <td>
+        <input class="checkbox" type="checkbox" name="1select">
+        Pd. 1
+      </td>
       <td>
         <input class="input" type="text" name="1name">
       </td>
@@ -74,7 +51,10 @@
       </td>
     </tr>
     <tr>
-      <td>Pd. 2</td>
+      <td>
+        <input class="checkbox" type="checkbox" name="2select">
+        Pd. 2
+      </td>
       <td>
         <input class="input" type="text" name="2name">
       </td>
@@ -83,7 +63,10 @@
       </td>
     </tr>
     <tr>
-      <td>Pd. 3</td>
+      <td>
+        <input class="checkbox" type="checkbox" name="3select">
+        Pd. 3
+      </td>
       <td>
         <input class="input" type="text" name="3name">
       </td>
@@ -92,7 +75,10 @@
       </td>
     </tr>
     <tr>
-      <td>Pd. 4</td>
+      <td>
+        <input class="checkbox" type="checkbox" name="4select">
+        Pd. 4
+      </td>
       <td>
         <input class="input" type="text" name="4name">
       </td>
@@ -101,7 +87,10 @@
       </td>
     </tr>
     <tr>
-      <td>Pd. 5</td>
+      <td>
+        <input class="checkbox" type="checkbox" name="5select">
+        Pd. 5
+      </td>
       <td>
         <input class="input" type="text" name="5name">
       </td>
@@ -110,7 +99,10 @@
       </td>
     </tr>
     <tr>
-      <td>Pd. 6</td>
+      <td>
+        <input class="checkbox" type="checkbox" name="6select">
+        Pd. 6
+      </td>
       <td>
         <input class="input" type="text" name="6name">
       </td>
@@ -119,7 +111,10 @@
       </td>
     </tr>
     <tr>
-      <td>Pd. 7</td>
+      <td>
+        <input class="checkbox" type="checkbox" name="7select">
+        Pd. 7
+      </td>
       <td>
         <input class="input" type="text" name="7name">
       </td>
@@ -128,7 +123,10 @@
       </td>
     </tr>
     <tr>
-      <td>Pd. 8</td>
+      <td>
+        <input class="checkbox" type="checkbox" name="8select">
+        Pd. 8
+      </td>
       <td>
         <input class="input" type="text" name="8name">
       </td>
@@ -137,7 +135,10 @@
       </td>
     </tr>
     <tr>
-      <td>Pd. 9</td>
+      <td>
+        <input class="checkbox" type="checkbox" name="9select">
+        Pd. 9
+      </td>
       <td>
         <input class="input" type="text" name="9name">
       </td>
@@ -146,7 +147,10 @@
       </td>
     </tr>
     <tr>
-      <td>Pd. 10</td>
+      <td>
+        <input class="checkbox" type="checkbox" name="10select">
+        Pd. 10
+      </td>
       <td>
         <input class="input" type="text" name="10name">
       </td>
@@ -155,7 +159,7 @@
       </td>
     </tr>
   </table>
-  <button id="submit" class="btn">Submit</button>
+  <button id="submit" class="btn submit form-submit-ajax">Submit</button>
 </form>
 {{/yield-content}}
 
@@ -163,5 +167,4 @@
   <script src="../lib/foreach.js"></script>
   <script src="../lib/ajax.js"></script>
   <script src="js/absence.js"></script>
-  <!-- Kevin look in there for code^  ( its in student dir in public ) -->
 {{/yield-scripts}}

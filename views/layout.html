@@ -8,10 +8,13 @@
   </head>
   <body>
     {{#yield-header}}
-    <a class="title-link" href="/">
-      <h1 class="title">Stuyvesant High School</h1>
-      <h3 class="subtitle">Online Absence Note System</h3>
-    </a>
+    <div class="title-container">
+      <a class="title-link" href="/">
+        <h1 class="title">Stuyvesant High School</h1>
+        <br>
+        <h3 class="subtitle">Online Absence Note System</h3>
+      </a>
+    </div>
     {{/yield-header}}
     {{#yield-user}}
       <a class="logout" href="/logout">Logout</a>
