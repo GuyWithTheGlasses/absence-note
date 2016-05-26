@@ -52,6 +52,13 @@ label {
   padding-top: 10px;
   text-align: center; }
 
+.logout {
+  color: #fff;
+  float: right;
+  margin-right: 30px;
+  margin-top: -100px;
+  text-decoration: none; }
+
 .subtitle {
   color: #000;
   font-size: 20px;
@@ -69,13 +76,13 @@ label {
   text-align: center; }
 
 .courses {
-  margin: 50px auto 0; }
+  margin: 10px auto 0; }
 
 .radio-boxes {
   margin-bottom: 30px; }
 
-.btn {
-  background-color: #00b359;
+.submit {
+  background-color: #71e27a;
   display: block;
   font-size: 20px;
   height: 40px;
@@ -86,10 +93,28 @@ label {
   background-image: linear-gradient(#fff, #fff 30px, #ccc 30px, #ccc 31px, #fff 31px);
   background-size: 100% 31px;
   border: 0;
+  font-size: 16px;
   height: 180px;
   line-height: 31px;
+  padding: 3px;
   resize: none;
-  width: 100%; }
+  width: 80%; }
 
 .explanation:focus {
   outline: none; }
+
+.label {
+  border-bottom: 1px solid #d3d3d3;
+  font-size: 20px;
+  margin-bottom: 0;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  text-align: left; }
+
+.excusemestopreading {
+  background-color: #d36165;
+  display: inline-block;
+  font-size: 16px;
+  height: 50px;
+  margin: 0 30px;
+  width: 150px; }

@@ -4,24 +4,26 @@
 
 {{#yield-header}}
 {{/yield-header}}
+{{#yield-user}}
+{{/yield-user}}
 
 {{#yield-content}}
 <div class="container">
-  <div class="flex-container">
+  <div class="diamond">
     <div class="row">
-      <a href="/student/earlyexcuse" class="option early-excuse">
-        Early Excuse
+      <a href="/student/absencenote" class="left option">
+        <p class="diamond-text">Absence</p>
       </a>
-      <a href="/student/absencenote" class="option absence">
-        Absence
+      <a href="/student/earlyexcuse" class="top option">
+        <p class="diamond-text">Profile</p>
       </a>
     </div>
     <div class="row">
-      <a href="#" class="option pending">
-        Pending
+      <a href="#" class="bottom option">
+        <p class="diamond-text">History</p>
       </a>
-      <a href="#" class="option past">
-        Past
+      <a href="#" class="right option">
+        <p class="diamond-text">Early Excuse</p>
       </a>
     </div>
   </div>

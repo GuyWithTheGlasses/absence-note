@@ -15,19 +15,20 @@ Kevin Yan
 ----working homepage button
 ----setting the environment
 - May 18
----- GOOGLE AUTH
-<<<<<<< HEAD
+---- GOOGLE AUTH working
 - May 19
 ---- Nothing
 - May 20
 ---- Absence and Student / Teacher / Admin Schemas created
 - May 21
 ---- Frontpage completed
-=======
 ---- Schemas created (Account, Student, Teacher)
 - May 22
 ---- Home Page changed to support google auth
 ---- Created launch screen for students and admins
 ---- Created absence note form
 ---- Absences model finished (schema & add method)
->>>>>>> 8b8ac35fc9a9fd242cbe5317efe6a35bcaf90cb8
+- May 24
+---- Finished early excuse note
+- May 25
+---- Added method .approve to the AbsenceSchema
