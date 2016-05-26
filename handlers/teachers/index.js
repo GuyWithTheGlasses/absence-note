@@ -32,7 +32,6 @@ module.exports = {
               return mongoose.Types.ObjectId(id);
             })
           }
-
         }, function(err, absences) {
           approvedAbsences = absences;
           if (err) return next(err);
@@ -46,6 +45,19 @@ module.exports = {
           if (err) return res.send('Incorrect id ' + req.params.id);
           else return res.render(templates.teacher.absence, { absence: absence });
         });
+      },
+      post: function(req, res) {
+        if(req.user && req.isAuthenticated() && (req.user.type == 'Teacher' || req.user.type == 'Admin')){
+          Absence.findById(req.params.id, function(err, absence){
+            if(err) return res.send(err);
+            absence = new Absence(absence);
+            absence.approve(function(err){
+              if(err) return res.send(err);
+            });
+          });
+        }else{
+          res.send('You do not have authorization to do that');
+        }
       }
     }
   }

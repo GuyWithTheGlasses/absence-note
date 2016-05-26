@@ -3,7 +3,10 @@ var router = express.Router();
 
 var handler = require('../../handlers/admin');
 
-// router.use(handler.check);
+if(process.env.env == 'development'){
+}else{
+ router.use(handler.check.loggedIn);
+}
 
 router.get('/', handler.index.get);
 
