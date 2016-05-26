@@ -1,5 +1,5 @@
 @import 'style';
-$button-bg: #71e27a;
+$button-bg: #41be4b;
 $button-bg1: #d36165;
 $title: #000;
 $textarea-bg: #fff;
@@ -11,7 +11,7 @@ label {
 }
 
 .input {
-  margin-top: 10px;
+  margin-top: 20px;
   width: 300px;
 }
 
@@ -21,6 +21,11 @@ label {
   font-weight: bold;
   padding-top: 10px;
   text-align: center;
+}
+
+.note {
+  display: block;
+  text-decoration: underline;
 }
 
 .logout {
@@ -62,7 +67,7 @@ label {
   background-color: $button-bg;
   display: block;
   font-size: 20px;
-  height: 40px;
+  height: 50px;
   margin: 40px auto 60px;
   width: 200px;
 }
@@ -101,4 +106,9 @@ label {
   height: 50px;
   margin: 0 30px;
   width: 150px;
+}
+
+.type-box {
+  margin-bottom: 10px;
+  margin-top: 20px;
 }
