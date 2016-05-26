@@ -10,9 +10,9 @@ module.exports = {
     'index': 'student',
     'createabsencenote': 'absence',
     'viewabsencenote': 'viewabsencenote',
-    'earlyexcusenote': 'earlyexcuse',
-    'earlyexcuseform': 'earlyexcuse',
-    'profile':'index'
+    'createearlyexcuse': 'earlyexcuse',
+    'viewearlyexcuse': 'earlyexcuse',
+    'profile': 'profile'
   },
   'teachers': {
     'index': 'teacher',
