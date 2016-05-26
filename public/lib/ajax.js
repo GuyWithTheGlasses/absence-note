@@ -47,15 +47,17 @@ var checkInputs = function(form, output) {
  * @param {String} messageLoc Class of all elements to display the return message
  */
 var submit = function(form, ajaxOpts, messageLoc) {
-  var data = {};
-  var clean = true;
-  forEachInTags(form, 'INPUT', function(input) {
-    data[input.getAttribute('name')] = input.value;
-  });
-  if (checkInputs(form, messageLoc)) {
-    ajaxOpts.data = data;
-    ajax(ajaxOpts);
-  }
+  if(!ajaxOpts.data){
+      var data = {};
+      var clean = true;
+      forEachInTags(form, 'INPUT', function(input) {
+	  data[input.getAttribute('name')] = input.value;
+      });
+      if (checkInputs(form, messageLoc)) {
+	  ajaxOpts.data = data;
+	  ajax(ajaxOpts);
+      }
+  } else ajax(ajaxOpts);
 };
 
 /**

@@ -8,22 +8,35 @@
 
 {{#yield-content}}
 <form id="form-main">
-  <h1 class="note title">Absence Note</h1>
+  <h1 class="title">Absence Note</h1>
   <div class="form-entry">
-    <h3 class="label">Type</h3>
-    <div class="type-box">
-      <button id="lateness" class="excusemestopreading btn">Excused</button>
-      <button id="correction" class="excusemestopreading btn">Correction</button>
+    <div class="radio-boxes">
+      <label for="excused">Excused</label>
+      <br>
+      <br>
+      <input type="radio" name="excused" value="absence-excuse">Absence
+      <input type="radio" name="excused" value="lateness-excuse">Lateness
+      <br>
+    </div>
+    <div class="radio-boxes">
+      <label>Corrections</label>
+      <br>
+      <br>
+      <input type="radio" name="excused" value="absence-correction">Absence
+      <input type="radio" name="excused" value="lateness-correction">Lateness
+      <input type="radio" name="excused" value="cuts">Cuts
     </div>
   </div>
 
   <div class="form-entry">
-    <h3 class="label">Date of Absence, Lateness, or Cut</h3>
+    <label for="excused_date">Date of Absence, Lateness, or Cut</label>
+    <br>
     <input class="input" type="text" name="excused_date">
   </div>
 
   <div class="form-entry">
-    <h3 class="label">Explanation</h3>
+    <label for="excuse">Explanation</label>
+    <br>
     <textarea class="explanation" name="excuse"></textarea>
   </div>
 
@@ -155,7 +168,6 @@
     </tr>
   </table>
   <button id="submit" class="btn form-submit-ajax">Submit</button>
-  <button id="pdf" class="btn form-create-pdf">Print</button>
 </form>
 {{/yield-content}}
 

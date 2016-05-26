@@ -3,11 +3,15 @@ var accounts = require('./accounts');
 
 var OSIS_ERROR_MESSAGE = 'Please enter a valid OSIS';
 
+var EXCUSED_ENUM = { values: 'absence-excuse lateness-excuse absence-correction lateness-correction cuts'.split(' '),
+		     message: 'enum validator failed for path `{PATH}` with value `{VALUE}`' };
+
 var absenceSchema = mongoose.Schema({
   student: String,
-  OSIS: { type: Number, min: [99999999, OSIS_ERROR_MESSAGE], max: [1000000000, OSIS_ERROR_MESSAGE] }, // Make sure its 9 digits
+    // make sure the OSIS is 9 digits
+  OSIS: { type: Number, min: [99999999, OSIS_ERROR_MESSAGE], max: [1000000000, OSIS_ERROR_MESSAGE] },
   homeroom: String,
-  excused: String,
+  excused: {type: String, enum: EXCUSED_ENUM, lowercase: true},
   submission_date: String,
   excused_date: String,
   excuse: String,
@@ -18,8 +22,8 @@ var absenceSchema = mongoose.Schema({
   }),
   schedule: [new mongoose.Schema({
     'Period': Number,
-    'Teacher': String,
-    'Course Code': String,
+    'Teacher': mongoose.Schema.Types.ObjectId,
+    'Course Code': String
   })],
   approved: { type: Boolean, default: false }
 });
@@ -35,7 +39,7 @@ absenceSchema.methods.add = function(callback) {
   accounts.Student.findOneAndUpdate({ OSIS: this.OSIS }, { $push: { "absences": absence._id } });
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
-    accounts.Teacher.findOneAndUpdate({ "google.name": course.Teacher }, { $push: { "pending_requests": absence } });
+    accounts.Teacher.findOneAndUpdate({ "google.name": course.Teacher }, { $push: { "pending_absences": absence } });
   }
 
   this.save(function(err) {
@@ -49,16 +53,6 @@ absenceSchema.methods.add = function(callback) {
 absenceSchema.methods.approve = function(callback) {
   absence = this;
   absence.approved = true;
-  for (var courseIndex in this.scheule) {
-    var course = this.schedule[courseIndex];
-    accounts.Teacher.findOneAndUpdate({ "google.name": course.Teacher }, {
-      $push: { "approved_absences": absence.objectId },
-      $pull: { "pending_requests": absence.objectId }
-    }, function(err, teacher) {
-      if (err)
-        return callback(err);
-    });
-  }
   absence.save(function(err) {
     if (err)
       return callback(err);

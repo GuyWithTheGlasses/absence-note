@@ -7,41 +7,45 @@ var REGISTER_MESSAGE = "register-message";
 /**
  * Initializes all login and register forms in the DOM
  */
-var setupForms = function(e) {
+var setupForms = function( e ) {
 
   //Setup Login Form
-  forEachInClass(document, LOGIN_FORM_CLASS, function(form) {
-    form.onsubmit = form.onsubmit || function(event) { event.preventDefault(); };
-    var submitForm = function(e) {
-      submit(form, {
+  forEachInClass( document, LOGIN_FORM_CLASS, function( form ) {
+    form.onsubmit = form.onsubmit || function( event ) {
+      event.preventDefault();
+    };
+    var submitForm = function( e ) {
+      submit( form, {
         "url": "/login",
         "method": "POST",
-        success: success(form, LOGIN_MESSAGE),
+        success: success( form, LOGIN_MESSAGE ),
         complete: function() {}
-      }, LOGIN_MESSAGE);
+      }, LOGIN_MESSAGE );
     };
-    forEachInClass(form, FORM_SUBMIT, function(element) {
-      element.addEventListener('click', submitForm);
-    });
-  });
+    forEachInClass( form, FORM_SUBMIT, function( element ) {
+      element.addEventListener( 'click', submitForm );
+    } );
+  } );
 
   //Setup Register form
-  forEachInClass(document, REGISTER_FORM_CLASS, function(form) {
-    form.onsubmit = form.onsubmit || function(event) { event.preventDefault(); };
-    var submitForm = function(e) {
-      submit(form, {
+  forEachInClass( document, REGISTER_FORM_CLASS, function( form ) {
+    form.onsubmit = form.onsubmit || function( event ) {
+      event.preventDefault();
+    };
+    var submitForm = function( e ) {
+      submit( form, {
         "url": "/register",
         "method": "POST",
-        success: success(form, REGISTER_MESSAGE),
+        success: success( form, REGISTER_MESSAGE ),
         complete: function() {
-          console.log("Registered!");
+          console.log( "Registered!" );
         }
-      }, REGISTER_MESSAGE);
+      }, REGISTER_MESSAGE );
     };
-    forEachInClass(form, FORM_SUBMIT, function(element) {
-      element.addEventListener('click', submitForm);
-    });
-  });
+    forEachInClass( form, FORM_SUBMIT, function( element ) {
+      element.addEventListener( 'click', submitForm );
+    } );
+  } );
 };
 
-document.addEventListener("DOMContentLoaded", setupForms);
+document.addEventListener( "DOMContentLoaded", setupForms );

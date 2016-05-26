@@ -9,13 +9,15 @@ module.exports = {
   'students': {
     'index': 'student',
     'absences': 'index',
-    'absence':{
+    'absence': {
       'create': 'absence',
-      'view' : 'index',
+      'view': 'index',
     },
     'earlyexcusenote': 'earlyexcuse',
     'earlyexcuseform': 'earlyexcuse',
-    'profile':'index'
+    'createearlyexcuse': 'earlyexcuse',
+    'viewearlyexcuse': 'earlyexcuse',
+    'profile': 'profile'
   },
   'teachers': {
     'index': 'teacher',
