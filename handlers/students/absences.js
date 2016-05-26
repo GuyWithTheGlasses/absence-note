@@ -1,4 +1,5 @@
-var Absence = require('../../models/absences').Absence;
+// var Absence = require('../../models/absences').Absence;
+var Absence = {};
 var templates = require('../../config/templates');
 var messages = require('../../config/messages');
 module.exports = {
