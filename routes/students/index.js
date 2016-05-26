@@ -14,5 +14,6 @@ router.get( '/earlyexcuse', handlers.earlyexcuse.get );
 router.get( '/absencenote', handlers.absencenote.get );
 router.post( '/absencenote', handlers.absencenote.post );
 
+router.get('/profile', handlers.profile.get);
 
 module.exports = router;

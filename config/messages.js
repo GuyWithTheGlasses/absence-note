@@ -1,30 +1,12 @@
 module.exports = {
-  'register':{
-    'success':{
-      success:true
-    },
-    failed:function(message){
-      return {
-        success:false,
-        message:message || 'Username and password do not match'
-      };
+  'teachers':{
+    'absences':{
+      'noPermissions':'You do not have access to this absence'
     }
   },
-  'login':{
-    'success':{
-      success:true
-    },
-    failed:function(message){
-      return {
-        success:false,
-        message:message || 'Username and password do not match'
-      };
-    }
-  },
-  'logout':{
-    'post':{
-      success:true,
-      message:'Logged out!'
+  'admin':{
+    'absence':{
+      'notfound':'The absence you were trying to access cannot be found'
     }
   }
 };

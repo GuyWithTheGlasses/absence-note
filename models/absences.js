@@ -19,7 +19,7 @@ var absenceSchema = mongoose.Schema({
   schedule: [new mongoose.Schema({
     'Period': Number,
     'Teacher': String,
-    'Course Code': String
+    'Course Code': String,
   })],
   approved: { type: Boolean, default: false }
 });

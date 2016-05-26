@@ -11,7 +11,8 @@ module.exports = {
     'createabsencenote': 'absence1',
     'viewabsencenote': 'viewabsencenote',
     'earlyexcusenote': 'earlyexcuse',
-    'earlyexcuseform': 'earlyexcuse'
+    'earlyexcuseform': 'earlyexcuse',
+    'profile':'index'
   },
   'teachers': {
     'index': 'teacher',
