@@ -31,41 +31,6 @@ module.exports = {
       } );
     }
   },
-  'absencenote': {
-    get: function( req, res, next ) {
-      if ( !req.user ) return res.redirect( '/login' );
-      // if ( !req.user.OSIS || !req.user.homeroom || !req.user.parents ) return res.redirect( '/' );
-      res.render( templates.students.createabsencenote, {
-        user: req.user
-      } );
-    },
-    post: function( req, res ) {
-      var student = req.user;
-      // var note = new Absence(req.body);
-      var formparams = config.absencenote.params;
-      var absence = req.body;
-      for ( var key in form ) {
-        if ( !( form.key in formparams ) ) {
-          delete form.key;
-        }
-      }
-      absence.student = student.google.name;
-      note.OSIS = student.OSIS;
-      note.homeroom = student.homeroom;
-      note.schedule = req.body.schedule;
-      note.add( function( err ) {
-        if ( err ) return res.send( err );
-        return res.send( {
-          'success': true,
-          'note': note
-        } );
-      } );
-    },
-    'id': {
-      get: function( req, res, next ) {},
-      post: function( req, res, next ) {}
-    }
-  },
   'earlyexcuse': {
     'id': {
       get: function( req, res, next ) {
@@ -82,3 +47,5 @@ module.exports = {
     },
   }
 };
+
+module.exports.absences = require('./absences');

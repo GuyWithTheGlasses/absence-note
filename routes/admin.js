@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var handler = require('../../handlers/admin');
+var handler = require('../handlers/admin');
 
 if(process.env.env == 'development'){
 }else{
