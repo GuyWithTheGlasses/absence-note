@@ -6,7 +6,7 @@ module.exports = {
     get: passport.authenticate('google', { scope: ['profile', 'email'] })
   },
   'authgooglecallback': {
-    get: passport.authenticate('google', {successRedirect:'/', failureRedirect:'/'}),
+    get: passport.authenticate('google', {successRedirect:'/'}),
   },
   'logout': {
     get: function(req, res, next) {
