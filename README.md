@@ -30,5 +30,8 @@ Kevin Yan
 ---- Absences model finished (schema & add method)
 - May 24
 ---- Finished early excuse note
+---- Updated launch screen (rotated square)
 - May 25
 ---- Added method .approve to the AbsenceSchema
+- May 26
+---- Updated route names and finished new absence form
