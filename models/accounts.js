@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var expect = require('expect.js');
+var absences = require('./absences.js');
 
 var accountSchema = mongoose.Schema({
   google:{
@@ -7,8 +8,8 @@ var accountSchema = mongoose.Schema({
     token:String,
     name:String,
     emails:[new mongoose.Schema({
-      value: String,
-      type: String
+      value: { type: String, validate: /^.+@stuy.edu$/ },
+      type: String,
     })]
   },
   type: {type:String, default:'Admin'} // Admin, Student, Teacher
@@ -19,7 +20,8 @@ module.exports.Account = Account;
 
 var studentSchema = mongoose.Schema({
   // personal constant student data
-  OSIS: Number,
+    // makes sure the OSIS is 9 digits long
+  OSIS: { type: Number, min: [99999999, absences.OSIS_ERROR_MESSAGE], max: [1000000000, absences.OSIS_ERROR_MESSAGE] },
   homeroom: String,
   parents: [new mongoose.Schema({
     name: String,
@@ -35,13 +37,17 @@ module.exports.Student = Student;
 
 var teacherSchema = mongoose.Schema({
   // list of pending absence requests awaiting signatures
-  pending_requests: [mongoose.Schema.Types.ObjectId], // reference to the absences collection
+  pending_absences: [mongoose.Schema.Types.ObjectId], // reference to the absences collection
   // list of already approved absence forms
   approved_absences: [mongoose.Schema.Types.ObjectId],
   // list of courses taught
   courses: [String],
   type:{type:String, default:'Teacher'}
 });
+
+teacherSchema.methods.approve = function(callback){
+
+};
 
 var Teacher = Account.discriminator('Teacher', teacherSchema);
 module.exports.Teacher = mongoose.model('Teacher', teacherSchema);
