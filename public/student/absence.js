@@ -6,9 +6,7 @@ var ERROR_MESSAGE = 'error-message';
 var setupForms = function(event){
   forEachInClass(document, ABSENCE_FORM_CLASS, function(form){
     form.onsubmit = form.onsubmit || function(event){event.preventDefault();};
-      var getData = function(event){
-	  
-      };
+
       var submitForm = function(event){
       submit(form, {
         url:'/students/absencenote',
@@ -36,9 +34,23 @@ var setupForms = function(event){
   });
 };
 
-
 var getData = function(form){
-    return;
+    var dict = {};
+    //What kind of note is it?
+    forEachInClass(form, excused, function(radio){
+	if(){
+	    dict{radio.name: /*actual text*/};
+	}
+
+		   //Get data of teachers and periods 
+		   forEachInClass(form, checkbox, function(box){
+	if(box/*is checked*/){
+	    forEachInClass(box.parent.parent, input, function(text){
+		dict{text.name: /*actual text*/};
+	    }
+	} 
+    }
+    return dict;
 };
 
 document.addEventListener('DOMContentLoaded', setupForms);
