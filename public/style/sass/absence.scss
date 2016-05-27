@@ -23,11 +23,6 @@ label {
   text-align: center;
 }
 
-.note {
-  display: block;
-  text-decoration: underline;
-}
-
 .logout {
   color: $text;
   float: right;
@@ -59,13 +54,19 @@ label {
   margin: 10px auto 0;
 }
 
+.table-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+}
+
 .radio-boxes {
   margin-bottom: 30px;
 }
 
 .submit {
   background-color: $button-bg;
-  display: block;
+  display: inline-block;
   font-size: 20px;
   height: 50px;
   margin: 40px auto 60px;
@@ -79,6 +80,7 @@ label {
   font-size: 16px;
   height: 180px;
   line-height: 31px;
+  margin-top: 10px;
   padding: 3px;
   resize: none;
   width: 80%;
@@ -94,9 +96,12 @@ label {
   border-bottom: 1px solid $label-underline;
   font-size: 20px;
   margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
   padding-bottom: 5px;
   padding-left: 5px;
   text-align: left;
+  width: 600px;
 }
 
 .excusemestopreading {
@@ -111,4 +116,5 @@ label {
 .type-box {
   margin-bottom: 10px;
   margin-top: 20px;
+  text-align: center;
 }
