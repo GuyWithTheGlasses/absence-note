@@ -33,13 +33,11 @@ var absenceSchema = mongoose.Schema({
  * @param  {Function} callback returns null if good else returns err
  */
 absenceSchema.methods.add = function(callback) {
-  absence = this.objectId;
-  accounts.Student.findOneAndUpdate({ OSIS: this.OSIS }, { $push: { "absences": absence } });
   absence = this;
   accounts.Student.findOneAndUpdate({ OSIS: this.OSIS }, { $push: { "absences": absence._id } });
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
-    accounts.Teacher.findOneAndUpdate({ "google.name": course.Teacher }, { $push: { "pending_absences": absence } });
+    accounts.Teacher.findByIdAndUpdate( course.Teacher, { $push: { "pending_absences": absence._id } } );
   }
 
   this.save(function(err) {
@@ -57,6 +55,23 @@ absenceSchema.methods.approve = function(callback) {
     if (err)
       return callback(err);
   });
+};
+
+absenceSchema.methods.remove = function(callback){
+    absence = this;
+    accounts.Student.findOneAndUpdate({ OSIS : this.OSIS },
+				      { $pull : { "absences" : absence._id } });
+    for (var courseIndex in this.schedule) {
+	var course = this.schedule[courseIndex];
+	if (this.approved = true)
+	    accounts.Teacher.findByIdAndUpdate(course.Teacher, { $pull: { "approved_absences": absence._id } });
+	if (this.approved = false)
+	    accounts.Teacher.findByIdAndUpdate(course.Teacher, { $pull, { "pending_absences": absence._id } });
+    }
+    absence.remove(function(err){
+	if (err)
+	    throw callback(err);
+    });
 };
 
 var Absence = mongoose.model('Absence', absenceSchema);

@@ -35,3 +35,5 @@ Kevin Yan
 ---- Added method .approve to the AbsenceSchema
 - May 26
 ---- Updated route names and finished new absence form
+- May 27
+---- Added method .remove to AbsenceSchema
