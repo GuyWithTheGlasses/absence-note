@@ -49,6 +49,10 @@ textarea {
   display: inline-block;
   margin: 5px 0 0; }
 
+.note {
+  display: block;
+  text-decoration: underline; }
+
 label {
   font-size: 22px; }
 
@@ -62,10 +66,6 @@ label {
   font-weight: bold;
   padding-top: 10px;
   text-align: center; }
-
-.note {
-  display: block;
-  text-decoration: underline; }
 
 .logout {
   color: #fff;
@@ -93,12 +93,17 @@ label {
 .courses {
   margin: 10px auto 0; }
 
+.table-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px; }
+
 .radio-boxes {
   margin-bottom: 30px; }
 
 .submit {
   background-color: #41be4b;
-  display: block;
+  display: inline-block;
   font-size: 20px;
   height: 50px;
   margin: 40px auto 60px;
@@ -111,6 +116,7 @@ label {
   font-size: 16px;
   height: 180px;
   line-height: 31px;
+  margin-top: 10px;
   padding: 3px;
   resize: none;
   width: 80%; }
@@ -122,9 +128,12 @@ label {
   border-bottom: 1px solid #d3d3d3;
   font-size: 20px;
   margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
   padding-bottom: 5px;
   padding-left: 5px;
-  text-align: left; }
+  text-align: left;
+  width: 600px; }
 
 .excusemestopreading {
   background-color: #d36165;
@@ -136,4 +145,5 @@ label {
 
 .type-box {
   margin-bottom: 10px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  text-align: center; }
