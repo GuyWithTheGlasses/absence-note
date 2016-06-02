@@ -49,6 +49,10 @@ textarea {
   display: inline-block;
   margin: 5px 0 0; }
 
+.note {
+  display: block;
+  text-decoration: underline; }
+
 body {
   background: url("../../img/stuyvesant.jpg") center center no-repeat;
   background-size: cover;

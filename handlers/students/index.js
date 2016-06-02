@@ -46,6 +46,13 @@ module.exports = {
   //     res.render(templates.students.profile, {user:req.user});
   //   },
   // }
+  'history': {
+    get: function( req, res, next ) {
+      res.render( templates.students.history, {
+        user: req.user
+      } );
+    }
+  }
 };
 
 module.exports.absence = require('./absence');

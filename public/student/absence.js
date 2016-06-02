@@ -12,8 +12,9 @@ var setupForms = function(event) {
     form.onsubmit = form.onsubmit || function(event) {
       event.preventDefault();
     };
-
+    //Create function to submit form data to database
     var submitForm = function(event) {
+      //Send input data to the server
       submit(form, {
         url: '/students/absencenote',
         method: 'POST',
@@ -21,6 +22,8 @@ var setupForms = function(event) {
         success: function(res) {
           res = JSON.parse(res);
           if (res.success) return window.location.href = '/student/absencenote/' + res.note_id;
+          //res.note contains the all the student's necessary data
+          //Use this to generate a pdf of the absence note
           else {
             forEachInClass(form, ABSENCE_FORM_CLASS, function(element) {
               element.innerHTML = res;
@@ -32,9 +35,6 @@ var setupForms = function(event) {
     };
     forEachInClass(form, SUBMIT_BUTTON, function(button) {
       button.addEventListener('click', submitForm);
-    });
-    forEachInClass(form, PDF_BUTTON, function(button) {
-      button.addEventListener('click', getData);
     });
   });
 };

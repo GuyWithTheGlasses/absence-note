@@ -1,23 +1,21 @@
-var express = require('express');
+var express = require( 'express' );
 var router = express.Router();
 
-var handlers = require('../handlers/students');
+var handlers = require( '../handlers/students' );
 
-router.use(handlers.check.loggedIn);
+router.use( handlers.check.loggedIn );
 
-router.get('/', handlers.index.get);
+router.get( '/', handlers.index.get );
 
-// router.get('/earlyexcuse', handlers.earlyexcuse.get);
-// router.get('/earlyexcuse/:id', handlers.earlyexcuse.id.get);
+// router.get( '/earlyexcuse/:id', handlers.earlyexcuse.id.get );
+// router.get( '/earlyexcuse', handlers.earlyexcuse.get );
 
-router.get('/absence/create', handlers.absence.create.get);
-router.post('/absence/create', handlers.absence.create.post);
+router.get( '/absence/create', handlers.absence.create.get );
+router.post( '/absence/create', handlers.absence.create.post );
 
-router.get('/absence/:id', handlers.absence.id.get);
-router.post('/absence/:id', handlers.absence.id.post);
+router.get( '/absence/:id', handlers.absence.id.get );
 
-
-router.get('/profile', handlers.profile.get);
-router.post('/profile', handlers.profile.post);
+router.get( '/history', handlers.history.get );
+router.get( '/profile', handlers.profile.get );
 
 module.exports = router;

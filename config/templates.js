@@ -3,7 +3,7 @@ module.exports = {
   'logout': 'index',
   'admin': {
     'index': 'admin',
-    'absences': 'index',
+    'absences': 'masterabsence',
     'absence': 'index'
   },
   'students': {
@@ -13,6 +13,7 @@ module.exports = {
       'create': 'absence',
       'view': 'index',
     },
+    'history': 'history',
     'earlyexcusenote': 'earlyexcuse',
     'earlyexcuseform': 'earlyexcuse',
     'createearlyexcuse': 'earlyexcuse',
