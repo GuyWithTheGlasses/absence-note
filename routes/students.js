@@ -7,13 +7,17 @@ router.use(handlers.check.loggedIn);
 
 router.get('/', handlers.index.get);
 
-router.get('/earlyexcuse/:id', handlers.earlyexcuse.id.get);
-router.get('/earlyexcuse', handlers.earlyexcuse.get);
+// router.get('/earlyexcuse', handlers.earlyexcuse.get);
+// router.get('/earlyexcuse/:id', handlers.earlyexcuse.id.get);
 
-router.get('/absence/create', handlers.absences.create.get);
-router.post('/absence/create', handlers.absences.create.post);
+router.get('/absence/create', handlers.absence.create.get);
+router.post('/absence/create', handlers.absence.create.post);
 
-router.get('/absence/:id', handlers.absences.id.get);
+router.get('/absence/:id', handlers.absence.id.get);
+router.post('/absence/:id', handlers.absence.id.post);
+
+
 router.get('/profile', handlers.profile.get);
+router.post('/profile', handlers.profile.post);
 
 module.exports = router;

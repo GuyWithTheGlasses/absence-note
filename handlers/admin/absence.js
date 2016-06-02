@@ -28,7 +28,7 @@ module.exports = {
         return res.render(templates.admin.absence, { absence: absence });
       });
     },
-    post: function(req, res) {
+    approve: function(req, res) {
       if (req.user && req.user.type == 'Admin' && req.isAuthenticated()) {
         Absence.findAndUpdate({ _id: ObjectId(req.params.id) }, { approved: true }, function(err, absence) {
           if (err) return res.send(err);
@@ -41,6 +41,9 @@ module.exports = {
           redirect: '/logout'
         });
       }
+    },
+    deny: function(req, res) {
+
     }
   },
 };

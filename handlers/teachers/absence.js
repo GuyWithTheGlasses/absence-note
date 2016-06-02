@@ -65,5 +65,14 @@ module.exports = {
         return res.render(templates.teachers.absence, { user: req.user, absence: absence });
       });
     },
+    approve: function(req, res) {
+      var id = req.params.id;
+      Absence.findById(id, function(err, absence){
+        if(err) return res.send(err);
+      });
+    },
+    deny: function(req, res) {
+
+    }
   }
 };

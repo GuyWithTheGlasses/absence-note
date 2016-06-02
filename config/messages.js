@@ -18,6 +18,27 @@ module.exports = {
       'noMatch': {
         err: true,
         message: 'OSIS does not match OSIS on note'
+      },
+      'created': function(note) {
+        return {
+          success: true,
+          note: note
+        };
+      }
+    },
+    'profile': {
+      'edit_success': function(student) {
+        return {
+          success: true,
+          message: 'Updated!',
+          student: student
+        };
+      },
+      edit_fail: function(err) {
+        return {
+          success: false,
+          message: err
+        };
       }
     }
   }

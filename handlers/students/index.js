@@ -11,7 +11,7 @@ var intersect = require( 'intersect' );
 // note.submission_date = "05/21";
 // note.excused_date = "05/14";
 // note.excuse = "Went to dentist";
-// note.save( function( err ) {
+// note.add( function( err ) {
 //   if ( err ) return console.log( err );
 //   return;
 // } );
@@ -31,21 +31,22 @@ module.exports = {
       } );
     }
   },
-  'earlyexcuse': {
-    'id': {
-      get: function( req, res, next ) {
-        res.render( templates.students.earlyexcusenote );
-      }
-    },
-    get: function( req, res, next ) {
-      res.render( templates.students.earlyexcuseform );
-    }
-  },
-  'profile':{
-    get:function(req,res,next){
-      res.render(templates.students.profile, {user:req.user});
-    },
-  }
+  // 'earlyexcuse': {
+  //   'id': {
+  //     get: function( req, res, next ) {
+  //       res.render( templates.students.earlyexcusenote );
+  //     }
+  //   },
+  //   get: function( req, res, next ) {
+  //     res.render( templates.students.earlyexcuseform );
+  //   }
+  // },
+  // 'profile':{
+  //   get:function(req,res,next){
+  //     res.render(templates.students.profile, {user:req.user});
+  //   },
+  // }
 };
 
-module.exports.absences = require('./absences');
+module.exports.absence = require('./absence');
+module.exports.profile = require('./profile');

@@ -3,6 +3,7 @@ var router = express.Router();
 
 var handler = require('../handlers/admin');
 
+// If development dont check if logged in
 if(process.env.env == 'development'){
 }else{
  router.use(handler.check.loggedIn);
@@ -10,9 +11,11 @@ if(process.env.env == 'development'){
 
 router.get('/', handler.index.get);
 
-router.get('/absences/:id', handler.absences.id.get);
-router.post('/absences/:id', handler.absences.id.post);
+router.post('/absence/:id/approve', handler.absence.id.approve);
+router.post('/absence/:id/deny', handler.absence.id.deny);
 
-router.get('/absences', handler.absences.get);
+router.get('/absence/:id', handler.absence.id.get);
+
+router.get('/absence', handler.absence.get);
 
 module.exports = router;
