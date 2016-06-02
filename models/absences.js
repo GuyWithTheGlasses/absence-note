@@ -106,28 +106,13 @@ absenceSchema.methods.remove = function( callback ) {
         }
       } );
     }
-    if ( this.approved === false ) {
+    if (!( this.approved)) {
       accounts.Teacher.findByIdAndUpdate( course.Teacher, {
         $pull: {
           "pending_absences": absence._id
         }
       } );
     }
-  }
-  for ( courseIndex in this.schedule ) {
-    var course = this.schedule[ courseIndex ];
-    if ( this.approved )
-      accounts.Teacher.findByIdAndUpdate( course.Teacher, {
-        $pull: {
-          "approved_absences": absence._id
-        }
-      } );
-    if ( this.approved === false )
-      accounts.Teacher.findByIdAndUpdate( course.Teacher, {
-        $pull: {
-          "pending_absences": absence._id
-        }
-      } );
   }
   absence.remove( function( err ) {
     if ( err )
