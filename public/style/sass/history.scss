@@ -1,0 +1,51 @@
+@import 'style';
+$title: #000;
+$table-line: #d2d2d2;
+
+.title {
+  color: $title;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.logout {
+  color: $text;
+  float: right;
+  margin-right: 30px;
+  margin-top: -100px;
+  text-decoration: none;
+}
+
+.subtitle {
+  color: $title;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.absence-notes {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  width: 900px;
+
+  th {
+    border-bottom: 1px solid $title;
+    font-weight: bold;
+    height: 30px;
+    text-align: left;
+  }
+
+  td {
+    border-bottom: 1px solid $table-line;
+    height: 40px;
+  }
+
+  .options {
+    width: 80px;
+  }
+
+}
