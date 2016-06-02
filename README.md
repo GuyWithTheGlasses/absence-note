@@ -37,3 +37,9 @@ Kevin Yan
 ---- Updated route names and finished new absence form
 - May 27
 ---- Added method .remove to AbsenceSchema
+- May 28
+---- Updated early excuse form
+- May 29
+---- Finished creating all possible routes
+- June 2
+---- Finished history page

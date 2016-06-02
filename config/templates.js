@@ -13,7 +13,7 @@ module.exports = {
       'create': 'absence',
       'view': 'index',
     },
-    'history': 'index',
+    'history': 'history',
     'earlyexcusenote': 'earlyexcuse',
     'earlyexcuseform': 'earlyexcuse',
     'createearlyexcuse': 'earlyexcuse',

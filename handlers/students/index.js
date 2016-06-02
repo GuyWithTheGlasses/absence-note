@@ -41,11 +41,20 @@ module.exports = {
       res.render( templates.students.earlyexcuseform );
     }
   },
-  'profile':{
-    get:function(req,res,next){
-      res.render(templates.students.profile, {user:req.user});
+  'profile': {
+    get: function( req, res, next ) {
+      res.render( templates.students.profile, {
+        user: req.user
+      } );
     },
+  },
+  'history': {
+    get: function( req, res, next ) {
+      res.render( templates.students.history, {
+        user: req.user
+      } );
+    }
   }
 };
 
-module.exports.absences = require('./absences');
+module.exports.absences = require( './absences' );
