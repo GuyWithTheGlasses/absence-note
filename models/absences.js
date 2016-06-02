@@ -26,17 +26,23 @@ var absenceSchema = mongoose.Schema( {
   excused_date: String,
   excuse: String,
   parent: new mongoose.Schema( {
-    'Signature': {
-      type: String,
-      default: 'Unsigned'
-    },
+    'Signature': new mongoose.Schema( {
+      'signature': {
+        type: String,
+        default: 'Unsigned'
+      },
+      'date': Date
+    } ),
     'Name': String,
-    "Date of Signature": String
   } ),
   schedule: [ new mongoose.Schema( {
     'Period': Number,
     'Teacher': mongoose.Schema.Types.ObjectId,
-    'Course Code': String
+    'Course Code': String,
+    'approved': {
+      type: Boolean,
+      default: false
+    }
   } ) ],
   approved: {
     type: Boolean,
@@ -82,7 +88,6 @@ absenceSchema.methods.approve = function( callback ) {
       return callback( err );
   } );
 };
-
 absenceSchema.methods.remove = function( callback ) {
   absence = this;
   accounts.Student.findOneAndUpdate( {
@@ -94,13 +99,30 @@ absenceSchema.methods.remove = function( callback ) {
   } );
   for ( var courseIndex in this.schedule ) {
     var course = this.schedule[ courseIndex ];
-    if ( this.approved = true )
+    if ( this.approved ) {
       accounts.Teacher.findByIdAndUpdate( course.Teacher, {
         $pull: {
           "approved_absences": absence._id
         }
       } );
-    if ( this.approved = false )
+    }
+    if ( this.approved === false ) {
+      accounts.Teacher.findByIdAndUpdate( course.Teacher, {
+        $pull: {
+          "pending_absences": absence._id
+        }
+      } );
+    }
+  }
+  for ( courseIndex in this.schedule ) {
+    var course = this.schedule[ courseIndex ];
+    if ( this.approved )
+      accounts.Teacher.findByIdAndUpdate( course.Teacher, {
+        $pull: {
+          "approved_absences": absence._id
+        }
+      } );
+    if ( this.approved === false )
       accounts.Teacher.findByIdAndUpdate( course.Teacher, {
         $pull: {
           "pending_absences": absence._id
@@ -111,6 +133,44 @@ absenceSchema.methods.remove = function( callback ) {
     if ( err )
       throw callback( err );
   } );
+};
+
+absenceSchema.methods.view = function( callback ) {
+  absence = this;
+  var absence_info = [];
+  absence_info.push( {
+      key: "student",
+      value: this.student
+    }, {
+      key: "OSIS",
+      value: this.OSIS
+    }, {
+      key: "excused",
+      value: this.excused
+    }, {
+      key: "submission_date",
+      value: this.submission_date
+    }, {
+      key: "excused_date",
+      value: this.excused_date
+    }, {
+      key: "excuse",
+      value: this.excuse
+    }, {
+      key: "parent_name",
+      value: this.parent.Name
+    },
+    //{ key: "parent_signature", value: this.parent.Signature },
+    //{ key: "parent_signature_date", value: this.parent
+    {
+      key: "schedule",
+      value: this.schedule
+    }, {
+      key: "approved",
+      value: this.approved
+    }
+  );
+  return absence_info;
 };
 
 var Absence = mongoose.model( 'Absence', absenceSchema );
