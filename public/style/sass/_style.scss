@@ -6,6 +6,7 @@
 $font: 'Montserrat';
 
 $text: #fff;
+$text-black: #000;
 $underline: #d2d2d2;
 
 $button-text: #fff;
@@ -13,6 +14,9 @@ $button-border: #e6e6e6;
 
 $button-shadow1: rgba(0, 0, 0, .2);
 $button-shadow2: rgba(0, 0, 0, .19);
+
+$check-border: #ddd;
+$check-color: #41be4b;
 
 body {
   font-family: $font;
@@ -80,4 +84,52 @@ textarea {
 .note {
   display: block;
   text-decoration: underline;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox,
+.checkbox-label {
+  cursor: pointer;
+  display: inline-block;
+  margin: 5px;
+  vertical-align: middle;
+}
+
+.checkbox-label {
+  font-size: 16px;
+  position: relative;
+}
+
+.checkbox + .checkbox-label:before {
+  background: $text;
+  border: 2px solid $check-border;
+  content: '';
+  display: inline-block;
+  height: 16px;
+  margin-right: 10px;
+  padding: 2px;
+  text-align: center;
+  vertical-align: middle;
+  width: 16px;
+}
+
+.checkbox:checked + .checkbox-label:before {
+  background: $check-color;
+  box-shadow: inset 0 0 0 4px $text;
+}
+
+.checkbox:focus + .checkbox-label {
+  outline: 0;
+}
+
+.logout {
+  color: $text-black;
+  float: right;
+  margin-right: 30px;
+  margin-top: -70px;
+  text-decoration: none;
 }
