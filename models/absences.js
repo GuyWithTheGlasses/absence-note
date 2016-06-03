@@ -120,43 +120,5 @@ absenceSchema.methods.remove = function(callback) {
   });
 };
 
-absenceSchema.methods.view = function(callback) {
-  absence = this;
-  var absence_info = [];
-  absence_info.push({
-      key: "student",
-      value: this.student
-    }, {
-      key: "OSIS",
-      value: this.OSIS
-    }, {
-      key: "excused",
-      value: this.excused
-    }, {
-      key: "submission_date",
-      value: this.submission_date
-    }, {
-      key: "excused_date",
-      value: this.excused_date
-    }, {
-      key: "excuse",
-      value: this.excuse
-    }, {
-      key: "parent_name",
-      value: this.parent.Name
-    },
-    //{ key: "parent_signature", value: this.parent.Signature },
-    //{ key: "parent_signature_date", value: this.parent
-    {
-      key: "schedule",
-      value: this.schedule
-    }, {
-      key: "approved",
-      value: this.approved
-    }
-  );
-  return absence_info;
-};
-
-var Absence = mongoose.model('Absence', absenceSchema);
+var Absence = mongoose.model( 'Absence', absenceSchema );
 module.exports.Absence = Absence;
