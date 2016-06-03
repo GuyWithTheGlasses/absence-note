@@ -9,7 +9,10 @@ if(process.env.env == 'development'){
 }
 
 router.get('/', handlers.index.get);
-router.get('/absences', handlers.absences.get);
-router.get('/absences/:id', handlers.absences.id.get);
+router.get('/absence', handlers.absence.get);
+router.get('/absence/:id', handlers.absence.id.get);
+router.post('/absence/:id/approve', handlers.absence.id.approve);
+router.post('/absence/:id/deny', handlers.absence.id.deny);
+
 
 module.exports = router;

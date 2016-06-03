@@ -15,5 +15,5 @@ module.exports = {
       else return next();
     },
   },
-  'absences': require('./absences'),
+  'absence': require('./absence'),
 };
