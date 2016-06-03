@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var expect = require('expect.js');
 var Absence = require('./absences.js').Absence;
+var EarlyExcuse = require('./earlyexcuses.js').EarlyExcuse;
 
 var accountSchema = mongoose.Schema({
   google: {
@@ -29,6 +30,8 @@ var studentSchema = mongoose.Schema({
   })],
   // list of absences
   absences: [mongoose.Schema.Types.ObjectId], // id number referencing other collection
+  // list of early excuses
+  early_excuses: [mongoose.Schema.Types.ObjectId],
   type: { type: String, default: 'Student' }
 });
 // export the model to be able to be accessed as Student
@@ -36,12 +39,16 @@ var Student = Account.discriminator('Student', studentSchema);
 module.exports.Student = Student;
 
 var teacherSchema = mongoose.Schema({
-  // list of denied absence requests
-  denied_absences: [mongoose.Schema.Types.ObjectId],
-  // list of pending absence requests awaiting signatures
-  pending_absences: [mongoose.Schema.Types.ObjectId], // reference to the absences collection
-  // list of already approved absence forms
-  approved_absences: [mongoose.Schema.Types.ObjectId],
+  absences: new mongoose.Schema({
+      denied: [mongoose.Schema.Types.ObjectId],
+      pending: [mongoose.Schema.Types.ObjectId],
+      approved: [mongoose.Schema.Types.ObjectId]
+  }),
+  early_excuses: new mongoose.Schema({
+      denied: [mongoose.Schema.Types.ObjectId],
+      pending: [mongoose.Schema.Types.ObjectId],
+      approved: [mongoose.Schema.Types.ObjectId]
+  }),
   // list of courses taught
   courses: [String],
   type: { type: String, default: 'Teacher' }
@@ -57,9 +64,9 @@ teacherSchema.methods.approve = function(absence_ID, callback) {
         course.approved = true;
     }
   });
-  var absenceIndex = pending_absences.indexOf(absence_ID);
-  var absenceIDFromArray = pending_absences.splice(absenceIndex, 1)[0];
-  this.approved_absences.push(absenceIDFromArray);
+  var absenceIndex = absences.pending.indexOf(absence_ID);
+  var absenceIDFromArray = absences.pending.splice(absenceIndex, 1)[0];
+  this.absences.approved.push(absenceIDFromArray);
   this.save(function(err) {
     if (err)
       return callback(err);
@@ -76,11 +83,12 @@ teacherSchema.methods.deny = function(absence_ID, callback) {
         course.approved = false;
     }
   });
-  var absenceIndex = pending_absences.indexOf(absence_ID);
-  var absenceIDFromArray = pending_absences.splice(absenceIndex, 1)[0];
-  this.denied_absences.push(absenceIDFromArray);
+  var absenceIndex = absences.pending.indexOf(absence_ID);
+  var absenceIDFromArray = absences.pending.splice(absenceIndex, 1)[0];
+  this.absences.denied.push(absenceIDFromArray);
   this.save(function(err) {
-    if (err) return callback(err);
+    if (err) 
+	return callback(err);
   });
 
 };
