@@ -9,10 +9,12 @@ if(process.env.env == 'development'){
 }
 
 router.get('/', handlers.index.get);
-router.get('/absence', handlers.absence.get);
-router.get('/absence/:id', handlers.absence.id.get);
-router.post('/absence/:id/approve', handlers.absence.id.approve);
-router.post('/absence/:id/deny', handlers.absence.id.deny);
 
+router.get('/history', handlers.absence.get);
+
+router.get('/absence/pending', handlers.absence.id.pending); // View a list of all pending absences
+router.post('/absence/:id/approve', handlers.absence.id.approve);// Approves absence
+router.post('/absence/:id/deny', handlers.absence.id.deny); // Denies absence
+router.get('/absence/:id', handlers.absence.id.get); // Views absence
 
 module.exports = router;
