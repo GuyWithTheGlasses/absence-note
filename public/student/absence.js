@@ -6,6 +6,8 @@ var EXPLANATION_INPUT = 'explanation';
 var PERIOD_CHECKBOX = 'checkbox';
 var FORM_ENTRIES = 'form-entry';
 var ERROR_MESSAGE = 'error-message';
+var RADIO_BUTTON_DIV = 'master-options';
+var RADIO_BUTTON = 'excusemestopreading';
 
 var setupForms = function(event) {
   forEachInClass(document, ABSENCE_FORM_CLASS, function(form) {
@@ -42,6 +44,12 @@ var setupForms = function(event) {
 //Returns a dictionary of all filled out inputs in the form
 var getData = function(form) {
   var data = {};
+  //Get radio button data here (not implemented yet)
+  forEachInClass(form, RADIO_BUTTON_DIV, function(button-box){
+      forEachInClass(button-box, RADIO_BUTTON, function(button){
+	  if(
+      })
+  }); 
   //Get the standalone entries in the form
   forEachInClass(form, FORM_ENTRIES, function(entry) {
     forEachInClass(entry, TEXT_INPUT, function(input) {
@@ -60,6 +68,20 @@ var getData = function(form) {
     }
   })
   return data;
+};
+
+//Add event listeners to all "radio buttons" to determine which is clicked
+var findClicked = function(form){
+    forEachInClass(form, RADIO_BUTTON, function(radio-button){
+	radio-button.addEventListener('click', function(){
+	    //Delete all other "clicked" classes
+	    forEachInTags(form, 'button', function(button){
+		button.classList.remove('clicked');
+	    })
+	    //Add the "clicked" class to this button
+	    this.classList.add('clicked');
+	})
+    })
 };
 
 document.addEventListener('DOMContentLoaded', setupForms);
