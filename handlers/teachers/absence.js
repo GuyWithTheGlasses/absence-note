@@ -67,12 +67,23 @@ module.exports = {
     },
     approve: function(req, res) {
       var id = req.params.id;
-      Absence.findById(id, function(err, absence){
-        if(err) return res.send(err);
+      Absence.findById(id, function(err, absence) {
+        if (err) return res.send(err);
+        absence.approve(function(err) {
+          if (err) return res.send(err);
+          else return res.send(messages.teacher.absences.approved);
+        });
       });
     },
     deny: function(req, res) {
-
+      var id = req.params.id;
+      Absence.findById(id, function(err, absence){
+        if(err) return res.send(err);
+        absence.deny(function(err){
+          if(err) return res.send(err);
+          else return res.send(messages.teacher.absences.denied);
+        });
+      });
     }
   }
 };
