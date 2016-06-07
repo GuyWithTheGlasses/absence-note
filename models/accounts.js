@@ -87,7 +87,7 @@ teacherSchema.methods.deny = function(absence_ID, callback) {
   var absenceIDFromArray = absences.pending.splice(absenceIndex, 1)[0];
   this.absences.denied.push(absenceIDFromArray);
   this.save(function(err) {
-    if (err) 
+    if (err)
 	return callback(err);
   });
 

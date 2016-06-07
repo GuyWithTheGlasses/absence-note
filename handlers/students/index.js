@@ -6,21 +6,25 @@ var intersect = require( 'intersect' );
 // var note = new Absence();
 // note.student = 'Leon Chou';
 // note.OSIS = 203766068;
-// note.excused = 'ABSENCE';
+// note.excused = 'absence-excuse';
 // note.corrections = null;
 // note.submission_date = "05/21";
 // note.excused_date = "05/14";
 // note.excuse = "Went to dentist";
-// note.add( function( err ) {
-//   if ( err ) return console.log( err );
-//   return;
-// } );
+// note.add( function(err){
+//     if (err)
+// 	return console.log( err );
+//     return;
+// });
+
 
 module.exports = {
   'check': {
     'loggedIn': function( req, res, next ) {
-      if ( req.isAuthenticated() ) return next();
-      else return res.redirect( '/login' );
+      if ( req.isAuthenticated() )
+	  return next();
+      else
+	  return res.redirect( '/login' );
       next();
     }
   },

@@ -8,6 +8,39 @@ Johnny So
 Roy Xu  
 Kevin Yan  
 
+# Deployment Guide
+1. Run "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10"
+2. Run "echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list"
+3. Run "sudo apt-get update"
+4. Run "sudo apt-get install -y mongodb-org"
+5. Run "curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -"
+6. Run "sudo apt-get install -y nodejs"
+7. Run "sudo apt-get install git"
+8. Run "npm install"
+9. Run "npm install forever"
+10. Clone the repo and navigate into directory
+11. Create a file called ownerstartup.sh
+12. Copy and paste the following into the file -things omitted for obvious reasons
+
+    export env=development
+    export PORT=80
+    export OWNER="Is owner"
+
+    export SECRET= <SECRET KEY>
+
+    export GOOGLE_CLIENT_ID= <GOOGLE CLIENT ID>
+    export GOOGLE_CLIENT_SECRET= <GOOGLE CLENT SECRET KEY>
+
+    export GMAIL_USERNAME= <GMAIL USERNAME>
+    export GMAIL_PASSWORD= <GMAIL PASSWORD>
+    export GMAIL_SENDER="Stuy Absence Note"
+
+    forever ./bin/www
+
+13. Replace the necessary information in the file (secret key, google client id, etc.)
+14. Run "chmod +x ownerstartup.sh"
+15. Run "npm start"
+
 # Changelog
 - May 17
 ----fixed models error in config & module.js
