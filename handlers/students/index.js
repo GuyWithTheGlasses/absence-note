@@ -3,20 +3,6 @@ var Absence = require( '../../models/absences' ).Absence;
 var config = require( '../../config/forms' );
 
 var intersect = require( 'intersect' );
-// var note = new Absence();
-// note.student = 'Leon Chou';
-// note.OSIS = 203766068;
-// note.excused = 'absence-excuse';
-// note.corrections = null;
-// note.submission_date = "05/21";
-// note.excused_date = "05/14";
-// note.excuse = "Went to dentist";
-// note.add( function(err){
-//     if (err)
-// 	return console.log( err );
-//     return;
-// });
-
 
 module.exports = {
   'check': {

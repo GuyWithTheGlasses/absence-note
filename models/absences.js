@@ -58,11 +58,10 @@ absenceSchema.methods.add = function(callback) {
   absence = this;
   accounts.Student.findOneAndUpdate({
     OSIS: this.OSIS
-  }, {"absences": {$push: absence._id}});
+  }, { "absences": { $push: absence._id } });
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
-    accounts.Teacher.findByIdAndUpdate(course.Teacher, 
-	{"absences.pending": {$push: absence._id}});
+    accounts.Teacher.findByIdAndUpdate(course.Teacher, { "absences.pending": { $push: absence._id } });
   }
 
   this.save(function(err) {
@@ -81,20 +80,20 @@ absenceSchema.methods.approve = function(callback) {
       return callback(err);
   });
 };
-absenceSchema.methods.remove = function(callback) {
+
+
+absenceSchema.methods.delete = function(callback) {
   absence = this;
   accounts.Student.findOneAndUpdate({
     OSIS: this.OSIS
-  }, {"absences": {$pull: absence._id}});
+  }, { "absences": { $pull: absence._id } });
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
     if (this.approved) {
-      accounts.Teacher.findByIdAndUpdate(course.Teacher,
-	{"absences.approved": {$pull: absence._id}});
+      accounts.Teacher.findByIdAndUpdate(course.Teacher, { "absences.approved": { $pull: absence._id } });
     }
     if (!(this.approved)) {
-      accounts.Teacher.findByIdAndUpdate(course.Teacher,
-	{"absences.approved": {$pull: absence._id}});
+      accounts.Teacher.findByIdAndUpdate(course.Teacher, { "absences.approved": { $pull: absence._id } });
     }
   }
   absence.remove(function(err) {
@@ -103,5 +102,5 @@ absenceSchema.methods.remove = function(callback) {
   });
 };
 
-var Absence = mongoose.model( 'Absence', absenceSchema );
+var Absence = mongoose.model('Absence', absenceSchema);
 module.exports.Absence = Absence;

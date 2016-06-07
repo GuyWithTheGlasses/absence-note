@@ -6,7 +6,7 @@ var messages = require('../../config/messages');
 
 module.exports = {
   get: function(req, res, next) { // View profile and edit
-    res.render(templates.student.profile, { user: req.user });
+    res.render(templates.students.profile, { user: req.user });
   },
   post: function(req, res) { // Receives updated profile
     var studentForm = req.body;
