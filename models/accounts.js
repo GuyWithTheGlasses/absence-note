@@ -3,6 +3,8 @@ var expect = require('expect.js');
 var Absence = require('./absences.js').Absence;
 var EarlyExcuse = require('./earlyexcuses.js').EarlyExcuse;
 
+var OSIS_ERROR_MESSAGE = 'Please enter a valid OSIS';
+
 var accountSchema = mongoose.Schema({
   google: {
     id: String,
@@ -22,7 +24,7 @@ module.exports.Account = Account;
 var studentSchema = mongoose.Schema({
   // personal constant student data
   // makes sure the OSIS is 9 digits long
-  OSIS: { type: Number, min: [99999999, Absence.OSIS_ERROR_MESSAGE], max: [1000000000, Absence.OSIS_ERROR_MESSAGE] },
+  OSIS: { type: Number, min: [99999999, OSIS_ERROR_MESSAGE], max: [1000000000, OSIS_ERROR_MESSAGE] },
   homeroom: String,
   parents: [new mongoose.Schema({
     name: String,
@@ -40,14 +42,14 @@ module.exports.Student = Student;
 
 var teacherSchema = mongoose.Schema({
   absences: new mongoose.Schema({
-      denied: [mongoose.Schema.Types.ObjectId],
-      pending: [mongoose.Schema.Types.ObjectId],
-      approved: [mongoose.Schema.Types.ObjectId]
+    denied: [mongoose.Schema.Types.ObjectId],
+    pending: [mongoose.Schema.Types.ObjectId],
+    approved: [mongoose.Schema.Types.ObjectId]
   }),
   early_excuses: new mongoose.Schema({
-      denied: [mongoose.Schema.Types.ObjectId],
-      pending: [mongoose.Schema.Types.ObjectId],
-      approved: [mongoose.Schema.Types.ObjectId]
+    denied: [mongoose.Schema.Types.ObjectId],
+    pending: [mongoose.Schema.Types.ObjectId],
+    approved: [mongoose.Schema.Types.ObjectId]
   }),
   // list of courses taught
   courses: [String],
@@ -88,7 +90,7 @@ teacherSchema.methods.deny = function(absence_ID, callback) {
   this.absences.denied.push(absenceIDFromArray);
   this.save(function(err) {
     if (err)
-	return callback(err);
+      return callback(err);
   });
 
 };

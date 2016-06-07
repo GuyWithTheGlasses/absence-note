@@ -2,9 +2,12 @@ var mongoose = require('mongoose');
 var accounts = require('./accounts');
 var absences = require('./absences');
 
-var OSIS_ERROR_MESSAGE = absences.OSIS_ERROR_MESSAGE;
+var OSIS_ERROR_MESSAGE = 'Please enter a valid OSIS';
 
-var EXCUSED_ENUM = absences.EXCUSED_ENUM;
+var EXCUSED_ENUM = {
+  values: 'absence-excuse lateness-excuse absence-correction lateness-correction cuts'.split(' '),
+  message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
+};
 
 var earlyExcuseSchema = mongoose.Schema({
   student: String,
@@ -52,19 +55,17 @@ earlyExcuseSchema.methods.add = function(callback) {
   early_excuse = this;
   accounts.Student.findOneAndUpdate({
     OSIS: this.OSIS,
-  }, {"early_excuses" : {$push: early_excuse._id }});
+  }, { "early_excuses": { $push: early_excuse._id } });
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
-    accounts.Teacher.findByIdAndUpdate(course.Teacher,
-	{"early_excuses.pending": {$push: early_excuse._id}});
+    accounts.Teacher.findByIdAndUpdate(course.Teacher, { "early_excuses.pending": { $push: early_excuse._id } });
   }
 
   this.save(function(err) {
     if (err) {
       console.log("Error in saving");
       callback(err);
-    } 
-    else 
+    } else
       return callback();
   });
 };
@@ -82,26 +83,14 @@ earlyExcuseSchema.methods.remove = function(callback) {
   early_excuse = this;
   accounts.Student.findOneAndUpdate({
     OSIS: this.OSIS
-  }, {"early_excuses": {$pull: early_excuse._id}});
+  }, { "early_excuses": { $pull: early_excuse._id } });
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
     if (this.approved) {
-      accounts.Teacher.findByIdAndUpdate(course.Teacher,
-	{"early_excuses.approved": {$pull: early_excuse._id}});
+      accounts.Teacher.findByIdAndUpdate(course.Teacher, { "early_excuses.approved": { $pull: early_excuse._id } });
     }
     if (!(this.approved)) {
-      accounts.Teacher.findByIdAndUpdate(course.Teacher, 
-	{"early_excuses.pending": {$pull: early_excuse._id}},
-	function(err){
-	    if (err)
-		return callback(err);
-      });
-      accounts.Teacher.findByIdAndUpdate(course.Teacher,
-	{"early_excuses.pending" : {$pull: early_excuse._id}},
-	function (err){
-	    if (err)
-		return callback(err);
-      });
+      accounts.Teacher.findByIdAndUpdate(course.Teacher, { "early_excuses.pending": { $pull: early_excuse._id } });
     }
   }
   early_excuse.remove(function(err) {
@@ -110,5 +99,5 @@ earlyExcuseSchema.methods.remove = function(callback) {
   });
 };
 
-var EarlyExcuse = mongoose.model( 'EarlyExcuse', earlyExcuseSchema );
+var EarlyExcuse = mongoose.model('EarlyExcuse', earlyExcuseSchema);
 module.exports.EarlyExcuse = EarlyExcuse;
