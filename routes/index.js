@@ -5,8 +5,8 @@ var handler = require('../handlers/index');
 
 router.get('/logout', handler.accounts.logout.get);
 
-router.use(handler.check.loggedIn);
 if (process.env.env == 'development') {} else {
+  router.use(handler.check.loggedIn);
 }
 
 router.get('/', handler.index.get);
