@@ -20,7 +20,7 @@ Kevin Yan
 9. Run "npm install forever"
 10. Clone the repo and navigate into directory
 11. Create a file called ownerstartup.sh
-12. Copy and paste the following into the file
+12. Copy and paste the following into the file -things omitted for obvious reasons
 
     export env=development
     export PORT=80
@@ -37,9 +37,9 @@ Kevin Yan
 
     forever ./bin/www
 
-13. Insert the necessary information file (secret key, google client id, etc.)
+13. Replace the necessary information in the file (secret key, google client id, etc.)
 14. Run "chmod +x ownerstartup.sh"
-15. Run "./ownerstartup.sh"
+15. Run "npm start"
 
 # Changelog
 - May 17
