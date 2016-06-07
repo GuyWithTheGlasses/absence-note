@@ -2,7 +2,6 @@ var messages = require('../config/messages');
 var passport = require('../app').passport;
 var templates = require('../config/templates');
 
-
 module.exports = {
   'index': {
     get: function(req, res) {
