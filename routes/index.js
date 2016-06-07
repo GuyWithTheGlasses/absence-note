@@ -4,6 +4,7 @@ var router = express.Router();
 var handler = require('../handlers/index');
 
 router.get('/logout', handler.accounts.logout.get);
+
 if (process.env.env == 'development') {} else {
   router.use(handler.check.loggedIn);
 }
