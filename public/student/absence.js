@@ -44,10 +44,10 @@ var setupForms = function(event) {
 //Returns a dictionary of all filled out inputs in the form
 var getData = function(form) {
   var data = {};
-  //Get radio button data here (not implemented yet)
+  //Get radio button data here - stored in data['type']
   forEachInClass(form, RADIO_BUTTON_DIV, function(button-box){
-      forEachInClass(button-box, RADIO_BUTTON, function(button){
-	  if(
+      forEachInClass(button-box, 'clicked', function(button){
+	  data['type'] = button.name;
       })
   }); 
   //Get the standalone entries in the form
