@@ -1,4 +1,4 @@
-var Excuse = require('../../models/earlyexcuses').EarlyExcuse;
+var Excuse = require('../../models/notes').EarlyExcuse;
 var templates = require('../../config/templates');
 var messages = require('../../config/messages');
 module.exports = {

@@ -1,6 +1,6 @@
 var templates = require( '../../config/templates' );
 var Absence = require( '../../models/notes' ).Absence;
-var Excuse = require('../../models/earlyexcuses').EarlyExcuse;
+var Excuse = require('../../models/notes').EarlyExcuse;
 var config = require( '../../config/forms' );
 
 var intersect = require( 'intersect' );

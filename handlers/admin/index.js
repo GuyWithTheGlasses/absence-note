@@ -1,5 +1,5 @@
 var templates = require('../../config/templates');
-var Absence = require('../../models/absences').Absence;
+var Absence = require('../../models/notes').Absence;
 module.exports = {
   'index': {
     get: function(req, res) {
