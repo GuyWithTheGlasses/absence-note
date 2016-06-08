@@ -8,8 +8,6 @@ var accounts = require('./models/accounts');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/absence');
 
-var teacher = new accounts.Teacher();
-
 var new_note = new Absence();
 new_note.student = 'Leon Chou';
 new_note.OSIS = 203766068;
@@ -19,6 +17,13 @@ new_note.corrections = null;
 new_note.submission_date = "05/21";
 new_note.excused_date = "05/14";
 new_note.excuse = "Went to dentist";
+new_note.kind = "absence";
+new_note.schedule = {
+  'Period': 1,
+  //'Teacher': mongoose.Types.ObjectId("104139858999820438162"),
+  'Course Code' : 'LOL',
+  'approved' : false
+};
 
 /* ------------------ ADDS ---------------- */
 // new_note.add( function(err){
@@ -28,10 +33,10 @@ new_note.excuse = "Went to dentist";
 // });
 
 /* ------------------ REMOVES --------------------- */
-// Absence.remove({excused_date: new_note.excused_date} ,function(err,removed){
-//     console.log('err');
-//   //console.log(removed);
-// });
+Absence.remove({excused_date: new_note.excused_date} ,function(err,removed){
+    console.log('err');
+  //console.log(removed);
+});
 
 
 /* ------------------ QUERIES -------------------- */
@@ -65,3 +70,19 @@ new_note.excuse = "Went to dentist";
 //     return console.log(err);
 //   return;
 // });
+
+
+/* ---------- TEACHER METHODS -------------- */
+Teacher.find( function(err, teachers){
+  console.log('teachers', teachers);
+  Teacher.findById(teachers[0]._id, function(err,teacher){
+    console.log('teacher', teacher);
+    console.log('teacher name', teacher.google.name);
+    // teacher.courses.push('LOL');
+    // teacher.save(function(err){
+    //   console.log('err', err);
+    // });
+    console.log('teacher courses', teacher.courses);
+    console.log('teacher notes', teacher.notes);
+  });
+});
