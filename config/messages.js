@@ -34,6 +34,16 @@ module.exports = {
         };
       }
     },
+    'excuse':{
+      'noMatch':{
+        err:true,
+        success:false,
+        message:'OSIS does not match OSIS on note'
+      },
+      'deleted':{
+        'success':true,
+      }
+    },
     'profile': {
       'edit_success': function(student) {
         return {
