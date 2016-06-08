@@ -19,6 +19,8 @@ $category-underline: #d3d3d3;
 
 .category {
   border-bottom: 1px solid $category-underline;
+  font-size: 18px;
+  font-weight: normal;
 }
 
 .name {
@@ -41,7 +43,7 @@ $category-underline: #d3d3d3;
   }
 
   .category-title {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 0;
     text-align: center;
     width: 400px;
@@ -49,5 +51,34 @@ $category-underline: #d3d3d3;
 }
 
 .courses {
-  margin: 0 auto;
+  margin: 0 auto 30px;
+
+  .table-head {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    width: 300px;
+  }
+
+  td {
+    text-align: center;
+
+    input {
+      width: 280px;
+    }
+  }
+
+  .course-period {
+    font-size: 20px;
+  }
+
+  tr {
+    height: 50px;
+  }
+}
+
+.course-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
 }

@@ -108,7 +108,9 @@ textarea {
   text-align: center; }
 
 .category {
-  border-bottom: 1px solid #d3d3d3; }
+  border-bottom: 1px solid #d3d3d3;
+  font-size: 18px;
+  font-weight: normal; }
 
 .name {
   font-size: 28px;
@@ -126,10 +128,28 @@ textarea {
     text-align: center;
     width: 360px; }
   .info-line .category-title {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 0;
     text-align: center;
     width: 400px; }
 
 .courses {
-  margin: 0 auto; }
+  margin: 0 auto 30px; }
+  .courses .table-head {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    width: 300px; }
+  .courses td {
+    text-align: center; }
+    .courses td input {
+      width: 280px; }
+  .courses .course-period {
+    font-size: 20px; }
+  .courses tr {
+    height: 50px; }
+
+.course-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center; }
