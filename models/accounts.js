@@ -44,7 +44,7 @@ var teacherSchema = mongoose.Schema({
     denied: [mongoose.Schema.Types.ObjectId],
     pending: [mongoose.Schema.Types.ObjectId],
     approved: [mongoose.Schema.Types.ObjectId]
-  });
+  }),
   // list of courses taught
   courses: [String],
   type: { type: String, default: 'Teacher' }

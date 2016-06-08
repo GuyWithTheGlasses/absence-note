@@ -99,13 +99,11 @@ noteSchema.methods.delete = function(callback) {
     if (!(this.approved)) {
       accounts.Teacher.findByIdAndUpdate(
         course.Teacher,
-        function(err, teacher){
+        function(err, teacher) {
           if (err)
             return callback(err);
-          if (note._id in teacher.notes.denied)
-            { "notes.denied": { $pull: note._id }}
-          else
-            { "notes.pending": { $pull: note._id }},
+          if (note._id in teacher.notes.denied) { "notes.denied": { $pull: note._id } }
+          else { "notes.pending": { $pull: note._id } },
         });
     }
   }
