@@ -29,10 +29,10 @@ module.exports = function(passport) {
             return profile.emails[emailKey];
           });
           // Lists all emails for admins and teachers
-          var adminEmails = emails.Administrators.keys().map(function(adminKey) {
+          var adminEmails = Object.keys(emails.Administrators).map(function(adminKey) {
             return emails.Administrators[adminKey];
           });
-          var teacherEmails = emails.Teachers.keys().map(function(teacherKey) {
+          var teacherEmails = Object.keys(emails.Teachers).map(function(teacherKey) {
             return emails.Teachers[teacherKey];
           });
 
