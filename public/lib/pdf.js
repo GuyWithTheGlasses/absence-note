@@ -598,6 +598,7 @@ var createExcusePDF = function(data) {
 	doc.text("_______________");
     }
 
+    //Dict entry unclear
     doc.moveDown()
 	.font("Times-Bold")
 	.text("I hereby give consent for my son/daughter to leave school early today", {align: center})
@@ -609,6 +610,7 @@ var createExcusePDF = function(data) {
 	    .text("Son     Daughter", {align: center})
     }
 
+    //Dict entry unclear
     doc.moveDown()
 	.font("Times-Bold")
 	.text("Reason: ", {continued: true})
@@ -619,8 +621,40 @@ var createExcusePDF = function(data) {
 	doc.text("________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
     }
 
-    //More to come
+    //Dict entry unclear
+    doc.moveDown()
+	.font("Times-Bold")
+	.text("Parent's Name: ", {continued: true})
+    if(typeof data['parent_name'] !== 'undefined'){
+	doc.font("Times-Roman")
+	    .text(data['parent_name']); //data input
+    } else {
+	doc.text("_______________  ");
+    }
     
+    doc.font("Times-Bold")
+	.text("Parent's Signature: _______________", {align: 'right'});
+    
+    doc.font("Times-Bold")
+	.text("Date of Signature: _______________", {continued: true});
+	.text("Contact Number: _______________", {align: 'right'});
+    
+    doc.fontSize(17)
+	.font("Times-Bold")
+	.text("For Attendence Office Staff Only", {align: 'center', underline: true});
+
+    doc.moveDown()
+	.fontSize(14)
+	.text("Call       Fax       Email", {align: 'center'})
+	.moveDown()
+	.text("From:  Mom       Dad       Guardian       Other:_______________", {align: 'center'})
+	.moveDown()
+	.text("Date: _______________  Time: _______________", {align: 'center'});
+
+    doc.moveDown()
+	.text("Student was seen by:", {align: 'center'})
+    
+
     //End the doc 
     doc.end();
     //When the stream is finished, save PDF
