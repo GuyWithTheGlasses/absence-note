@@ -1,5 +1,5 @@
 // var Absence = require('./models/absences').Absence;
-// var Teacher = require('./models/accounts').Teacher;
+var Teacher = require('./models/accounts').Teacher;
 var Absence = require('./models/notes').Absence;
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/absence');
@@ -19,16 +19,20 @@ mongoose.connect('mongodb://localhost:27017/absence');
 //     return;
 // });
 
-Absence.find(function(err,absences){
+Absence.find(function(err, absences) {
   console.log('err', err);
   console.log('absences', absences);
-  Absence.findById(absences[0]._id, function(err, absence){
-    absence.approve(function(err){
-      if(err) console.log(err);
+  if (absences.length !== 0) {
+    Absence.findById(absences[0]._id, function(err, absence) {
+      absence.approve(function(err) {
+        if (err) console.log(err);
+      });
+      console.log(absence);
+      console.log(absence.student);
     });
-    console.log(absence);
-    console.log(absence.student);
-  });
+  }
 });
 
-// Teacher.find({})
+Teacher.find(function(err, teachers) {
+  console.log(teachers);
+});
