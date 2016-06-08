@@ -1,6 +1,6 @@
 var templates = require( '../../config/templates' );
 var Absence = require( '../../models/notes' ).Absence;
-var Excuse = require('../../models/earlyexcuses').EarlyExcuse;
+var Excuse = require('../../models/notes').EarlyExcuse;
 var config = require( '../../config/forms' );
 
 var intersect = require( 'intersect' );
@@ -33,3 +33,4 @@ module.exports = {
 
 module.exports.absence = require('./absence');
 module.exports.profile = require('./profile');
+module.exports.earlyexcuse = require('./earlyexcuse');

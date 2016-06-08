@@ -15,7 +15,7 @@ var accountSchema = mongoose.Schema({
     token: String,
     name: String,
     emails: [new mongoose.Schema({
-      value: { type: String, validate: /^.+@stuy.edu$/ },
+      value: { type: String},
       type: String,
     })]
   },

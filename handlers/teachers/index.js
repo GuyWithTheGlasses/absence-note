@@ -1,4 +1,4 @@
-var Absence = require('../../models/absences').Absence;
+var Absence = require('../../models/notes').Absence;
 var templates = require('../../config/templates');
 var mongoose = require('mongoose');
 module.exports = {

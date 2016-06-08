@@ -1,4 +1,4 @@
-var Absence = require('../../models/absences').Absence;
+var Absence = require('../../models/notes').Absence;
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId;
 var templates = require('../../config/templates');

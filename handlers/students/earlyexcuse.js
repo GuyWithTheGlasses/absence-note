@@ -1,4 +1,4 @@
-var Excuse = require('../../models/earlyexcuses').EarlyExcuse;
+var Excuse = require('../../models/notes').EarlyExcuse;
 var templates = require('../../config/templates');
 var messages = require('../../config/messages');
 module.exports = {
@@ -30,6 +30,14 @@ module.exports = {
           return res.json(messages.student.excuse.deleted);
         });
       });
+    }
+  },
+  'create':{
+    get:function(req,res){
+      res.render(templates.students.earlyexcuse.create, {user:req.user});
+    },
+    post:function(req,res){
+      res.send('lol');
     }
   }
 };
