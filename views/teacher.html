@@ -1,0 +1,27 @@
+{{#yield-styles}}
+<link type="text/css" href="../style/css/teacher.css" rel="stylesheet">
+{{/yield-styles}}
+
+{{#yield-header}}
+{{/yield-header}}
+
+{{#yield-user}}
+{{/yield-user}}
+
+
+{{#yield-content}}
+<div class="container">
+  <div class="diamond">
+    <div class="row">
+      <a href="/teacher/pending_requests" class="left option">
+        <p class="diamond-text">Pending</p>
+      </a>
+    </div>
+    <div class="row">
+      <a href="/teacher/absence" class="right option">
+        <p class="diamond-text">History</p>
+      </a>
+    </div>
+  </div>
+</div>
+{{/yield-content}}

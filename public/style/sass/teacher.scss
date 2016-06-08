@@ -1,0 +1,60 @@
+@import 'style';
+$title: #000;
+$text: #000;
+$button-bg: #00b359;
+
+.title {
+  color: $title;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.subtitle {
+  color: $title;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.container {
+  height: 400px;
+  margin: 100px auto 0;
+  width: 400px;
+}
+
+.row {
+  display: flex;
+  flex-grow: 1;
+}
+
+.option {
+  border: 1px solid $text;
+  color: $text;
+  font-size: 24px;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  text-decoration: none;
+  width: 396px;
+
+  &:hover {
+    background-color: $button-bg;
+  }
+}
+
+.diamond-text {
+  margin: 0;
+  transform: rotate(45deg);
+  transform-origin: 50% 50%;
+}
+
+.diamond {
+  transform: rotate(-45deg);
+  transform-origin: 50% 50%;
+}
+
+.left {
+  border-bottom: 0;
+}
