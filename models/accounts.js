@@ -3,6 +3,9 @@ var expect = require('expect.js');
 // var Absence = require('./absences.js').Absence;
 // var EarlyExcuse = require('./earlyexcuses.js').EarlyExcuse;
 var notes = require('./notes.js');
+var Note = notes.Note;
+var Absence = notes.Absense;
+var EarlyExcuse = notes.EarlyExcuse;
 
 var OSIS_ERROR_MESSAGE = 'Please enter a valid OSIS';
 
@@ -51,28 +54,15 @@ var teacherSchema = mongoose.Schema({
 });
 
 teacherSchema.methods.approve = function(note_ID, type, callback) {
-  if (type === 'absence'){
-    notes.Absence.findByIdAndUpdate(note_ID, function(err, absence){
-      if (err)
+  Note.findByIdAndUpdate(note_ID, function(err, note) {
+    if (err)
         return callback(err);
-      for (var courseIndex in absence.schedule) {
-        var course = absence.schedule[courseIndex];
+    for (var courseIndex in note.schedule) {
+        var course = note.schedule[courseIndex];
         if (course.Teacher == this.objectId)
-          course.approved = true;
-      }
-    });
-  }
-  else if (type == 'earlyexcuse'){
-    notes.EarlyExcuse.findByIdAndUpdate(note_ID, function(err, earlyexcuse) {
-      if (err)
-        return callback(err);
-      for (var courseIndex in earlyexcuse.schedule) {
-        var course = earlyexcuse.schedule[courseIndex];
-        if (course.Teacher == this.objectId)
-          course.approved = true;
-      }
-    });
-  }
+            course.approved = true;
+    }
+  });
   var noteIndex = this.notes.pending.indexOf(note_ID);
   var noteIDFromArray = this.notes.pending.splice(noteIndex, 1)[0];
   this.notes.approved.push(noteIDFromArray);
@@ -83,10 +73,10 @@ teacherSchema.methods.approve = function(note_ID, type, callback) {
 };
 
 teacherSchema.methods.deny = function(note_ID, callback) {
-  notes.Note.findByIdAndUpdate(note_ID, function(err, note) {
+  Note.findByIdAndUpdate(note_ID, function(err, note) {
     if (err)
       return callback(err);
-    for (var courseIndex in absence.schedule) {
+    for (var courseIndex in note.schedule) {
       var course = note.schedule[courseIndex];
       if (course.Teacher == this.objectId)
         course.approved = false;
