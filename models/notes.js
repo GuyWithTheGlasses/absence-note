@@ -1,3 +1,4 @@
+/*jshint -W083 */
 var mongoose = require('mongoose');
 var accounts = require('./accounts');
 
@@ -102,8 +103,10 @@ noteSchema.methods.delete = function(callback) {
         function(err, teacher) {
           if (err)
             return callback(err);
-          if (note._id in teacher.notes.denied) { "notes.denied": { $pull: note._id } }
-          else { "notes.pending": { $pull: note._id } },
+          if (note._id in teacher.notes.denied)
+            return { "notes.denied": { $pull: note._id } };
+          else
+            return { "notes.pending": { $pull: note._id } };
         });
     }
   }
