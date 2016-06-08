@@ -9,7 +9,17 @@ var ABSENCE_EXCUSED_ENUM = {
   message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
 };
 
+var KIND_ENUM = {
+  values: 'absence earlyexcuse'.split(' '),
+  message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
+};
+
 var noteSchema = mongoose.Schema({
+  kind: {
+    type: String,
+    enum: KIND_ENUM,
+    lowercase: true
+  },
   student: String,
   // makes sure the OSIS is 9 digits long
   OSIS: {
