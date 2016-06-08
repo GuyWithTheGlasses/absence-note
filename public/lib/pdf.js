@@ -23,14 +23,50 @@ var createAbsencePDF = function(data) {
 	});
 
     doc.fontSize(14)
-	.font("Times-Bold")
-	.text("Name:", {continued : true})
-	.font("Times-Roman")
-	.text("Kevin Yan", {continued: true})
         .font("Times-Bold")
-	.text("Signature: _______________");
+	.text("Type: ", {continued: true})
+	.font("Times-Roman")
+	.text("Excused Absence"); //data input
 
-    doc.text(data[])
+    doc.fontSize(14)
+	.font("Times-Bold")
+	.text("Name: ", {continued : true})
+	.font("Times-Roman")
+	.text("Kevin Yan"); //data input
+    
+    doc.fontSize(14)
+	.font("Times-Bold")
+	.text("Signature: _______________");
+    
+    doc.fontSize(14)
+        .moveDown()
+        .font("Times-Bold")
+        .text("OSIS: ", {continued: true})
+        .font("Times-Roman")
+        .text("123456789"); //data input
+
+     doc.fontSize(14)
+        .moveDown()
+        .font("Times-Bold")
+        .text("Date of Absence/Lateness/Cut: ", {continued: true})
+        .font("Times-Roman")
+        .text("1/1/16"); //data input
+
+    doc.fontSize(14)
+        .moveDown()
+        .font("Times-Bold")
+        .text("Explanation: ", {continued: true})
+        .font("Times-Roman")
+        .text("The alarm didn't go off I swear there 
+was a huge delay on the MTA"); //data input
+
+    doc.fontSize(14)
+        .moveDown()
+        .font("Times-Bold")
+        .text("Classes:")
+        .moveDown()
+        .font("Times-Roman")
+        .text("Pd. 1", {continued: true}); //data input
 
     //End the doc 
     doc.end();

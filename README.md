@@ -22,7 +22,7 @@ Kevin Yan
 11. Create a file called ownerstartup.sh
 12. Copy and paste the following into the file -things omitted for obvious reasons
 
-    export env=development
+    export env=production
     export PORT=80
     export OWNER="Is owner"
 

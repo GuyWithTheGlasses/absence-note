@@ -3,7 +3,7 @@ var templates = require('../../config/templates');
 var messages = require('../../config/messages');
 module.exports = {
   get: function(req, res, next) {
-    res.render(templates.students.absences, { user: req.user });
+    res.render(templates.students.absence.list, { user: req.user });
   },
   /*
 ██ ██████

@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 var expect = require('expect.js');
-var Absence = require('./absences.js').Absence;
-var EarlyExcuse = require('./earlyexcuses.js').EarlyExcuse;
+// var Absence = require('./absences.js').Absence;
+// var EarlyExcuse = require('./earlyexcuses.js').EarlyExcuse;
+var notes = require('./notes.js');
+
+var OSIS_ERROR_MESSAGE = 'Please enter a valid OSIS';
 
 var accountSchema = mongoose.Schema({
   google: {
@@ -22,16 +25,14 @@ module.exports.Account = Account;
 var studentSchema = mongoose.Schema({
   // personal constant student data
   // makes sure the OSIS is 9 digits long
-  OSIS: { type: Number, min: [99999999, Absence.OSIS_ERROR_MESSAGE], max: [1000000000, Absence.OSIS_ERROR_MESSAGE] },
+  OSIS: { type: Number, min: [99999999, OSIS_ERROR_MESSAGE], max: [1000000000, OSIS_ERROR_MESSAGE] },
   homeroom: String,
   parents: [new mongoose.Schema({
     name: String,
     phone: String
   })],
-  // list of absences
-  absences: [mongoose.Schema.Types.ObjectId], // id number referencing other collection
-  // list of early excuses
-  early_excuses: [mongoose.Schema.Types.ObjectId],
+  // list of notes
+  notes: [mongoose.Schema.Types.ObjectId],
   type: { type: String, default: 'Student' }
 });
 // export the model to be able to be accessed as Student
@@ -39,56 +40,64 @@ var Student = Account.discriminator('Student', studentSchema);
 module.exports.Student = Student;
 
 var teacherSchema = mongoose.Schema({
-  absences: new mongoose.Schema({
-      denied: [mongoose.Schema.Types.ObjectId],
-      pending: [mongoose.Schema.Types.ObjectId],
-      approved: [mongoose.Schema.Types.ObjectId]
-  }),
-  early_excuses: new mongoose.Schema({
-      denied: [mongoose.Schema.Types.ObjectId],
-      pending: [mongoose.Schema.Types.ObjectId],
-      approved: [mongoose.Schema.Types.ObjectId]
+  notes: new mongoose.Schema({
+    denied: [mongoose.Schema.Types.ObjectId],
+    pending: [mongoose.Schema.Types.ObjectId],
+    approved: [mongoose.Schema.Types.ObjectId]
   }),
   // list of courses taught
   courses: [String],
   type: { type: String, default: 'Teacher' }
 });
 
-teacherSchema.methods.approve = function(absence_ID, callback) {
-  Absence.findByIdAndUpdate(absence_ID, function(err, absence) {
-    if (err)
-      return callback(err);
-    for (var courseIndex in absence.schedule) {
-      var course = absence.schedule[courseIndex];
-      if (course.Teacher == this.objectId)
-        course.approved = true;
-    }
-  });
-  var absenceIndex = absences.pending.indexOf(absence_ID);
-  var absenceIDFromArray = absences.pending.splice(absenceIndex, 1)[0];
-  this.absences.approved.push(absenceIDFromArray);
+teacherSchema.methods.approve = function(note_ID, type, callback) {
+  if (type === 'absence'){
+    notes.Absence.findByIdAndUpdate(note_ID, function(err, absence){
+      if (err)
+        return callback(err);
+      for (var courseIndex in absence.schedule) {
+        var course = absence.schedule[courseIndex];
+        if (course.Teacher == this.objectId)
+          course.approved = true;
+      }
+    });
+  }
+  else if (type == 'earlyexcuse'){
+    notes.EarlyExcuse.findByIdAndUpdate(note_ID, function(err, earlyexcuse) {
+      if (err)
+        return callback(err);
+      for (var courseIndex in earlyexcuse.schedule) {
+        var course = earlyexcuse.schedule[courseIndex];
+        if (course.Teacher == this.objectId)
+          course.approved = true;
+      }
+    });
+  }
+  var noteIndex = this.notes.pending.indexOf(note_ID);
+  var noteIDFromArray = this.notes.pending.splice(noteIndex, 1)[0];
+  this.notes.approved.push(noteIDFromArray);
   this.save(function(err) {
     if (err)
       return callback(err);
   });
 };
 
-teacherSchema.methods.deny = function(absence_ID, callback) {
-  Absence.findByIdAndUpdate(absence_ID, function(err, absence) {
+teacherSchema.methods.deny = function(note_ID, callback) {
+  notes.Note.findByIdAndUpdate(note_ID, function(err, note) {
     if (err)
       return callback(err);
     for (var courseIndex in absence.schedule) {
-      var course = absence.schedule[courseIndex];
+      var course = note.schedule[courseIndex];
       if (course.Teacher == this.objectId)
         course.approved = false;
     }
   });
-  var absenceIndex = absences.pending.indexOf(absence_ID);
-  var absenceIDFromArray = absences.pending.splice(absenceIndex, 1)[0];
-  this.absences.denied.push(absenceIDFromArray);
+  var noteIndex = this.notes.pending.indexOf(note_ID);
+  var noteIDFromArray = this.notes.pending.splice(noteIndex, 1)[0];
+  this.notes.denied.push(noteIDFromArray);
   this.save(function(err) {
     if (err)
-	return callback(err);
+      return callback(err);
   });
 
 };

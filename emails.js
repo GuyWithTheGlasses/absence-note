@@ -7,6 +7,9 @@ for (var lineindex in data) {
   Teachers[line[1].trim() + ' ' + line[2].trim()] = line[0].trim();
 }
 
+Teachers['Leon Chou'] = 'leonchou123@gmail.com';
+Teachers['Johnny So'] = 'jso@stuy.edu';
+
 var emails = {
   'Teachers': Teachers,
   'Administrators': {
@@ -14,5 +17,4 @@ var emails = {
     'Cintron': 'ccintron@stuy.edu',
   },
 };
-
 module.exports = emails;
