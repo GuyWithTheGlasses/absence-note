@@ -1,5 +1,6 @@
-var Absence = require('./models/absences').Absence;
-var Teacher = require('./models/accounts').Teacher;
+// var Absence = require('./models/absences').Absence;
+// var Teacher = require('./models/accounts').Teacher;
+var Absence = require('./models/notes').Absence;
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/absence');
 
@@ -18,7 +19,7 @@ note.add( function(err){
     return;
 });
 
-Absence.find(function(err ,absences){
+Absence.find(function(err,absences){
   console.log('err', err);
   console.log('absences', absences);
   Absence.findById(absences[0]._id, function(err, absence){
@@ -26,5 +27,6 @@ Absence.find(function(err ,absences){
       if(err) console.log(err);
     });
     console.log(absence);
+    console.log(absence.student);
   });
 });
