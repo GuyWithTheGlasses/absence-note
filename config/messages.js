@@ -6,8 +6,8 @@ module.exports = {
         success: true,
         message: "Absence approved!"
       },
-      'denied':{
-        success:true,
+      'denied': {
+        success: true,
         message: "Absence denied!"
       }
     }
@@ -34,14 +34,20 @@ module.exports = {
         };
       }
     },
-    'excuse':{
-      'noMatch':{
-        err:true,
-        success:false,
-        message:'OSIS does not match OSIS on note'
+    'excuse': {
+      'noMatch': {
+        err: true,
+        success: false,
+        message: 'OSIS does not match OSIS on note'
       },
-      'deleted':{
-        'success':true,
+      'deleted': {
+        'success': true,
+      },
+      'created': function(note) {
+        return {
+          success: true,
+          note: note
+        };
       }
     },
     'profile': {

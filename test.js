@@ -65,3 +65,7 @@ new_note.excuse = "Went to dentist";
 //     return console.log(err);
 //   return;
 // });
+
+
+var dict = {'hi':'lol','asdasd':'asdasd'};
+for(var key in dict) console.log(key);
