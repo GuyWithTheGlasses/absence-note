@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var expect = require('expect.js');
 // var Absence = require('./absences.js').Absence;
 // var EarlyExcuse = require('./earlyexcuses.js').EarlyExcuse;
-var Note = require('./notes.js').Note;
+var notes = require('./notes.js');
 
 var OSIS_ERROR_MESSAGE = 'Please enter a valid OSIS';
 
@@ -50,16 +50,29 @@ var teacherSchema = mongoose.Schema({
   type: { type: String, default: 'Teacher' }
 });
 
-teacherSchema.methods.approve = function(note_ID, callback) {
-  Note.findByIdAndUpdate(note_ID, function(err, note) {
-    if (err)
-      return callback(err);
-    for (var courseIndex in absence.schedule) {
-      var course = note.schedule[courseIndex];
-      if (course.Teacher == this.objectId)
-        course.approved = true;
-    }
-  });
+teacherSchema.methods.approve = function(note_ID, type, callback) {
+  if (type === 'absence'){
+    notes.Absence.findByIdAndUpdate(note_ID, function(err, absence){
+      if (err)
+        return callback(err);
+      for (var courseIndex in absence.schedule) {
+        var course = absence.schedule[courseIndex];
+        if (course.Teacher == this.objectId)
+          course.approved = true;
+      }
+    });
+  }
+  else if (type == 'earlyexcuse'){
+    notes.EarlyExcuse.findByIdAndUpdate(note_ID, function(err, earlyexcuse) {
+      if (err)
+        return callback(err);
+      for (var courseIndex in earlyexcuse.schedule) {
+        var course = earlyexcuse.schedule[courseIndex];
+        if (course.Teacher == this.objectId)
+          course.approved = true;
+      }
+    });
+  }
   var noteIndex = this.notes.pending.indexOf(note_ID);
   var noteIDFromArray = this.notes.pending.splice(noteIndex, 1)[0];
   this.notes.approved.push(noteIDFromArray);
@@ -70,7 +83,7 @@ teacherSchema.methods.approve = function(note_ID, callback) {
 };
 
 teacherSchema.methods.deny = function(note_ID, callback) {
-  Note.findByIdAndUpdate(note_ID, function(err, note) {
+  notes.Note.findByIdAndUpdate(note_ID, function(err, note) {
     if (err)
       return callback(err);
     for (var courseIndex in absence.schedule) {

@@ -45,6 +45,17 @@ note.excuse = "Went to dentist";
 //   });
 // });
 
+notes.Note.find(function(err,notes){
+  console.log('err',err);
+  console.log('notes',notes);
+  console.log('notes[0]',notes[0]);
+  console.log('notes[0].student',notes[0].student);
+  notes.Note.findById(notes[0]._id,function(err,note){
+    console.log(note);
+  });
+});
+
+
 /* ----------------- DELETES FROM ALL TEACHERS -------------- */
 // note.delete(function(err){
 //    if (err)
