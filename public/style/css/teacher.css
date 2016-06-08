@@ -94,13 +94,6 @@ textarea {
   margin-top: -70px;
   text-decoration: none; }
 
-label {
-  font-size: 22px; }
-
-.input {
-  margin-top: 20px;
-  width: 300px; }
-
 .title {
   color: #000;
   font-size: 30px;
@@ -114,83 +107,35 @@ label {
   font-weight: bold;
   text-align: center; }
 
-.form-entry {
-  font-size: 18px;
-  margin: 10px auto;
+.container {
+  height: 400px;
+  margin: 100px auto 0;
+  width: 400px; }
+
+.row {
+  display: flex;
+  flex-grow: 1; }
+
+.option {
+  border: 1px solid #000;
+  color: #000;
+  font-size: 24px;
+  height: 200px;
+  line-height: 200px;
   text-align: center;
-  width: 600px; }
+  text-decoration: none;
+  width: 396px; }
+  .option:hover {
+    background-color: #00b359; }
 
-.table-head {
-  font-weight: bold;
-  text-align: center; }
+.diamond-text {
+  margin: 0;
+  transform: rotate(45deg);
+  transform-origin: 50% 50%; }
 
-.courses {
-  margin: 10px auto 0; }
+.diamond {
+  transform: rotate(-45deg);
+  transform-origin: 50% 50%; }
 
-.table-container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 600px; }
-
-.radio-boxes {
-  margin-bottom: 30px; }
-
-.submit {
-  background-color: #41be4b;
-  display: inline-block;
-  font-size: 20px;
-  height: 50px;
-  margin: 40px auto 60px;
-  width: 200px; }
-
-.explanation {
-  background-image: linear-gradient(#fff, #fff 30px, #ccc 30px, #ccc 31px, #fff 31px);
-  background-size: 100% 31px;
-  border: 0;
-  font-size: 16px;
-  height: 180px;
-  line-height: 31px;
-  margin-top: 10px;
-  padding: 3px;
-  resize: none;
-  width: 80%; }
-
-.explanation:focus {
-  outline: none; }
-
-.label {
-  border-bottom: 1px solid #d3d3d3;
-  font-size: 20px;
-  margin-bottom: 0;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  text-align: left;
-  width: 600px; }
-
-.excusemestopreading {
-  background-color: #888;
-  display: inline-block;
-  font-size: 16px;
-  height: 50px;
-  margin: 0 30px;
-  width: 150px; }
-  .excusemestopreading:hover {
-    background-color: #d36165; }
-
-.clicked {
-  background-color: #d36165; }
-
-.type-box {
-  margin-bottom: 10px;
-  margin-top: 20px;
-  text-align: center; }
-
-.correction-options {
-  display: none; }
-  .correction-options button {
-    margin: 0 10px; }
-
-.excused-options {
-  display: none; }
+.left {
+  border-bottom: 0; }

@@ -1,6 +1,8 @@
 @import 'style';
 $title: #000;
 $category-underline: #d3d3d3;
+$edit-bg: #d36165;
+$edit-text: #fff;
 
 .title {
   color: $title;
@@ -47,6 +49,18 @@ $category-underline: #d3d3d3;
     margin-bottom: 0;
     text-align: center;
     width: 400px;
+  }
+
+  .fa-pencil {
+    background-color: $edit-bg;
+    border-radius: 50px;
+    color: $edit-text;
+    cursor: pointer;
+    float: right;
+    height: 19px;
+    margin-bottom: 2px;
+    padding: 4px 3px 3px 4px;
+    width: 19px;
   }
 }
 

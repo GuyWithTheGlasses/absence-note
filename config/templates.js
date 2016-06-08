@@ -16,13 +16,13 @@ module.exports = {
       'list': 'history'
     },
     'earlyexcuse': {
-      'create': 'index',
+      'create': 'earlyexcuse',
       'view': 'index',
       'list': 'history',
     },
   },
   'teachers': {
-    'index': 'index',
+    'index': 'teacher',
     'pending_requests': 'index',
     'absences': 'absences'
   }

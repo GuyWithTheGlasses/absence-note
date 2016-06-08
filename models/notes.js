@@ -40,6 +40,7 @@ var noteSchema = mongoose.Schema({
       'date': Date
     }),
     'Name': String,
+    'Contact Number': String
   }),
   schedule: [new mongoose.Schema({
     'Period': Number,

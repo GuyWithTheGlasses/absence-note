@@ -53,7 +53,7 @@ var teacherSchema = mongoose.Schema({
   type: { type: String, default: 'Teacher' }
 });
 
-teacherSchema.methods.approve = function(note_ID, type, callback) {
+teacherSchema.methods.approve = function(note_ID, callback) {
   Note.findByIdAndUpdate(note_ID, function(err, note) {
     if (err)
         return callback(err);

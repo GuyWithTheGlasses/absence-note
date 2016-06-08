@@ -132,6 +132,16 @@ textarea {
     margin-bottom: 0;
     text-align: center;
     width: 400px; }
+  .info-line .fa-pencil {
+    background-color: #d36165;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    float: right;
+    height: 19px;
+    margin-bottom: 2px;
+    padding: 4px 3px 3px 4px;
+    width: 19px; }
 
 .courses {
   margin: 0 auto 30px; }
