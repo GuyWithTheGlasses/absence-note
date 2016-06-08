@@ -8,20 +8,22 @@ module.exports = {
   },
   'students': {
     'index': 'student',
+    'history': 'history',
+    'profile': 'profile',
     'absence': {
       'create': 'absence',
       'view': 'viewabsence',
+      'list': 'history'
     },
-    'history': 'history',
-    'earlyexcusenote': 'earlyexcuse',
-    'earlyexcuseform': 'earlyexcuse',
-    'createearlyexcuse': 'earlyexcuse',
-    'viewearlyexcuse': 'earlyexcuse',
-    'profile': 'profile'
+    'earlyexcuse': {
+      'create': 'index',
+      'view': 'index',
+      'list': 'history',
+    },
   },
   'teachers': {
     'index': 'index',
-    'pending_requests' : 'index',
-    'absences':'absences'
+    'pending_requests': 'index',
+    'absences': 'absences'
   }
 };

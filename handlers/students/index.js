@@ -1,5 +1,6 @@
 var templates = require( '../../config/templates' );
 var Absence = require( '../../models/absences' ).Absence;
+var Excuse = require('../../models/earlyexcuses').EarlyExcuse;
 var config = require( '../../config/forms' );
 
 var intersect = require( 'intersect' );
@@ -21,21 +22,6 @@ module.exports = {
       } );
     }
   },
-  // 'earlyexcuse': {
-  //   'id': {
-  //     get: function( req, res, next ) {
-  //       res.render( templates.students.earlyexcusenote );
-  //     }
-  //   },
-  //   get: function( req, res, next ) {
-  //     res.render( templates.students.earlyexcuseform );
-  //   }
-  // },
-  // 'profile':{
-  //   get:function(req,res,next){
-  //     res.render(templates.students.profile, {user:req.user});
-  //   },
-  // }
   'history': {
     get: function( req, res, next ) {
       res.render( templates.students.history, {

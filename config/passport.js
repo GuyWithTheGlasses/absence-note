@@ -7,7 +7,6 @@ var accounts = require('../models/accounts');
 var expect = require('expect.js');
 var intersect = require('intersect');
 
-
 module.exports = function(passport) {
   passport.serializeUser(function(account, done) {
     return done(null, account.id);
@@ -26,21 +25,17 @@ module.exports = function(passport) {
           if (account) return done(null, account);
 
           // Parses google's email lists into something useable
-          var profileemails = [];
-          for (var emailkey in profile.emails) {
-            var emObj = profile.emails[emailkey];
-            profileemails.push(emObj.value);
-          }
+          var profileemails = profile.emails.map(function(emailKey) {
+            return profile.emails[emailKey];
+          });
+          // Lists all emails for admins and teachers
+          var adminEmails = emails.Administrators.keys().map(function(adminKey) {
+            return emails.Administrators[adminKey];
+          });
+          var teacherEmails = emails.Teachers.keys().map(function(teacherKey) {
+            return emails.Teachers[teacherKey];
+          });
 
-          // Parses administrator and teacher email files into something more useable
-          var adminEmails = [];
-          for (var adminKey in emails.Administrators) {
-            adminEmails.push(emails.Administrators.adminKey);
-          }
-          var teacherEmails = [];
-          for (var teacherKey in emails.Teachers) {
-            teacherEmails.push(emails.Teachers.teacherKey);
-          }
           // Defines account based on email lists
           var newAccount;
           if (intersect(profileemails, adminEmails).length !== 0) newAccount = new accounts.Account();
