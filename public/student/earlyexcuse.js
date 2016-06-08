@@ -6,7 +6,7 @@ var EXPLANATION_INPUT = 'explanation';
 var PERIOD_CHECKBOX = 'checkbox';
 var FORM_ENTRIES = 'form-entry';
 var ERROR_MESSAGE = 'error-message';
-var RADIO_BUTTON_DIV = 'master-options';
+var RADIO_BUTTON_DIV = 'type-box';
 var RADIO_BUTTON = 'excusemestopreading';
 
 var setupForms = function(event) {
@@ -14,18 +14,18 @@ var setupForms = function(event) {
     form.onsubmit = form.onsubmit || function(event) {
       event.preventDefault();
     };
-      //Add click listeners to all buttons in form
-      forEachInClass(form, RADIO_BUTTON, function(radio-button){
-	  radio-button.addEventListener('click', function(){
-	      //When this button is clicked
-	      //Delete all other "clicked" classes
-	      forEachInTags(form, 'button', function(button){
-		  button.classList.remove('clicked');
-	      })
-	      //Add the "clicked" class to this button
-	      this.classList.add('clicked');
-	  })
-      });
+    //Add click listeners to all buttons in form
+    forEachInClass(form, RADIO_BUTTON, function(radio-button){
+	radio-button.addEventListener('click', function(){
+	    //When this button is clicked
+	    //Delete all other "clicked" classes
+	    forEachInTags(form, 'button', function(button){
+		button.classList.remove('clicked');
+	    })
+	    //Add the "clicked" class to this button
+	    this.classList.add('clicked');
+	})
+    });
     //Create function to submit form data to database
     //Will be assigned to submit button, not called yet
     var submitForm = function(event) {
@@ -54,7 +54,6 @@ var setupForms = function(event) {
   });
 };
 
-//Returns a dictionary of all filled out inputs in the form
 var getData = function(form) {
   var data = {};
   //Get radio button data here - stored in data['type']
@@ -82,6 +81,3 @@ var getData = function(form) {
   })
   return data;
 };
-
-
-document.addEventListener('DOMContentLoaded', setupForms);
