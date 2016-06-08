@@ -31,5 +31,13 @@ module.exports = {
         });
       });
     }
+  },
+  'create':{
+    get:function(req,res){
+      res.render(templates.students.earlyexcuse.create, {user:req.user});
+    },
+    post:function(req,res){
+      res.send('lol');
+    }
   }
 };

@@ -25,8 +25,8 @@ module.exports = function(passport) {
           if (account) return done(null, account);
 
           // Parses google's email lists into something useable
-          var profileemails = profile.emails.map(function(emailKey) {
-            return profile.emails[emailKey];
+          var profileemails = Object.keys(profile.emails).map(function(emailKey) {
+            return profile.emails[emailKey].value;
           });
           // Lists all emails for admins and teachers
           var adminEmails = Object.keys(emails.Administrators).map(function(adminKey) {
@@ -47,6 +47,8 @@ module.exports = function(passport) {
               newAccount = new accounts.Student();
             }
           }
+
+          console.log(profile.emails);
           // To make sure I get only what I want
           newAccount.google.id = profile.id;
           newAccount.google.token = token;

@@ -33,3 +33,4 @@ module.exports = {
 
 module.exports.absence = require('./absence');
 module.exports.profile = require('./profile');
+module.exports.earlyexcuse = require('./earlyexcuse');

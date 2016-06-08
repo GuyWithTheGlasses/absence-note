@@ -18,6 +18,12 @@ router.post('/absence/create', handler.absence.create.post);
 router.get('/absence/:id', handler.absence.id.get);
 router.post('/absence/:post', handler.absence.id.post);
 
+router.get('/earlyexcuse/create', handler.earlyexcuse.create.get);
+router.post('/earlyexcuse', handler.earlyexcuse.create.post);
+
+router.get('/earlyexcuse/:id', handler.earlyexcuse.id.get);
+router.post('/earlyexcuse/:id', handler.earlyexcuse.id.post);
+
 router.get('/history', handler.history.get);
 router.get('/profile', handler.profile.get);
 router.post('/profile', handler.profile.post);
