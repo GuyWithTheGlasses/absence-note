@@ -75,9 +75,12 @@ var getData = function(form) {
   //Get the teachers and periods 
   forEachInClass(form, PERIOD_CHECKBOX, function(box) {
     if (box.checked) {
+	data[box.name] = true;
       forEachInClass(box.parentNode.parentNode, TEXT_INPUT, function(input) {
         data[input.name] = input.value;
       })
+    } else {
+	data[box.name] = false;
     }
   })
   return data;
