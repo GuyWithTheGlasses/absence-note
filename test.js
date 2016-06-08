@@ -1,5 +1,5 @@
-// var Absence = require('./models/absences').Absence;
-// var Teacher = require('./models/accounts').Teacher;
+var Teacher = require('./models/accounts').Teacher;
+var Absence = require('./models/notes').Absence;
 var notes = require('./models/notes');
 var Absence = notes.Absence;
 var EarlyExcuse = notes.EarlyExcuse;
