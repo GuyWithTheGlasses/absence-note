@@ -170,14 +170,27 @@ label {
   width: 600px; }
 
 .excusemestopreading {
-  background-color: #d36165;
+  background-color: #888;
   display: inline-block;
   font-size: 16px;
   height: 50px;
   margin: 0 30px;
   width: 150px; }
+  .excusemestopreading:hover {
+    background-color: #d36165; }
+
+.clicked {
+  background-color: #d36165; }
 
 .type-box {
   margin-bottom: 10px;
   margin-top: 20px;
   text-align: center; }
+
+.correction-options {
+  display: none; }
+  .correction-options button {
+    margin: 0 10px; }
+
+.excused-options {
+  display: none; }
