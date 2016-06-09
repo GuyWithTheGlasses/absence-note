@@ -21,8 +21,8 @@ new_note.kind = "absence";
 new_note.schedule = {
   'Period': 1,
   //'Teacher': mongoose.Types.ObjectId("104139858999820438162"),
-  'Course Code' : 'LOL',
-  'approved' : false
+  'Course Code': 'LOL',
+  'approved': false
 };
 
 /* ------------------ ADDS ---------------- */
@@ -33,8 +33,8 @@ new_note.schedule = {
 // });
 
 /* ------------------ REMOVES --------------------- */
-Absence.remove({excused_date: new_note.excused_date} ,function(err,removed){
-    console.log('err');
+Absence.remove({ excused_date: new_note.excused_date }, function(err, removed) {
+  console.log('err');
   //console.log(removed);
 });
 
@@ -72,14 +72,13 @@ Absence.remove({excused_date: new_note.excused_date} ,function(err,removed){
 // });
 
 
-<<<<<<< HEAD
-var dict = {'hi':'lol','asdasd':'asdasd'};
-for(var key in dict) console.log(key);
-=======
+var dict = { 'hi': 'lol', 'asdasd': 'asdasd' };
+for (var key in dict) console.log(key);
+
 /* ---------- TEACHER METHODS -------------- */
-Teacher.find( function(err, teachers){
+Teacher.find(function(err, teachers) {
   console.log('teachers', teachers);
-  Teacher.findById(teachers[0]._id, function(err,teacher){
+  Teacher.findById(teachers[0]._id, function(err, teacher) {
     console.log('teacher', teacher);
     console.log('teacher name', teacher.google.name);
     // teacher.courses.push('LOL');
@@ -90,4 +89,3 @@ Teacher.find( function(err, teachers){
     console.log('teacher notes', teacher.notes);
   });
 });
->>>>>>> fb4dac10f51e30ee135c3d2a5da401b82a486c97

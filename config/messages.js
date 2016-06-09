@@ -1,6 +1,6 @@
 module.exports = {
   'teachers': {
-    'absences': {
+    'notes': {
       'noPermissions': 'You do not have access to this absence',
       'approved': {
         success: true,
