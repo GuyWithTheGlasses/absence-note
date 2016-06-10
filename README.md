@@ -35,14 +35,16 @@ $ sudo apt-get install -y nodejs
     export GMAIL_PASSWORD= <GMAIL PASSWORD>
     export GMAIL_SENDER="Stuy Absence Note"
 
-    forever ./bin/www
+    nodejs ./bin/www
 
 13. Replace the necessary information in the file (secret key, google client id, etc.)
 14. Run "chmod +x ownerstartup.sh"
 
 ## To setup PM2  
+```
 $ sudo npm install pm2 -g  
-$ pm2 start --name "absence_note" ./startup.sh  
+$ pm2 start --name "absence_note" ./startup.sh
+```
 
 Run the command you get from the output of this line to start the server on startup  
 $ pm2 startup ubuntu  
@@ -51,8 +53,9 @@ $ pm2 startup ubuntu
 $ sudo apt-get install nginx  
 
 then create a file named /etc/nginx/sites-available/default  
-paste the following:
+paste the following
 
+```
 server {  
     listen 80;  
 
@@ -67,7 +70,7 @@ server {
         proxy_cache_bypass $http_upgrade;  
     }  
 }  
-
+```
 then run   
 $ sudo service nginx restart  
 
