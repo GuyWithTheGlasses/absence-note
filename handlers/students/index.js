@@ -1,56 +1,56 @@
-var templates = require( '../../config/templates' );
+var templates = require('../../config/templates');
 var Note = require('../../models/notes').Note;
-var Absence = require( '../../models/notes' ).Absence;
-var Excuse = require( '../../models/notes' ).EarlyExcuse;
-var config = require( '../../config/forms' );
+var Absence = require('../../models/notes').Absence;
+var Excuse = require('../../models/notes').EarlyExcuse;
+var config = require('../../config/forms');
 
-var intersect = require( 'intersect' );
+var intersect = require('intersect');
 
-var fs = require( 'fs' );
+var fs = require('fs');
 var Teachers = "";
-data = fs.readFileSync( 'emails_facstaff_20160520.csv', 'utf8' );
-data = data.split( '\n' );
-for ( var lineindex in data ) {
-  var line = data[ lineindex ].trim().split( ',' );
-  Teachers += ( line[ 2 ].trim() + ', ' + line[ 1 ].trim() ) + ";";
+data = fs.readFileSync('emails_facstaff_20160520.csv', 'utf8');
+data = data.split('\n');
+for (var lineindex in data) {
+  var line = data[lineindex].trim().split(',');
+  Teachers += (line[2].trim() + ', ' + line[1].trim()) + ";";
 }
 
 module.exports = {
   'check': {
-    'loggedIn': function( req, res, next ) {
-      if ( req.isAuthenticated() )
+    'loggedIn': function(req, res, next) {
+      if (req.isAuthenticated())
         return next();
       else
-        return res.redirect( '/login' );
+        return res.redirect('/login');
       next();
     }
   },
   'index': {
-    'get': function( req, res, next ) {
-      res.render( templates.students.index, {
+    'get': function(req, res, next) {
+      res.render(templates.students.index, {
         user: req.user
-      } );
+      });
     }
   },
   'history': {
-    get: function( req, res, next ) {
+    get: function(req, res, next) {
       Note.find({
-        _id:{$in:req.user.notes}
-      }, function(err, notes){
-        res.render( templates.teachers.pending_requests, {
+        _id: { $in: req.user.notes }
+      }, function(err, notes) {
+        res.render(templates.teachers.history, {
           user: req.user,
           history: notes
-        } );
-      })
+        });
+      });
     }
   },
   'email': {
-    get: function( req, res, next ) {
-      res.send( Teachers );
+    get: function(req, res, next) {
+      res.send(Teachers);
     }
   }
 };
 
-module.exports.absence = require( './absence' );
-module.exports.profile = require( './profile' );
-module.exports.earlyexcuse = require( './earlyexcuse' );
+module.exports.absence = require('./absence');
+module.exports.profile = require('./profile');
+module.exports.earlyexcuse = require('./earlyexcuse');
