@@ -11,17 +11,21 @@
 
 {{#yield-content}}
 
+
+{{{user}}}
 <h1 class="note title">Profile</h1>
 <h2 id="error" class="error"></h2>
 
-<h1 class="category name">Roy Xu</h1>
+<h1 class="category name">{{{user.google.name}}}</h1>
 
 <div class="info">
   <div class="info-line">
     <h2 class="category-title">Student Email</h2>
     <h2 class="category-title">Student Homeroom</h2>
     <h3 id="email" class="category constant">
-      rxu2@stuy.edu
+      {{#user.google.emails}}
+      {{{value}}}
+      {{/user.google.emails}}
     </h3>
     <h3 id="homeroom" class="category variable">
 
