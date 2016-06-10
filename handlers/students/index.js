@@ -34,14 +34,14 @@ module.exports = {
   },
   'history': {
     get: function( req, res, next ) {
-      res.render( templates.students.history, {
-        user: req.user,
-        history: Note.find({'OSIS': user.OSIS},function(err,notes){
-          if (err)
-            console.log(err);
-          return notes;
-        })
-      } );
+      Note.find({
+        _id:{$in:req.user.notes}
+      }, function(err, notes){
+        res.render( templates.teachers.pending_requests, {
+          user: req.user,
+          history: notes
+        } );
+      })
     }
   },
   'email': {
