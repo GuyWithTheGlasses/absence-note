@@ -4,7 +4,7 @@ ajax( {
   success: function( res ) {
     for ( var x = 1; x < 11; x++ ) {
       var name = completely( document.getElementById( x + 'name' ) );
-      name.options = res.split( ";" );
+      name.options = res.split( ";" ).sort();
       name.startFrom = 0;
     }
   }
