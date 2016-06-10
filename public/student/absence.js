@@ -95,11 +95,8 @@ var setupForms = function( event ) {
 var getData = function( form ) {
   var data = {};
   //Get radio button data here - stored in data['type']
-  forEachInClass( form, RADIO_BUTTON_DIV, function( button_box ) {
-    forEachInClass( button_box, 'clicked', function( button ) {
-      date.type = button.id;
-    } );
-  } );
+  var type = document.getElementByClassName('clicked');
+  data['type'] = type.id;
   //Get the standalone entries in the form
   forEachInClass( form, FORM_ENTRIES, function( entry ) {
     forEachInClass( entry, TEXT_INPUT, function( input ) {
