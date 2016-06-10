@@ -76,7 +76,7 @@ module.exports = {
       username = process.env.GMAIL_USERNAME || 'some_user@gmail.com';
       return {
         'from': username,
-        'to': options && options.to || 'leonchou123@gmail.com',
+        'to': options && options.to || 'asdasd@gmail.com',
         'subject': options && options.subject || 'Do not reply: This is a notification from Stuyvesant\'s absence note system',
         // 'text': options.text || 'test email',
         'html': options && options.html || '<html> <h1> hi </h1> </html>'
