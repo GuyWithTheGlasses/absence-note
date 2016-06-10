@@ -120,6 +120,7 @@ var getData = function(form) {
       if(input.value == ''){
         var error_div = document.getElementById('error');
         error_div.innerHTML = "Required fields missing.";
+        window.location = '#error';
         return;
       }
       data[input.name] = input.value;
@@ -129,6 +130,7 @@ var getData = function(form) {
       if(input.value == ''){
         var error_div = document.getElementById('error');
         error_div.innerHTML = "Required fields missing.";
+        window.location = '#error';
         return;
       }
       data[input.name] = input.value;
@@ -143,6 +145,7 @@ var getData = function(form) {
         if(input.value == ''){
           var error_div = document.getElementById('error');
           error_div.innerHTML = "Required fields missing.";
+          window.location = '#error';
           return;
         }
         data[input.name] = input.value;
