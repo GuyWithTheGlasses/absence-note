@@ -2,7 +2,7 @@
 Online absence note system  
 
 Brought to you by:  
-###TeaTime  
+### TeaTime  
 Leon Chou  
 Johnny So  
 Roy Xu  
@@ -78,36 +78,54 @@ $ sudo service nginx restart
 
 # Changelog
 - May 17
-----fixed models error in config & module.js
-----added the accounts.js in models directory
-----working homepage button
-----setting the environment
+  * fixed models error in config & module.js
+  * added the accounts.js in models directory
+  * working homepage button
+  * setting the environment
 - May 18
----- GOOGLE AUTH working
-- May 19
----- Nothing
+  * GOOGLE AUTH working
 - May 20
----- Absence and Student / Teacher / Admin Schemas created
+  * Absence and Student / Teacher / Admin Schemas created
 - May 21
----- Frontpage completed
----- Schemas created (Account, Student, Teacher)
+  * Frontpage completed
+  * Schemas created (Account, Student, Teacher)
 - May 22
----- Home Page changed to support google auth
----- Created launch screen for students and admins
----- Created absence note form
----- Absences model finished (schema & add method)
+  * Home Page changed to support google auth
+  * Created launch screen for students and admins
+  * Created absence note form
+  * Absences model finished (schema & add method)
 - May 24
----- Finished early excuse note
----- Updated launch screen (rotated square)
+  * Finished early excuse note
+  * Updated launch screen (rotated square)
 - May 25
----- Added method .approve to the AbsenceSchema
+  * Added method .approve to the AbsenceSchema
 - May 26
----- Updated route names and finished new absence form
+  * Updated route names and finished new absence form
 - May 27
----- Added method .remove to AbsenceSchema
+  * Added method .remove to AbsenceSchema
 - May 28
----- Updated early excuse form
+  * Updated early excuse form
 - May 29
----- Finished creating all possible routes
+  * Finished creating all possible routes
 - June 2
----- Finished history page
+  * Finished history page
+- June 3
+  * Early Excuse Schema
+  * Ajax for Absences
+  * Profile Page
+- June 7
+  * Initial Deployment Guide
+  * Updated Profile Page
+  * Working on Note Submission Backend
+- June 8
+  * Updated Absence Note
+  * Added pickaday and autocomplete
+- June 9
+  * Added Javascript to most pages
+  * Created teacher pages
+  * Created pages to view Absences and Early Excuse
+  * Approve/Deny for admin and teacher
+- June 10
+  * Finished frontend (all pages created)
+
+

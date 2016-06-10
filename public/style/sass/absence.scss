@@ -5,7 +5,8 @@ $button-unclicked: #888;
 $title: #000;
 $textarea-bg: #fff;
 $textarea-line: #ccc;
-$label-underline: #d3d3d3;
+$label-underline: #d2d2d2;
+$error: #f00;
 
 label {
   font-size: 22px;
@@ -59,6 +60,15 @@ label {
 
 .submit {
   background-color: $button-bg;
+  display: inline-block;
+  font-size: 20px;
+  height: 50px;
+  margin: 40px auto 60px;
+  width: 200px;
+}
+
+.deny {
+  background-color: $button-bg1;
   display: inline-block;
   font-size: 20px;
   height: 50px;
@@ -134,6 +144,20 @@ label {
   cursor: pointer;
 }
 
-.fa-clock-o {
-  cursor: pointer;
+.fa-times {
+  color: $button-bg1;
+  font-size: 30px !important;
+  margin-left: 10px;
+}
+
+.fa-check {
+  color: $button-bg;
+  font-size: 30px !important;
+  margin-left: 10px;
+}
+
+.error {
+  color: $error;
+  font-size: 18px;
+  text-align: center;
 }

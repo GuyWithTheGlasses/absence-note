@@ -3,19 +3,21 @@ var Note = require('../../models/notes').Note;
 var Excuse = require('../../models/notes').EarlyExcuse;
 var Absence = require('../../models/notes').Absence;
 var Student = require('../../models/accounts').Student;
-
+var templates = require( '../../config/templates' );
 module.exports = {
   'index': {
-    get: function(req, res) {
-      Absence.find(function(err, docs) {
-        if (err) return next(err);
-        else return res.render(templates.admin.index, { absences: docs });
-      });
+    get: function( req, res ) {
+      Absence.find( function( err, docs ) {
+        if ( err ) return next( err );
+        else return res.render( templates.admin.index, {
+          absences: docs
+        } );
+      } );
     }
   },
   'check': {
-    loggedIn: function(req, res, next) {
-      if (!req.user || req.user.type !== 'Admin') return res.redirect('/');
+    loggedIn: function( req, res, next ) {
+      if ( !req.user || req.user.type !== 'Admin' ) return res.redirect( '/' );
       else return next();
     },
   },
@@ -44,4 +46,5 @@ module.exports = {
     });
   }
 };
+
 module.exports.note = require('./note');

@@ -13,6 +13,8 @@
 {{#yield-content}}
 <form id="form-main" class="absence-form">
   <h1 class="note title">Absence Note</h1>
+  <a href="#error"></a>
+  <h2 id="error" class="error"></h2>
   <div class="form-entry">
     <h3 class="label">Type</h3>
     <div id="master-box" class="type-box master-options">
@@ -176,7 +178,6 @@
   </table>
   <div class="type-box">
     <button id="submit" class="btn submit form-submit-ajax">Submit</button>
-    <button id="pdf" class="btn submit form-create-pdf">Print PDF</button>
   </div>
 </form>
 {{/yield-content}}
@@ -186,7 +187,4 @@
   <script src="../../lib/ajax.js"></script>
   <script src="../../js/pikaday.js"></script>
   <script src="../../js/absence.js"></script>
-  <script src="../../lib/pdfkit.js"></script>
-  <script src="../../lib/pdf.js"></script>
-  <script src="../../student/absence.js"></script>
 {{/yield-scripts}}

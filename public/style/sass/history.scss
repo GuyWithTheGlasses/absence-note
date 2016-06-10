@@ -1,6 +1,8 @@
 @import 'style';
 $title: #000;
 $table-line: #d2d2d2;
+$approve: #35993d;
+$deny: #cc3136;
 
 .title {
   color: $title;
@@ -38,6 +40,28 @@ $table-line: #d2d2d2;
 
   .options {
     width: 80px;
+  }
+
+  .approve {
+    color: $approve;
+    font-size: 34px;
+    text-decoration: none;
+  }
+
+  .deny {
+    color: $deny;
+    font-size: 34px;
+    margin-left: 10px;
+    text-decoration: none;
+  }
+
+  a {
+    color: $title;
+    text-decoration: none;
+  }
+
+  tr {
+    cursor: pointer;
   }
 
 }

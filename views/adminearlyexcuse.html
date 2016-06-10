@@ -10,16 +10,42 @@
 {{/yield-user}}
 
 {{#yield-content}}
-<h1 class="note title">Absence Note</h1>
+<h1 class="note title">Early Excuse Note</h1>
+<div class="form-entry">
+  <h3 class="label">Name</h3>
+  <h3 class="info">Roy Xu</h3>
+</div>
+
+<div class="form-entry">
+  <h3 class="label">OSIS</h3>
+  <h3 class="info">210961116</h3>
+</div>
+
+<div class="form-entry">
+  <h3 class="label">Homeroom</h3>
+  <h3 class="info">7RR</h3>
+</div>
+
 <div class="form-entry">
   <h3 class="label">Type</h3>
   <h3 class="info">Correction</h3>
 </div>
 
 <div class="form-entry">
-  <h3 class="label">Date of Absence, Lateness, or Cut</h3>
+  <h3 class="label">Date of Excuse</h3>
   <h3 class="info">5/16/16</h3>
 </div>
+
+<div class="form-entry">
+  <h3 class="label">Time of Submission</h3>
+  <h3 class="info">3:00 PM</h3>
+</div>
+
+<div class="form-entry">
+  <h3 class="label">Time of Excuse</h3>
+  <h3 class="info">2:00 PM</h3>
+</div>
+
 
 <div class="form-entry">
   <h3 class="label">Explanation</h3>
@@ -188,4 +214,12 @@
     </tr>
   </tbody>
 </table>
+<div class="type-box">
+  <button id="approve" class="btn submit form-submit-ajax">Approve</button>
+  <button id="deny" class="btn deny form-submit-ajax">Deny</button>
+</div>
 {{/yield-content}}
+
+{{#yield-scripts}}
+<script src="../../js/admin_approve.js"></script>
+{{/yield-scripts}}

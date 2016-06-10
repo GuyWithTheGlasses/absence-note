@@ -1,7 +1,6 @@
 {{#yield-styles}}
 <link type="text/css" href="../style/css/profile.css" rel="stylesheet">
 <link rel="stylesheet" href="../style/css/font-awesome.min.css">
-<link rel="stylesheet" href="../style/css/awesomplete.css">
 {{/yield-styles}}
 
 {{#yield-header}}
@@ -18,23 +17,20 @@
 
 <div class="info">
   <div class="info-line">
-    <h2 class="category-title">Student OSIS</h2>
+    <h2 class="category-title">Student Email</h2>
     <h2 class="category-title">Student Homeroom</h2>
-    <h3 id="osis" class="category variable">
-      210961116
-      <i class="fa fa-pencil" aria-hidden="true"></i>
+    <h3 id="email" class="category constant">
+      rxu2@stuy.edu
     </h3>
     <h3 id="homeroom" class="category variable">
-      7RR
-      <i class="fa fa-pencil" aria-hidden="true"></i>
+
     </h3>
   </div>
 
   <div class="info-line">
-    <h2 class="category-title">Student Email</h2>
+    <h2 class="category-title">Student OSIS</h2>
     <h2 class="category-title">Student Phone</h2>
-    <h3 id="email" class="category constant">
-      rxu2@stuy.edu
+    <h3 id="osis" class="category variable">
     </h3>
     <h3 id="phone" class="category variable">
       347-712-1231
@@ -84,10 +80,10 @@
         Pd. 1
       </td>
       <td>
-        <input class="input" id="1name" />
+        <div class="input teacher" id="1name"></div>
       </td>
       <td>
-        <input class="input" type="text" name="1code">
+        <input id="1code" class="input" type="text" name="1code">
       </td>
     </tr>
     <tr>
@@ -95,10 +91,10 @@
         Pd. 2
       </td>
       <td>
-        <input class="input" id="2name" />
+        <div class="input teacher" id="2name"></div>
       </td>
       <td>
-        <input class="input" type="text" name="2code">
+        <input id="2code" class="input" type="text" name="2code">
       </td>
     </tr>
     <tr>
@@ -106,10 +102,10 @@
         Pd. 3
       </td>
       <td>
-        <input class="input" id="3name" />
+        <div class="input teacher" id="3name"></div>
       </td>
       <td>
-        <input class="input" type="text" name="3code">
+        <input id="3code" class="input" type="text" name="3code">
       </td>
     </tr>
     <tr>
@@ -117,10 +113,10 @@
         Pd. 4
       </td>
       <td>
-        <input class="input" id="4name" />
+        <div class="input teacher" id="4name"></div>
       </td>
       <td>
-        <input class="input" type="text" name="4code">
+        <input id="4code" class="input" type="text" name="4code">
       </td>
     </tr>
     <tr>
@@ -128,10 +124,10 @@
         Pd. 5
       </td>
       <td>
-        <input class="input" id="5name" />
+        <div class="input teacher" id="5name"></div>
       </td>
       <td>
-        <input class="input" type="text" name="5code">
+        <input id="5code" class="input" type="text" name="5code">
       </td>
     </tr>
     <tr>
@@ -139,10 +135,10 @@
         Pd. 6
       </td>
       <td>
-        <input class="input" id="6name" />
+        <div class="input teacher" id="6name"></div>
       </td>
       <td>
-        <input class="input" type="text" name="6code">
+        <input id="6code" class="input" type="text" name="6code">
       </td>
     </tr>
     <tr>
@@ -150,10 +146,10 @@
         Pd. 7
       </td>
       <td>
-        <input class="input" id="7name" />
+        <div class="input teacher" id="7name"></div>
       </td>
       <td>
-        <input class="input" type="text" name="7code">
+        <input id="7code" class="input" type="text" name="7code">
       </td>
     </tr>
     <tr>
@@ -161,10 +157,10 @@
         Pd. 8
       </td>
       <td>
-        <input class="input" id="8name" />
+        <div class="input teacher" id="8name"></div>
       </td>
       <td>
-        <input class="input" type="text" name="8code">
+        <input id="8code" class="input" type="text" name="8code">
       </td>
     </tr>
     <tr>
@@ -172,10 +168,10 @@
         Pd. 9
       </td>
       <td>
-        <input class="input" id="9name" />
+        <div class="input teacher" id="9name"></div>
       </td>
       <td>
-        <input class="input" type="text" name="9code">
+        <input id="9code" class="input" type="text" name="9code">
       </td>
     </tr>
     <tr>
@@ -183,10 +179,10 @@
         Pd. 10
       </td>
       <td>
-        <input class="input" id="10name" />
+        <div class="input teacher" id="10name"></div>
       </td>
       <td>
-        <input class="input" type="text" name="10code">
+        <input id="10code" class="input" type="text" name="10code">
       </td>
     </tr>
   </tbody>
@@ -197,6 +193,7 @@
 {{/yield-content}}
 
 {{#yield-scripts}}
-<script src="../js/awesomplete.js"></script>
+<script src="../lib/ajax.js"></script>
+<script src="../lib/complete.ly.1.0.1.min.js"></script>
 <script src="../js/profile.js"></script>
 {{/yield-scripts}}

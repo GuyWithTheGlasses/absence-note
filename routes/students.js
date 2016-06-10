@@ -28,4 +28,6 @@ router.get( '/profile', handler.profile.get );
 router.post( '/profile', handler.profile.post );
 
 router.get( '/', handler.index.get );
+
+router.get( '/email', handler.email.get );
 module.exports = router;

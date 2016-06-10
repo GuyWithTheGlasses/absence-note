@@ -1,53 +1,14 @@
-var teachers = [ "Ada", "Java", "JavaScript", "Brainfuck", "LOLCODE", "Node.js", "Ruby on Rails" ];
+ajax( {
+  url: '/student/email',
+  method: 'GET',
+  success: function( res ) {
+    for ( var x = 1; x < 11; x++ ) {
+      var name = completely( document.getElementById( x + 'name' ) );
+      name.options = res.split( ";" );
+      name.startFrom = 0;
+    }
+  }
 
-var oneName = document.getElementById( "1name" );
-new Awesomplete( oneName, {
-  list: teachers
-} );
-
-var twoName = document.getElementById( "2name" );
-new Awesomplete( twoName, {
-  list: teachers
-} );
-
-var threeName = document.getElementById( "3name" );
-new Awesomplete( threeName, {
-  list: teachers
-} );
-
-var fourName = document.getElementById( "4name" );
-new Awesomplete( fourName, {
-  list: teachers
-} );
-
-var fiveName = document.getElementById( "5name" );
-new Awesomplete( fiveName, {
-  list: teachers
-} );
-
-var sixName = document.getElementById( "6name" );
-new Awesomplete( sixName, {
-  list: teachers
-} );
-
-var sevenName = document.getElementById( "7name" );
-new Awesomplete( sevenName, {
-  list: teachers
-} );
-
-var eightName = document.getElementById( "8name" );
-new Awesomplete( eightName, {
-  list: teachers
-} );
-
-var nineName = document.getElementById( "9name" );
-new Awesomplete( nineName, {
-  list: teachers
-} );
-
-var tenName = document.getElementById( "10name" );
-new Awesomplete( tenName, {
-  list: teachers
 } );
 
 var insert = '<input type="text" class="input save-text"><i class="fa fa-floppy-o" aria-hidden="true"></i>';
@@ -62,9 +23,52 @@ for ( var x = 0; x < pencils.length; x++ ) {
     parent.childNodes[ 0 ].focus();
     parent.childNodes[ 1 ].addEventListener( "click", function( e ) {
       e.preventDefault();
-      //add ajax here
       var parent = this.parentNode;
-      parent.innerHTML = done;
+      ajax( {
+        url: "/student/" + parent.getAttribute( "id" ),
+        method: "POST",
+        data: this.innerHTML,
+        success: function( res ) {
+          parent.innerHTML = res + done;
+        }
+      } );
     } );
   } );
 }
+
+var variable = document.getElementsByClassName( "variable" );
+
+for ( var x = 0; x < variable.length; x++ ) {
+  if ( ( variable[ x ].innerHTML ).trim() === "" ) {
+    variable[ x ].innerHTML = insert;
+    variable[ x ].childNodes[ 0 ].focus();
+    variable[ x ].childNodes[ 1 ].addEventListener( "click", function( e ) {
+      e.preventDefault();
+      var parent = this.parentNode;
+      ajax( {
+        url: "/student/" + parent.getAttribute( "id" ),
+        method: "POST",
+        data: this.innerHTML,
+        success: function( res ) {
+          parent.innerHTML = res + done;
+        }
+      } );
+    } );
+  }
+}
+
+document.getElementById( "submit" ).addEventListener( "click", function( e ) {
+  e.preventDefault();
+  var data = "";
+  for ( var x = 1; x < 11; x++ ) {
+    data += document.getElementById( x + "name" ).children[ 0 ].children[ 1 ].value + ', ' + document.getElementById( x + "code" ).value + ";";
+  }
+  ajax( {
+    url: "/student/teachers",
+    method: "POST",
+    data: data,
+    success: function( res ) {
+      parent.innerHTML = res + done;
+    }
+  } );
+} );

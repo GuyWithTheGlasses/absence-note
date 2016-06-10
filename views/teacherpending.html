@@ -6,19 +6,21 @@
 {{#yield-header}}
 {{/yield-header}}
 
+{{#yield-user}}
+{{/yield-user}}
+
 {{#yield-content}}
 
-<h1 class="note title">Pending Absences</h1>
+<h1 class="note title">History</h1>
 
 <table class="absence-notes">
   <thead>
     <tr class="absence-header">
-      <th>Name</th>
+      <th>Student</th>
       <th>Date</th>
-      <th>OSIS</th>
-      <th>Homeroom</th>
-      <th>Periods</th>
-      <th></th>
+      <th>Type</th>
+      <th>Period</th>
+      <th>Option</th>
     </tr>
   </thead>
   <tbody>
@@ -30,13 +32,10 @@
         5/27/2016
       </td>
       <td class="tablelink">
-        210283021
+        Absence Note
       </td>
       <td class="tablelink">
-        7RR
-      </td>
-      <td class="tablelink">
-        1-10
+        8
       </td>
       <td class="options">
         <i id="approve" class="fa fa-check-circle-o approve" aria-hidden="true"></i>
@@ -46,10 +45,9 @@
   </tbody>
 </table>
 
-
 {{/yield-content}}
 
 {{#yield-scripts}}
 <script src="../../js/history.js"></script>
-<script src="../../js/admin_approve.js"></script>
+<script src="../../js/teacher_approve.js"></script>
 {{/yield-scripts}}

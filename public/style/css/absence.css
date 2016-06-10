@@ -143,6 +143,14 @@ label {
   margin: 40px auto 60px;
   width: 200px; }
 
+.deny {
+  background-color: #d36165;
+  display: inline-block;
+  font-size: 20px;
+  height: 50px;
+  margin: 40px auto 60px;
+  width: 200px; }
+
 .explanation {
   background-image: linear-gradient(#fff, #fff 30px, #ccc 30px, #ccc 31px, #fff 31px);
   background-size: 100% 31px;
@@ -159,7 +167,7 @@ label {
   outline: none; }
 
 .label {
-  border-bottom: 1px solid #d3d3d3;
+  border-bottom: 1px solid #d2d2d2;
   font-size: 20px;
   margin-bottom: 0;
   margin-left: auto;
@@ -198,5 +206,17 @@ label {
 .fa-calendar {
   cursor: pointer; }
 
-.fa-clock-o {
-  cursor: pointer; }
+.fa-times {
+  color: #d36165;
+  font-size: 30px !important;
+  margin-left: 10px; }
+
+.fa-check {
+  color: #41be4b;
+  font-size: 30px !important;
+  margin-left: 10px; }
+
+.error {
+  color: #f00;
+  font-size: 18px;
+  text-align: center; }

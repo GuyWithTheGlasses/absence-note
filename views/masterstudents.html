@@ -1,55 +1,50 @@
 {{#yield-styles}}
 <link type="text/css" href="../style/css/history.css" rel="stylesheet">
-<link rel="stylesheet" href="../style/css/font-awesome.min.css">
 {{/yield-styles}}
 
 {{#yield-header}}
 {{/yield-header}}
 
+{{#yield-user}}
+{{/yield-user}}
+
 {{#yield-content}}
 
-<h1 class="note title">Pending Absences</h1>
+<h1 class="note title">Students</h1>
 
 <table class="absence-notes">
   <thead>
     <tr class="absence-header">
       <th>Name</th>
-      <th>Date</th>
       <th>OSIS</th>
       <th>Homeroom</th>
-      <th>Periods</th>
-      <th></th>
+      <th>Parent Name</th>
+      <th>Parent Phone</th>
     </tr>
   </thead>
   <tbody>
     <tr class="tablerow">
       <td class="tablelink">
-        <a href="/">Roy Xu</a>
+        <a href="#">Kevin Yan</a>
       </td>
       <td class="tablelink">
-        5/27/2016
+        205440076
       </td>
       <td class="tablelink">
-        210283021
+        7XX
       </td>
       <td class="tablelink">
-        7RR
+        Chang Zhao Xu
       </td>
       <td class="tablelink">
-        1-10
-      </td>
-      <td class="options">
-        <i id="approve" class="fa fa-check-circle-o approve" aria-hidden="true"></i>
-        <i id="deny" class="fa fa-times-circle-o deny" aria-hidden="true"></i>
+        347-742-4204
       </td>
     </tr>
   </tbody>
 </table>
 
-
 {{/yield-content}}
 
 {{#yield-scripts}}
 <script src="../../js/history.js"></script>
-<script src="../../js/admin_approve.js"></script>
 {{/yield-scripts}}
