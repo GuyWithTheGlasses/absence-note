@@ -13,5 +13,5 @@ module.exports = {
       res.render(templates.teachers.index, { user: req.user });
     }
   },
-  'absence':require('./absence')
+  'note':require('./note')
 };
