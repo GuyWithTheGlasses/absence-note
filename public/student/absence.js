@@ -9,119 +9,118 @@ var ERROR_MESSAGE = 'error-message';
 var RADIO_BUTTON_DIV = 'master-options';
 var RADIO_BUTTON = 'excusemestopreading';
 
-var correctionBox = document.getElementById( "correction-box" );
-var excusedBox = document.getElementById( "excused-box" );
-var masterBox = document.getElementById( "master-box" );
+var correctionBox = document.getElementById("correction-box");
+var excusedBox = document.getElementById("excused-box");
+var masterBox = document.getElementById("master-box");
 
-var correction = document.getElementById( "correction" );
-var excused = document.getElementById( "excused" );
+var correction = document.getElementById("correction");
+var excused = document.getElementById("excused");
 
-correction.addEventListener( "click", function( e ) {
+correction.addEventListener("click", function(e) {
   e.preventDefault();
   correctionBox.style.display = "block";
   excusedBox.style.display = "none";
-} );
+});
 
-excused.addEventListener( "click", function( e ) {
+excused.addEventListener("click", function(e) {
   e.preventDefault();
   excusedBox.style.display = "block";
   correctionBox.style.display = "none";
-} );
+});
 
-var setupForms = function( event ) {
-  console.log( "DOM content loaded, ready to add forms" );
-  //Add click listeners to all buttons in document 
-  forEachInClass( document, RADIO_BUTTON, function( radio_button ) {
-    radio_button.addEventListener( 'click', function( event ) {
+var setupForms = function(event) {
+  console.log("DOM content loaded, ready to add forms");
+  //Add click listeners to all buttons in document
+  forEachInClass(document, RADIO_BUTTON, function(radio_button) {
+    radio_button.addEventListener('click', function(event) {
       event.preventDefault();
       //When this button is clicked
       //Delete all other "clicked" classes
-      if ( this.id != "excused" && this.id != "correction" ) {
-        forEachInClass( document, RADIO_BUTTON, function( radio_button ) {
-          if ( radio_button.id != "excused" && radio_button.id != "correction" ) {
-            radio_button.classList.remove( 'clicked' );
+      if (this.id != "excused" && this.id != "correction") {
+        forEachInClass(document, RADIO_BUTTON, function(radio_button) {
+          if (radio_button.id != "excused" && radio_button.id != "correction") {
+            radio_button.classList.remove('clicked');
           }
-        } );
+        });
       } else {
-        forEachInClass( document, RADIO_BUTTON, function( radio_button ) {
-          radio_button.classList.remove( 'clicked' );
-        } );
+        forEachInClass(document, RADIO_BUTTON, function(radio_button) {
+          radio_button.classList.remove('clicked');
+        });
       }
       //Add the "clicked" class to this button
-      this.classList.add( 'clicked' );
+      this.classList.add('clicked');
     });
   });
-  forEachInClass( document, ABSENCE_FORM_CLASS, function( form ) {
-    form.onsubmit = form.onsubmit || function( event ) {
+  forEachInClass(document, ABSENCE_FORM_CLASS, function(form) {
+    form.onsubmit = form.onsubmit || function(event) {
       event.preventDefault();
-    }; 
+    };
     //Create function to create PDF of absence note
     //Will be assigned to Print PDF button, not called yet
-    var createPDF = function( event ) {
+    var createPDF = function(event) {
       event.preventDefault();
       //Send input data to the server
       var formdata = getData(form);
-      submit( form, {
+      submit(form, {
         url: '/student/absence/create',
         method: 'POST',
         data: formdata,
-        success: function( res ) {
-          res = JSON.parse( res );
+        success: function(res) {
+          res = JSON.parse(res);
           console.log(res);
-          if ( res.success ) {
-            formdata['name'] = res.note.student;
-            formdata['OSIS'] = res.note.OSIS;
+          if (res.success) {
+            formdata.name = res.note.student;
+            formdata.OSIS = res.note.OSIS;
             createAbsencePDF(formdata);
             return window.location.href + '/student/';
-          }
-          else {
-            forEachInClass( form, ABSENCE_FORM_CLASS, function( element ) {
+          } else {
+            forEachInClass(form, ABSENCE_FORM_CLASS, function(element) {
               element.innerHTML = res;
-            } );
+            });
           }
         },
         complete: function() {}
-      }, ERROR_MESSAGE );
+      }, ERROR_MESSAGE);
     };
-    forEachInClass( form, SUBMIT_BUTTON, function( submit ) {
-      submit.addEventListener( 'click', createPDF);
-    } );
-    forEachInClass( form, PDF_BUTTON, function( pdf ){
-      pdf.addEventListener( 'click', createPDF );
-    } );
-  } );
+    forEachInClass(form, SUBMIT_BUTTON, function(submit) {
+      submit.addEventListener('click', createPDF);
+    });
+    forEachInClass(form, PDF_BUTTON, function(pdf) {
+      pdf.addEventListener('click', createPDF);
+    });
+  });
 };
 
 //Returns a dictionary of all filled out inputs in the form
-var getData = function( form ) {
+var getData = function(form) {
   var data = {};
   //Get radio button data here - stored in data['type']
-  forEachInClass( document, RADIO_BUTTON, function(button){
-    if(button.classList.contains('clicked')){
-        data['type'] = button.id;
+  forEachInClass(document, RADIO_BUTTON, function(button) {
+    if (button.classList.contains('clicked')) {
+      data['type'] = button.id;
     }
   });
   //Get the standalone entries in the form
-  forEachInClass( form, FORM_ENTRIES, function( entry ) {
-    forEachInClass( entry, TEXT_INPUT, function( input ) {
-      data[ input.name ] = input.value;
-    } );
-    forEachInClass( entry, EXPLANATION_INPUT, function( input ) {
-      data[ input.name ] = input.value;
-    } );
-  } );
+  forEachInClass(form, FORM_ENTRIES, function(entry) {
+    forEachInClass(entry, TEXT_INPUT, function(input) {
+      data[input.name] = input.value;
+    });
+    forEachInClass(entry, EXPLANATION_INPUT, function(input) {
+      data[input.name] = input.value;
+    });
+  });
   //Get the teachers and periods
-  forEachInClass( form, PERIOD_CHECKBOX, function( box ) {
-    if ( box.checked ) {
-      data[ box.name ] = true;
-      forEachInClass( box.parentNode.parentNode, TEXT_INPUT, function( input ) {
-        data[ input.name ] = input.value;
-      } );
+  forEachInClass(form, PERIOD_CHECKBOX, function(box) {
+    if (box.checked) {
+      data[box.name] = true;
+      forEachInClass(box.parentNode.parentNode, TEXT_INPUT, function(input) {
+        data[input.name] = input.value;
+      });
     } else {
-      data[ box.name ] = false;
+      data[box.name] = false;
     }
-  } );
+  });
   return data;
 };
 
-document.addEventListener( 'DOMContentLoaded', setupForms );
+document.addEventListener('DOMContentLoaded', setupForms);

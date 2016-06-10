@@ -7,7 +7,6 @@ if (process.env.env == 'development') {} else {
   router.use(handler.check.loggedIn);
 }
 
-router.get('/', handler.index.get);
 
 // router.get( '/earlyexcuse/:id', handler.earlyexcuse.id.get );
 // router.get( '/earlyexcuse', handler.earlyexcuse.get );
@@ -28,4 +27,5 @@ router.get('/history', handler.history.get);
 router.get('/profile', handler.profile.get);
 router.post('/profile', handler.profile.post);
 
+router.get('/', handler.index.get);
 module.exports = router;
