@@ -27,6 +27,9 @@ module.exports = {
         }
       } else return next();
     }
+  },
+  'teachers':function(req, res){
+    return res.json(Object.keys(require('../emails').Teachers));
   }
 };
 
