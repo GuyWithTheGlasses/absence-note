@@ -21,7 +21,7 @@ module.exports = {
     get: function( req, res, next ) { // Returns a template with excuse note
       var student = req.user;
       Excuse.findById( req.params.id, function( err, excuse ) {
-        if ( err ) return res.json( err );
+        if ( err ) return next( err );
         if ( student.OSIS != excuse.OSIS ) return next( messages.student.excuse.noMatch );
         return res.render( templates.students.earlyexcuse.view, {
           user: req.user,
