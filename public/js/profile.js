@@ -23,9 +23,15 @@ for ( var x = 0; x < pencils.length; x++ ) {
     parent.childNodes[ 0 ].focus();
     parent.childNodes[ 1 ].addEventListener( "click", function( e ) {
       e.preventDefault();
-      //add ajax here
       var parent = this.parentNode;
-      parent.innerHTML = done;
+      ajax( {
+        url: "/student/" + parent.getAttribute( "id" ),
+        method: "POST",
+        data: this.innerHTML,
+        success: function( res ) {
+          parent.innerHTML = res + done;
+        }
+      } );
     } );
   } );
 }
@@ -34,14 +40,35 @@ var variable = document.getElementsByClassName( "variable" );
 
 for ( var x = 0; x < variable.length; x++ ) {
   if ( ( variable[ x ].innerHTML ).trim() === "" ) {
-    console.log( "hi" );
     variable[ x ].innerHTML = insert;
     variable[ x ].childNodes[ 0 ].focus();
     variable[ x ].childNodes[ 1 ].addEventListener( "click", function( e ) {
       e.preventDefault();
-      //add ajax here
       var parent = this.parentNode;
-      parent.innerHTML = done;
+      ajax( {
+        url: "/student/" + parent.getAttribute( "id" ),
+        method: "POST",
+        data: this.innerHTML,
+        success: function( res ) {
+          parent.innerHTML = res + done;
+        }
+      } );
     } );
   }
 }
+
+document.getElementById( "submit" ).addEventListener( "click", function( e ) {
+  e.preventDefault();
+  var data = "";
+  for ( var x = 1; x < 11; x++ ) {
+    data += document.getElementById( x + "name" ).children[ 0 ].children[ 1 ].value + ', ' + document.getElementById( x + "code" ).value + ";";
+  }
+  ajax( {
+    url: "/student/teachers",
+    method: "POST",
+    data: data,
+    success: function( res ) {
+      parent.innerHTML = res + done;
+    }
+  } );
+} );
