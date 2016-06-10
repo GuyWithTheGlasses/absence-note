@@ -5,7 +5,8 @@ $button-unclicked: #888;
 $title: #000;
 $textarea-bg: #fff;
 $textarea-line: #ccc;
-$label-underline: #d3d3d3;
+$label-underline: #d2d2d2;
+$error: #ff0000;
 
 label {
   font-size: 22px;
@@ -132,4 +133,10 @@ label {
 
 .fa-calendar {
   cursor: pointer;
+}
+
+.error {
+  color: $error;
+  font-size: 18px;
+  text-align: center;
 }
