@@ -37,7 +37,7 @@ module.exports = {
       Note.find({
         _id: { $in: req.user.notes }
       }, function(err, notes) {
-        res.render(templates.teachers.history, {
+        res.render(templates.students.history, {
           user: req.user,
           history: notes
         });
