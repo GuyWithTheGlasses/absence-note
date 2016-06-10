@@ -44,7 +44,7 @@ var setupForms = function(event) {
       submit(form, {
         url: '/student/earlyexcuse/create',
         method: 'POST',
-        data: getData(form),
+        data: formdata,
         success: function(res) {
           res = JSON.parse(res);
           console.log(res);
@@ -67,7 +67,6 @@ var setupForms = function(event) {
 
 //Returns a dictionary of all filled out inputs in the form
 var getData = function(form) {
-  console.log("getting data");
   var data = {};
   //Get the standalone entries in the form
   forEachInClass(form, FORM_ENTRIES, function(entry) {
@@ -100,7 +99,7 @@ var getData = function(form) {
   forEachInClass(form, PERIOD_CHECKBOX, function(box) {
     if (box.checked) {
       data[box.name] = true;
-      forEachInClass(box.parentNode.parentNode, TEXT_INPUT, function(input) {
+      forEachInClass(box.parentNode.parentNode, LINE_INPUT, function(input) {
         //Please have filled in inputs
         if(input.value === ''){
           var error_div = document.getElementById('error');
