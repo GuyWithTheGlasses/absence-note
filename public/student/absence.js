@@ -30,14 +30,10 @@ excused.addEventListener( "click", function( e ) {
 
 var setupForms = function( event ) {
   console.log( "DOM content loaded, ready to add forms" );
-  forEachInClass( document, ABSENCE_FORM_CLASS, function( form ) {
-    form.onsubmit = form.onsubmit || function( event ) {
-      event.preventDefault();
-    }; 
-  //Add click listeners to all buttons in form
+  //Add click listeners to all buttons in document 
   forEachInClass( document, RADIO_BUTTON, function( radio_button ) {
-    radio_button.addEventListener( 'click', function( e ) {
-      e.preventDefault();
+    radio_button.addEventListener( 'click', function( event ) {
+      event.preventDefault();
       //When this button is clicked
       //Delete all other "clicked" classes
       if ( this.id != "excused" && this.id != "correction" ) {
@@ -50,15 +46,19 @@ var setupForms = function( event ) {
         forEachInClass( document, RADIO_BUTTON, function( radio_button ) {
           radio_button.classList.remove( 'clicked' );
         } );
-        //Add the "clicked" class to this button
       }
+      //Add the "clicked" class to this button
       this.classList.add( 'clicked' );
-    } );
-  } );
+    });
+  });
+  forEachInClass( document, ABSENCE_FORM_CLASS, function( form ) {
+    form.onsubmit = form.onsubmit || function( event ) {
+      event.preventDefault();
+    }; 
     //Create function to create PDF of absence note
     //Will be assigned to Print PDF button, not called yet
     var createPDF = function( event ) {
-      console.log("creating PDF");
+      event.preventDefault();
       //Send input data to the server
       var formdata = getData(form);
       submit( form, {
@@ -67,6 +67,7 @@ var setupForms = function( event ) {
         data: formdata,
         success: function( res ) {
           res = JSON.parse( res );
+          console.log(res);
           if ( res.success ) {
             formdata['name'] = res.note.student;
             formdata['OSIS'] = res.note.OSIS;
@@ -83,7 +84,7 @@ var setupForms = function( event ) {
       }, ERROR_MESSAGE );
     };
     forEachInClass( form, SUBMIT_BUTTON, function( submit ) {
-      submit.addEventListener( 'click', function(){ return; } );
+      submit.addEventListener( 'click', createPDF);
     } );
     forEachInClass( form, PDF_BUTTON, function( pdf ){
       pdf.addEventListener( 'click', createPDF );
@@ -95,8 +96,11 @@ var setupForms = function( event ) {
 var getData = function( form ) {
   var data = {};
   //Get radio button data here - stored in data['type']
-  var type = document.getElementByClassName('clicked');
-  data['type'] = type.id;
+  forEachInClass( document, RADIO_BUTTON, function(button){
+    if(button.classList.contains('clicked')){
+        data['type'] = button.id;
+    }
+  });
   //Get the standalone entries in the form
   forEachInClass( form, FORM_ENTRIES, function( entry ) {
     forEachInClass( entry, TEXT_INPUT, function( input ) {
