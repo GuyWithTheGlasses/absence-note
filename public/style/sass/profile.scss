@@ -5,6 +5,7 @@ $edit-bg: #d36165;
 $save-bg: #35a43e;
 $edit-text: #fff;
 $button-bg: #41be4b;
+$error: #f00;
 
 .title {
   color: $title;
@@ -138,4 +139,10 @@ $button-bg: #41be4b;
   b {
     line-height: 40px;
   }
+}
+
+.error {
+  color: $error;
+  font-size: 18px;
+  text-align: center;
 }

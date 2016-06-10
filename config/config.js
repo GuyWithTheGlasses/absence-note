@@ -67,16 +67,16 @@ module.exports = {
   },
   'nodemailer': {
     'smtp': function() {
-      var username = process.env.GMAIL_USERNAME || 'lol@gmail.com';
-      var password = process.env.GMAIL_PASSWORD || 'lol';
+      var username = process.env.GMAIL_USERNAME || 'stuyabsencenote@gmail.com';
+      var password = process.env.GMAIL_PASSWORD || '\$tuy@bs3nc3n0t3';
       return 'smtps://' + username + ':' + password + '@smtp.gmail.com';
     },
     emailOptions: function( options ) {
       sender = process.env.GMAIL_SENDER || 'Stuy Absence Note';
-      username = process.env.GMAIL_USERNAME || 'some_user@gmail.com';
+      username = process.env.GMAIL_USERNAME || 'stuyabsencenote@gmail.com';
       return {
         'from': username,
-        'to': options && options.to || 'asdasd@gmail.com',
+        'to': options && options.to || 'jso123450@gmail.com',
         'subject': options && options.subject || 'Do not reply: This is a notification from Stuyvesant\'s absence note system',
         // 'text': options.text || 'test email',
         'html': options && options.html || '<html> <h1> hi </h1> </html>'

@@ -4,7 +4,7 @@ ajax( {
   success: function( res ) {
     for ( var x = 1; x < 11; x++ ) {
       var name = completely( document.getElementById( x + 'name' ) );
-      name.options = res.split( ";" );
+      name.options = res.split( ";" ).sort();
       name.startFrom = 0;
     }
   }
@@ -45,12 +45,21 @@ for ( var x = 0; x < variable.length; x++ ) {
     variable[ x ].childNodes[ 1 ].addEventListener( "click", function( e ) {
       e.preventDefault();
       var parent = this.parentNode;
+      var change = this.value;
+      var data = {
+        this.getAttribute( 'id' ): change
+      }
       ajax( {
-        url: "/student/" + parent.getAttribute( "id" ),
+        url: "/student/profile",
         method: "POST",
-        data: this.innerHTML,
+        data: data,
         success: function( res ) {
-          parent.innerHTML = res + done;
+          res = JSON.parse( res );
+          if ( res.success ) {
+            parent.innerHTML = change + done;
+          } else {
+            parent.innerHTML = res.message;
+          }
         }
       } );
     } );

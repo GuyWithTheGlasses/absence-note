@@ -195,3 +195,8 @@ textarea {
     font-size: 20px !important; }
   .teacher b {
     line-height: 40px; }
+
+.error {
+  color: #f00;
+  font-size: 18px;
+  text-align: center; }
