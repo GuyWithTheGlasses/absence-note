@@ -18,6 +18,10 @@ module.exports = {
       'approved': {
         success: true,
         message: 'Absence approved!'
+      },
+      'denied': {
+        success: true,
+        message: 'Absence approved!'
       }
     }
   },
