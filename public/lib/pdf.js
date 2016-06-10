@@ -5,6 +5,7 @@ var createAbsencePDF = function(data) {
     console.log('creating PDF')
     //Create new PDF document 
     var doc = new PDFDocument();
+    //var blobStream = doc.pipe(blobStream());
 
     //Create the absence note PDF
     doc.fontSize(12)
@@ -275,7 +276,7 @@ var createAbsencePDF = function(data) {
     //End the doc 
     doc.end();
     //Save PDF
-    saveData(doc, "output.pdf");
+    saveData2(url, "output.PDF");
 };
 
 var createExcusePDF = function(data) {
@@ -671,4 +672,11 @@ var saveData = (function () {
         window.URL.revokeObjectURL(url);
     };
 }());
+
+var saveData2 = function(pdfdoc, name) {
+  var link = document.createElement('a');
+  link.href = pdfdoc;
+  link.download = name;
+  link.dispatchEvent(new MouseEvent('click'));
+};
 
