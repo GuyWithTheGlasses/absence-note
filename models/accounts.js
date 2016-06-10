@@ -34,6 +34,11 @@ var studentSchema = mongoose.Schema({
     name: String,
     phone: String
   })],
+  teachers:[new mongoose.Schema({
+    name:String,
+    period: Number,
+    course_code:String
+  })],
   // list of notes
   notes: [mongoose.Schema.Types.ObjectId],
   type: { type: String, default: 'Student' }

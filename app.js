@@ -4,6 +4,7 @@ var app = express();
 var configure = require('./config/')(app, __dirname);
 
 module.exports.passport = configure.passport;
+module.exports.transport = configure.transport;
 
 app.use('/student', require('./routes/students'));
 app.use('/teacher', require('./routes/teachers'));

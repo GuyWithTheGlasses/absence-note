@@ -2,6 +2,8 @@ var Absence = require('../../models/notes').Absence;
 var templates = require('../../config/templates');
 var messages = require('../../config/messages');
 var config = require('../../config/forms');
+var transport = require('../../app').transport;
+var emails = require('../../emails');
 module.exports = {
   get: function(req, res, next) {
     res.render(templates.students.absence.list, { user: req.user });
@@ -69,12 +71,21 @@ module.exports = {
       note.student = student.google.name;
       note.OSIS = student.OSIS;
       note.homeroom = student.homeroom;
-      note.add(function(err) {
-        if (err) {
-          return res.send(err);
-        }
-        return res.send(messages.student.absence.created(note));
-      });
+      for (var teacherkey in student.teachers) {
+        teacher = student.teachers.teacherkey;
+        note.add(function(err, note) {
+          if (err) {
+            return res.send(err);
+          }
+          transport.sendMail({
+            to: emails.Teachers[teacher],
+            html: '<a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
+          }, function(err) {
+            if (err) return res.send(err);
+            return res.send(messages.student.absence.created(note));
+          });
+        });
+      }
     }
   },
 };
