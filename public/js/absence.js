@@ -17,6 +17,18 @@ excused.addEventListener( "click", function( e ) {
   correctionBox.style.display = "none";
 } );
 
+var picker = new Pikaday( {
+  field: document.getElementById( 'excused-date' ),
+  disableWeekends: true
+} );
+
+var calendar = document.getElementById( "calendar-button" );
+
+calendar.addEventListener( "click", function( e ) {
+  e.preventDefault();
+  picker.show();
+} );
+
 var ABSENCE_FORM_CLASS = 'absence-form';
 var SUBMIT_BUTTON = 'form-submit-ajax';
 var PDF_BUTTON = 'form-create-pdf';
