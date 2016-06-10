@@ -62,7 +62,7 @@ var setupForms = function( event ) {
       //Send input data to the server
       var formdata = getData(form);
       submit( form, {
-        url: '/students/absencenote',
+        url: '/student/absence/create',
         method: 'POST',
         data: formdata,
         success: function( res ) {
