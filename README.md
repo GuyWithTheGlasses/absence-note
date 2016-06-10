@@ -11,15 +11,41 @@ Kevin Yan
 # Deployment Guide
 
 ## To setup nodejs  
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -  
-sudo apt-get install -y nodejs  
+$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -  
+$ sudo apt-get install -y nodejs  
+
+## To setup server
+7. Run "sudo apt-get install git"
+8. Run "npm install forever"
+9. Clone the repo and navigate into directory
+10. Run "npm install"
+11. Create a file called ownerstartup.sh
+12. Copy and paste the following into the file -things omitted for obvious reasons
+
+    export env=production
+    export PORT=80
+    export OWNER="Is owner"
+
+    export SECRET= <SECRET KEY>
+
+    export GOOGLE_CLIENT_ID= <GOOGLE CLIENT ID>
+    export GOOGLE_CLIENT_SECRET= <GOOGLE CLENT SECRET KEY>
+
+    export GMAIL_USERNAME= <GMAIL USERNAME>
+    export GMAIL_PASSWORD= <GMAIL PASSWORD>
+    export GMAIL_SENDER="Stuy Absence Note"
+
+    forever ./bin/www
+
+13. Replace the necessary information in the file (secret key, google client id, etc.)
+14. Run "chmod +x ownerstartup.sh"
 
 ## To setup PM2  
-sudo npm install pm2 -g  
-pm2 start --name "absence_note" ./startup.sh  
+$ sudo npm install pm2 -g  
+$ pm2 start --name "absence_note" ./startup.sh  
 
 Run the command you get from the output of this line to start the server on startup  
-pm2 startup ubuntu  
+$ pm2 startup ubuntu  
 
 ## Nginx setup  
 $ sudo apt-get install nginx  
@@ -45,39 +71,7 @@ server {
 then run   
 $ sudo service nginx restart  
 
-
-## To setup server
-1. Run "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10"
-2. Run "echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list"
-3. Run "sudo apt-get update"
-4. Run "sudo apt-get install -y mongodb-org"
-5. Run "curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -"
-6. Run "sudo apt-get install -y nodejs"
-7. Run "sudo apt-get install git"
-8. Run "npm install forever"
-9. Clone the repo and navigate into directory
-10. Run "npm install"
-11. Create a file called ownerstartup.sh
-12. Copy and paste the following into the file -things omitted for obvious reasons
-
-    export env=production
-    export PORT=80
-    export OWNER="Is owner"
-
-    export SECRET= <SECRET KEY>
-
-    export GOOGLE_CLIENT_ID= <GOOGLE CLIENT ID>
-    export GOOGLE_CLIENT_SECRET= <GOOGLE CLENT SECRET KEY>
-
-    export GMAIL_USERNAME= <GMAIL USERNAME>
-    export GMAIL_PASSWORD= <GMAIL PASSWORD>
-    export GMAIL_SENDER="Stuy Absence Note"
-
-    forever ./bin/www
-
-13. Replace the necessary information in the file (secret key, google client id, etc.)
-14. Run "chmod +x ownerstartup.sh"
-15. Run "npm start"
+### The server should now be running!
 
 # Changelog
 - May 17
