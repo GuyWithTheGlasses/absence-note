@@ -4,6 +4,9 @@ module.exports = {
   'admin': {
     'index': 'admin',
     'absences': 'masterabsence',
+    'earlyexcuses': 'adminearlyexcuse',
+    'history': 'adminhistory',
+    'students': 'adminstudents',
     'absence': 'index'
   },
   'students': {
