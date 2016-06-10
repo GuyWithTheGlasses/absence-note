@@ -25,11 +25,16 @@ for ( var x = 0; x < pencils.length; x++ ) {
       e.preventDefault();
       var parent = this.parentNode;
       ajax( {
-        url: "/student/" + parent.getAttribute( "id" ),
+        url: "/student/profile",
         method: "POST",
-        data: this.innerHTML,
+        data: data,
         success: function( res ) {
-          parent.innerHTML = res + done;
+          res = JSON.parse( res );
+          if ( res.success ) {
+            parent.innerHTML = change + done;
+          } else {
+            document.getElementById( "error" ).innerHTML = res.message;
+          }
         }
       } );
     } );
@@ -46,9 +51,8 @@ for ( var x = 0; x < variable.length; x++ ) {
       e.preventDefault();
       var parent = this.parentNode;
       var change = this.value;
-      var data = {
-        this.getAttribute( 'id' ): change
-      }
+      var data = {};
+      data[ this.getAttribute( 'id' ) ] = change;
       ajax( {
         url: "/student/profile",
         method: "POST",
@@ -58,7 +62,7 @@ for ( var x = 0; x < variable.length; x++ ) {
           if ( res.success ) {
             parent.innerHTML = change + done;
           } else {
-            parent.innerHTML = res.message;
+            document.getElementById( "error" ).innerHTML = res.message;
           }
         }
       } );
@@ -68,16 +72,19 @@ for ( var x = 0; x < variable.length; x++ ) {
 
 document.getElementById( "submit" ).addEventListener( "click", function( e ) {
   e.preventDefault();
-  var data = "";
+  var data = {};
   for ( var x = 1; x < 11; x++ ) {
-    data += document.getElementById( x + "name" ).children[ 0 ].children[ 1 ].value + ', ' + document.getElementById( x + "code" ).value + ";";
+    data[ x ] = [ document.getElementById( x + "name" ).children[ 0 ].children[ 1 ].value, document.getElementById( x + "code" ).value ];
   }
   ajax( {
     url: "/student/teachers",
     method: "POST",
     data: data,
     success: function( res ) {
-      parent.innerHTML = res + done;
+      res = JSON.parse( res );
+      if ( res.success ) {} else {
+        document.getElementById( "error" ).innerHTML = res.message;
+      }
     }
   } );
 } );

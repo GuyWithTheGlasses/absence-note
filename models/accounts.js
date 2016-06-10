@@ -32,6 +32,7 @@ var studentSchema = mongoose.Schema({
   homeroom: String,
   parents: [new mongoose.Schema({
     name: String,
+    relationship: String,
     phone: String
   })],
   teachers:[new mongoose.Schema({

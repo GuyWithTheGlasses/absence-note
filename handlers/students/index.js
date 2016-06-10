@@ -1,4 +1,5 @@
 var templates = require( '../../config/templates' );
+var Note = require('../../models/notes').Note;
 var Absence = require( '../../models/notes' ).Absence;
 var Excuse = require( '../../models/notes' ).EarlyExcuse;
 var config = require( '../../config/forms' );
@@ -33,9 +34,14 @@ module.exports = {
   },
   'history': {
     get: function( req, res, next ) {
-      res.render( templates.students.history, {
-        user: req.user
-      } );
+      Note.find({
+        _id:{$in:req.user.notes}
+      }, function(err, notes){
+        res.render( templates.teachers.pending_requests, {
+          user: req.user,
+          history: notes
+        } );
+      })
     }
   },
   'email': {
