@@ -55,6 +55,11 @@ var setupForms = function(event) {
     form.onsubmit = form.onsubmit || function(event) {
       event.preventDefault();
     };
+    //Create function to submit absence note form
+    //Will be assigned to Submit button, not called yet
+    var submitForm = function(event){
+        return;
+    }
     //Create function to create PDF of absence note
     //Will be assigned to Print PDF button, not called yet
     var createPDF = function(event) {
@@ -83,7 +88,7 @@ var setupForms = function(event) {
       }, ERROR_MESSAGE);
     };
     forEachInClass(form, SUBMIT_BUTTON, function(submit) {
-      submit.addEventListener('click', createPDF);
+      submit.addEventListener('click', submitForm);
     });
     forEachInClass(form, PDF_BUTTON, function(pdf) {
       pdf.addEventListener('click', createPDF);
