@@ -186,3 +186,12 @@ textarea {
   height: 50px;
   margin: 40px auto 60px;
   width: 200px; }
+
+.teacher {
+  padding-left: 5px; }
+  .teacher div,
+  .teacher input {
+    font-family: 'Montserrat' !important;
+    font-size: 20px !important; }
+  .teacher b {
+    line-height: 40px; }
