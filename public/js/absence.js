@@ -69,27 +69,23 @@ var setupForms = function(event) {
     };
     //Create function to submit absence note form
     //Will be assigned to Submit button, not called yet
-    var submitForm = function(event){
+    var createPDF = function(event){
         return;
     }
     //Create function to create PDF of absence note
     //Will be assigned to Print PDF button, not called yet
-    var createPDF = function(event) {
+    var submitForm = function(event) {
       event.preventDefault();
       //Send input data to the server
-      var formdata = getData(form);
       submit(form, {
         url: '/student/absence/create',
         method: 'POST',
-        data: formdata,
+        data: getData(form),
         success: function(res) {
           res = JSON.parse(res);
           console.log(res);
           if (res.success) {
-            formdata.name = res.note.student;
-            formdata.OSIS = res.note.OSIS;
-            createAbsencePDF(formdata);
-            return window.location.href + '/student/';
+             return window.location.href + '/student/';
           } else {
             forEachInClass(form, ABSENCE_FORM_CLASS, function(element) {
               element.innerHTML = res;
@@ -120,9 +116,21 @@ var getData = function(form) {
   //Get the standalone entries in the form
   forEachInClass(form, FORM_ENTRIES, function(entry) {
     forEachInClass(entry, TEXT_INPUT, function(input) {
+      //Make sure inputs aren't empty
+      if(input.value == ''){
+        var error_div = document.getElementById('error');
+        error_div.innerHTML = "Required fields missing.";
+        return;
+      }
       data[input.name] = input.value;
     });
     forEachInClass(entry, EXPLANATION_INPUT, function(input) {
+      //Nothing empty for you
+      if(input.value == ''){
+        var error_div = document.getElementById('error');
+        error_div.innerHTML = "Required fields missing.";
+        return;
+      }
       data[input.name] = input.value;
     });
   });
@@ -131,6 +139,12 @@ var getData = function(form) {
     if (box.checked) {
       data[box.name] = true;
       forEachInClass(box.parentNode.parentNode, TEXT_INPUT, function(input) {
+        //Please have filled in inputs
+        if(input.value == ''){
+          var error_div = document.getElementById('error');
+          error_div.innerHTML = "Required fields missing.";
+          return;
+        }
         data[input.name] = input.value;
       });
     } else {
