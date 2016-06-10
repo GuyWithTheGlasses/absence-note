@@ -18,15 +18,15 @@ sudo apt-get install -y nodejs
 sudo npm install pm2 -g  
 pm2 start --name "absence_note" ./startup.sh  
 
-Run the command you get from the output of this line to start the server on startup
+Run the command you get from the output of this line to start the server on startup  
 pm2 startup ubuntu  
 
 ## Nginx setup  
-sudo apt-get install nginx  
+$ sudo apt-get install nginx  
 
-then create a file named /etc/nginx/sites-available/default
+then create a file named /etc/nginx/sites-available/default  
 paste the following:
-  
+
 server {  
     listen 80;  
 
@@ -43,7 +43,7 @@ server {
 }  
 
 then run   
-sudo service nginx restart  
+$ sudo service nginx restart  
 
 
 ## To setup server
