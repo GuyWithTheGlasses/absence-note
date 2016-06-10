@@ -32,7 +32,7 @@ module.exports = {
     post: function( req, res ) {
       var student = req.user;
       Excuse.findById( req.params.id, function( err, excuse ) {
-        if ( err ) return next( err );
+        if ( err ) return res.json( err );
         if ( student.OSIS != excuse.OSIS ) return res.json( messages.student.excuse.noMatch );
         excuse.delete( function( err ) {
           if ( err ) return res.json( err );
