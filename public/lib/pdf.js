@@ -274,10 +274,8 @@ var createAbsencePDF = function(data) {
 
     //End the doc 
     doc.end();
-    //When the stream is finished, save PDF
-    stream.on("finish", function() {
-	    saveData(doc, "output.pdf");
-    });
+    //Save PDF
+    saveData(doc, "output.pdf");
 };
 
 var createExcusePDF = function(data) {
@@ -653,13 +651,10 @@ var createExcusePDF = function(data) {
     doc.moveDown()
 	.text("Student was seen by:", {align: 'center'})
     
-
     //End the doc 
     doc.end();
-    //When the stream is finished, save PDF
-    stream.on("finish", function() {
-	    saveData(doc, "output.pdf");
-    });
+    //Save PDF
+    saveData(doc, "output.pdf");
 };
 
 var saveData = (function () {
