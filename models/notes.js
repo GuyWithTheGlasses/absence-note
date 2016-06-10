@@ -40,6 +40,7 @@ var noteSchema = mongoose.Schema({
       'date': Date
     }),
     'Name': String,
+    'Contact Number': String
   }),
   schedule: [new mongoose.Schema({
     'Period': Number,
@@ -84,10 +85,9 @@ noteSchema.methods.add = function(callback) {
  * @param  {Function} callback returns null if good else returns err
  */
 noteSchema.methods.approve = function(callback) {
-  note = this;
-  note.approved = true;
-  note.save(function(err) {
-    if (err)
+  this.approved = true;
+  this.save(function(err) {
+    if (err && callback && typeof callback == 'function')
       return callback(err);
   });
 };

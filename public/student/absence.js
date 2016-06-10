@@ -9,84 +9,118 @@ var ERROR_MESSAGE = 'error-message';
 var RADIO_BUTTON_DIV = 'master-options';
 var RADIO_BUTTON = 'excusemestopreading';
 
-var setupForms = function( event ) {
-  console.log( "hello" );
-  forEachInClass( document, ABSENCE_FORM_CLASS, function( form ) {
-    form.onsubmit = form.onsubmit || function( event ) {
+var correctionBox = document.getElementById("correction-box");
+var excusedBox = document.getElementById("excused-box");
+var masterBox = document.getElementById("master-box");
+
+var correction = document.getElementById("correction");
+var excused = document.getElementById("excused");
+
+correction.addEventListener("click", function(e) {
+  e.preventDefault();
+  correctionBox.style.display = "block";
+  excusedBox.style.display = "none";
+});
+
+excused.addEventListener("click", function(e) {
+  e.preventDefault();
+  excusedBox.style.display = "block";
+  correctionBox.style.display = "none";
+});
+
+var setupForms = function(event) {
+  console.log("DOM content loaded, ready to add forms");
+  //Add click listeners to all buttons in document
+  forEachInClass(document, RADIO_BUTTON, function(radio_button) {
+    radio_button.addEventListener('click', function(event) {
+      event.preventDefault();
+      //When this button is clicked
+      //Delete all other "clicked" classes
+      if (this.id != "excused" && this.id != "correction") {
+        forEachInClass(document, RADIO_BUTTON, function(radio_button) {
+          if (radio_button.id != "excused" && radio_button.id != "correction") {
+            radio_button.classList.remove('clicked');
+          }
+        });
+      } else {
+        forEachInClass(document, RADIO_BUTTON, function(radio_button) {
+          radio_button.classList.remove('clicked');
+        });
+      }
+      //Add the "clicked" class to this button
+      this.classList.add('clicked');
+    });
+  });
+  forEachInClass(document, ABSENCE_FORM_CLASS, function(form) {
+    form.onsubmit = form.onsubmit || function(event) {
       event.preventDefault();
     };
-    //Add click listeners to all buttons in form
-    forEachInClass( form, RADIO_BUTTON, function( radio_button ) {
-      radio_button.addEventListener( 'click', function( e ) {
-        e.preventDefault();
-        //When this button is clicked
-        //Delete all other "clicked" classes
-        forEachInClass( form, RADIO_BUTTON, function( radio_button ) {
-          radio_button.classList.remove( 'clicked' );
-        } );
-        //Add the "clicked" class to this button
-        this.classList.add( 'clicked' );
-      } );
-    } );
-    //Create function to submit form data to database
-    //Will be assigned to submit button, not called yet
-    var submitForm = function( event ) {
+    //Create function to create PDF of absence note
+    //Will be assigned to Print PDF button, not called yet
+    var createPDF = function(event) {
+      event.preventDefault();
       //Send input data to the server
-      submit( form, {
-        url: '/students/absencenote',
+      var formdata = getData(form);
+      submit(form, {
+        url: '/student/absence/create',
         method: 'POST',
-        data: getData( form ),
-        success: function( res ) {
-          res = JSON.parse( res );
-          if ( res.success ) return window.location.href + '/student/absencenote/' + res.note_id;
-          //res.note contains the all the student's necessary data
-          //Use this to generate a pdf of the absence note
-          else {
-            forEachInClass( form, ABSENCE_FORM_CLASS, function( element ) {
+        data: formdata,
+        success: function(res) {
+          res = JSON.parse(res);
+          console.log(res);
+          if (res.success) {
+            formdata.name = res.note.student;
+            formdata.OSIS = res.note.OSIS;
+            createAbsencePDF(formdata);
+            return window.location.href + '/student/';
+          } else {
+            forEachInClass(form, ABSENCE_FORM_CLASS, function(element) {
               element.innerHTML = res;
-            } );
+            });
           }
         },
         complete: function() {}
-      }, ERROR_MESSAGE );
+      }, ERROR_MESSAGE);
     };
-    forEachInClass( form, SUBMIT_BUTTON, function( button ) {
-      button.addEventListener( 'click', submitForm );
-    } );
-  } );
+    forEachInClass(form, SUBMIT_BUTTON, function(submit) {
+      submit.addEventListener('click', createPDF);
+    });
+    forEachInClass(form, PDF_BUTTON, function(pdf) {
+      pdf.addEventListener('click', createPDF);
+    });
+  });
 };
 
 //Returns a dictionary of all filled out inputs in the form
-var getData = function( form ) {
+var getData = function(form) {
   var data = {};
   //Get radio button data here - stored in data['type']
-  forEachInClass( form, RADIO_BUTTON_DIV, function( button_box ) {
-    forEachInClass( button_box, 'clicked', function( button ) {
-      date.type = button.id;
-    } );
-  } );
-  //Get the standalone entries in the form
-  forEachInClass( form, FORM_ENTRIES, function( entry ) {
-    forEachInClass( entry, TEXT_INPUT, function( input ) {
-      data[ input.name ] = input.value;
-    } );
-    forEachInClass( entry, EXPLANATION_INPUT, function( input ) {
-      data[ input.name ] = input.value;
-    } );
-  } );
-  //Get the teachers and periods
-  forEachInClass( form, PERIOD_CHECKBOX, function( box ) {
-    if ( box.checked ) {
-      data[ box.name ] = true;
-      forEachInClass( box.parentNode.parentNode, TEXT_INPUT, function( input ) {
-        data[ input.name ] = input.value;
-      } );
-    } else {
-      data[ box.name ] = false;
+  forEachInClass(document, RADIO_BUTTON, function(button) {
+    if (button.classList.contains('clicked')) {
+      data['type'] = button.id;
     }
-  } );
+  });
+  //Get the standalone entries in the form
+  forEachInClass(form, FORM_ENTRIES, function(entry) {
+    forEachInClass(entry, TEXT_INPUT, function(input) {
+      data[input.name] = input.value;
+    });
+    forEachInClass(entry, EXPLANATION_INPUT, function(input) {
+      data[input.name] = input.value;
+    });
+  });
+  //Get the teachers and periods
+  forEachInClass(form, PERIOD_CHECKBOX, function(box) {
+    if (box.checked) {
+      data[box.name] = true;
+      forEachInClass(box.parentNode.parentNode, TEXT_INPUT, function(input) {
+        data[input.name] = input.value;
+      });
+    } else {
+      data[box.name] = false;
+    }
+  });
   return data;
 };
 
-
-document.addEventListener( 'DOMContentLoaded', setupForms );
+document.addEventListener('DOMContentLoaded', setupForms);

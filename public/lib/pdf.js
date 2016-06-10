@@ -1,9 +1,8 @@
-var PDFDocument = require("pdfkit");
-
 //Takes data object from user input
 //Creates absence note PDF using inputed data 
 var createAbsencePDF = function(data) {
-
+    
+    console.log('creating PDF')
     //Create new PDF document 
     var doc = new PDFDocument();
 
@@ -24,7 +23,7 @@ var createAbsencePDF = function(data) {
     }
 
     doc.font("Times-Bold")
-	.text("Name: ", {continued : true})
+	.text("Name: ", {continued : true});
     if(typeof data['name'] !== 'undefined'){
 	doc.font("Times-Roman")
 	    .text(data['name']); //data input
@@ -37,40 +36,40 @@ var createAbsencePDF = function(data) {
 
     doc.moveDown()
 	.font("Times-Bold")
-	.text("OSIS: ", {continued: true})
+	.text("OSIS: ", {continued: true});
     if(typeof data['OSIS'] !== 'undefined'){
-	    .font("Times-Roman")
-	    .text(data['OSIS']); //data input
+    doc.font("Times-Roman")
+        .text(data['OSIS']); //data input
     } else {
 	doc.text("_______________");
     }
 
     doc.moveDown()
 	.font("Times-Bold")
-	.text("Date of Absence/Lateness/Cut: ", {continued: true})
+	.text("Date of Absence/Lateness/Cut: ", {continued: true});
     if(typeof data['excused_date'] !== 'undefined'){
 	doc.font("Times-Roman")
-	    .text(data['excused_date']); //data input
+        .text(data['excused_date']); //data input
     } else {
 	doc.text("_______________");
     }
 
     doc.moveDown()
 	.font("Times-Bold")
-	.text("Explanation: ", {continued: true})
+	.text("Explanation: ", {continued: true});
     if(typeof data['explanation'] !== 'undefined'){
-	doc.font("Times-Roman")
-	    .text(data['explanation']); //data input
+    doc.font("Times-Roman")
+        .text(data['explanation']); //data input
     } else {
 	doc.text("________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
     }
 
     doc.moveDown()
 	.font("Times-Bold")
-	.text("Parent/Guardian's Name: ", {continued: true})
+	.text("Parent/Guardian's Name: ", {continued: true});
     if(typeof data['parent'] !== 'undefined'){
 	doc.font("Times-Roman")
-	    .text(data['parent'])
+        .text(data['parent']); //data input
     } else {
 	doc.text("_______________");
     }
@@ -86,53 +85,53 @@ var createAbsencePDF = function(data) {
     doc.font("Times-Bold")
 	.text("Pd. 1:   ", {continued: true});
     if(!data['1select']){
-	doc.text("N/A")
+	    doc.text("N/A");
     } else {
 	if(typeof data['1name'] !== 'undefined'){
-	    doc.text(data['1name'] + "  ", {continued: true})
+        doc.text(data['1name'] + "  ", {continued: true});
 	} else {
-	    doc.text("_______________  ");
+        doc.text("_______________  ");
 	}
 	if(typeof data['1code'] !== 'undefined'){
-	    doc.text(data['1code'], {continued: true})
+        doc.text(data['1code'], {continued: true});
 	} else {
-	    doc.text("_______________");
+        doc.text("_______________");
 	}
 	doc.font("Times-Bold")
-	    .text("Signature: _________________", {align: 'right'});
+        .text("Signature: _________________", {align: 'right'});
     }
 
     doc.font("Times-Bold")
 	.text("Pd. 2:   ", {continued: true});
     if(!data['2select']){
-	doc.text("N/A")
+        doc.text("N/A");
     } else {
-	if(typeof data['2name'] !== 'undefined'){
-	    doc.text(data['2name'] + "  ", {continued: true})
-	} else {
-	    doc.text("_______________  ");
-	}
-	if(typeof data['2code'] !== 'undefined'){
-	    doc.text(data['2code'], {continued: true})
-	} else {
-	    doc.text("_______________");
-	}
-	doc.font("Times-Bold")
-	    .text("Signature: _________________", {align: 'right'});
+        if(typeof data['2name'] !== 'undefined'){
+            doc.text(data['2name'] + "  ", {continued: true})
+        } else {
+            doc.text("_______________  ");
+        }
+        if(typeof data['2code'] !== 'undefined'){
+            doc.text(data['2code'], {continued: true})
+        } else {
+            doc.text("_______________");
+        }
+        doc.font("Times-Bold")
+            .text("Signature: _________________", {align: 'right'});
     }
 
     doc.font("Times-Bold")
 	.text("Pd. 3:   ", {continued: true});
     if(!data['3select']){
-	doc.text("N/A")
+        doc.text("N/A");
     } else {
 	if(typeof data['3name'] !== 'undefined'){
-	    doc.text(data['3name'] + "  ", {continued: true})
+        doc.text(data['3name'] + "  ", {continued: true});
 	} else {
-	    doc.text("_______________  ");
+        doc.text("_______________  ");
 	}
 	if(typeof data['3code'] !== 'undefined'){
-	    doc.text(data['3code'], {continued: true})
+	    doc.text(data['3code'], {continued: true});
 	} else {
 	    doc.text("_______________");
 	}
@@ -277,7 +276,7 @@ var createAbsencePDF = function(data) {
     doc.end();
     //When the stream is finished, save PDF
     stream.on("finish", function() {
-	d	saveData(doc, "output.pdf");
+	    saveData(doc, "output.pdf");
     });
 };
 
@@ -370,7 +369,7 @@ var createExcusePDF = function(data) {
 	doc.font("Times-Roman")
 	    .text(data['explanation']); //data input
     } else {
-	doc..text("________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")
+	doc.text("________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________")
     }
 
     doc.moveDown()
@@ -598,17 +597,19 @@ var createExcusePDF = function(data) {
 	doc.text("_______________");
     }
 
+    //Dict entry unclear
     doc.moveDown()
 	.font("Times-Bold")
 	.text("I hereby give consent for my son/daughter to leave school early today", {align: center})
     if(typeof data['consent'] !== 'undefined'){
-	    .font("Times-Roman")
-	    .text(data['consent']); //data input
+	    doc.font("Times-Roman")
+	        .text(data['consent']); //data input
     } else {
 	doc.text("Yes     No", {align: center})
 	    .text("Son     Daughter", {align: center})
     }
 
+    //Dict entry unclear
     doc.moveDown()
 	.font("Times-Bold")
 	.text("Reason: ", {continued: true})
@@ -619,13 +620,45 @@ var createExcusePDF = function(data) {
 	doc.text("________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
     }
 
-    //More to come
+    //Dict entry unclear
+    doc.moveDown()
+	.font("Times-Bold")
+	.text("Parent's Name: ", {continued: true})
+    if(typeof data['parent_name'] !== 'undefined'){
+	doc.font("Times-Roman")
+	    .text(data['parent_name']); //data input
+    } else {
+	doc.text("_______________  ");
+    }
     
+    doc.font("Times-Bold")
+	.text("Parent's Signature: _______________", {align: 'right'});
+    
+    doc.font("Times-Bold")
+    	.text("Date of Signature: _______________", {continued: true})
+    	.text("Contact Number: _______________", {align: 'right'});
+    
+    doc.fontSize(17)
+	.font("Times-Bold")
+	.text("For Attendence Office Staff Only", {align: 'center', underline: true});
+
+    doc.moveDown()
+	    .fontSize(14)
+	    .text("Call       Fax       Email", {align: 'center'})
+	    .moveDown()
+	    .text("From:  Mom       Dad       Guardian       Other:_______________", {align: 'center'})
+	    .moveDown()
+	    .text("Date: _______________  Time: _______________", {align: 'center'});
+
+    doc.moveDown()
+	.text("Student was seen by:", {align: 'center'})
+    
+
     //End the doc 
     doc.end();
     //When the stream is finished, save PDF
     stream.on("finish", function() {
-	saveData(doc, "output.pdf");
+	    saveData(doc, "output.pdf");
     });
 };
 
@@ -644,31 +677,3 @@ var saveData = (function () {
     };
 }());
 
-createAbsencePDF({
-    type: 'absence-correction',
-    name: 'Kevin Yan',
-    OSIS: '205440076', 
-    excused_date: '1-1-16',
-    explanation: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-    parent: 'Dong Yan',
-    1name: 'pd 1',
-    1code: 'course 1',
-    2name: 'pd 2',
-    2code: 'course 2',
-    3name: 'pd 3',
-    3code: 'course 3',
-    4name: 'pd 4',
-    4code: 'course 4',
-    5name: 'pd 5',
-    5code: 'course 5',
-    6name: 'pd 6',
-    6code: 'course 6',
-    7name: 'pd 7',
-    7code: 'course 7',
-    8name: 'pd 8',
-    8code: 'course 8',
-    9name: 'pd 9',
-    9code: 'course 9',
-    10name: 'pd 10',
-    10code: 'course 10'
-}
