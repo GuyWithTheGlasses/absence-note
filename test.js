@@ -74,27 +74,27 @@ new_note.schedule = {
 // });
 
 
-var dict = { 'hi': 'lol', 'asdasd': 'asdasd' };
-for (var key in dict) console.log(key);
-
-/* ---------- TEACHER METHODS -------------- */
-Teacher.find(function(err, teachers) {
-  console.log('teachers', teachers);
-  Teacher.findById(teachers[0]._id, function(err, teacher) {
-    console.log('teacher', teacher);
-    console.log('teacher name', teacher.google.name);
-    // teacher.courses.push('LOL');
-    // teacher.save(function(err){
-    //   console.log('err', err);
-    // });
-    console.log('teacher courses', teacher.courses);
-    console.log('teacher notes', teacher.notes);
-  });
-});
-
-nodemailerhelp.transporter.sendMail(nodemailerhelp.transport.emailOptions, function(err, info){
-    if(err){
-        return console.log(err);
-    }
-    console.log('Message sent: ' + info.response);
-});
+// var dict = { 'hi': 'lol', 'asdasd': 'asdasd' };
+// for (var key in dict) console.log(key);
+//
+// /* ---------- TEACHER METHODS -------------- */
+// Teacher.find(function(err, teachers) {
+//   console.log('teachers', teachers);
+//   Teacher.findById(teachers[0]._id, function(err, teacher) {
+//     console.log('teacher', teacher);
+//     console.log('teacher name', teacher.google.name);
+//     // teacher.courses.push('LOL');
+//     // teacher.save(function(err){
+//     //   console.log('err', err);
+//     // });
+//     console.log('teacher courses', teacher.courses);
+//     console.log('teacher notes', teacher.notes);
+//   });
+// });
+//
+// nodemailerhelp.transporter.sendMail(nodemailerhelp.transport.emailOptions, function(err, info){
+//     if(err){
+//         return console.log(err);
+//     }
+//     console.log('Message sent: ' + info.response);
+// });

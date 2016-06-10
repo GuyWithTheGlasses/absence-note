@@ -1,4 +1,5 @@
 var templates = require( '../../config/templates' );
+var Note = require('../../models/notes').Note;
 var Absence = require( '../../models/notes' ).Absence;
 var Excuse = require( '../../models/notes' ).EarlyExcuse;
 var config = require( '../../config/forms' );
@@ -34,7 +35,12 @@ module.exports = {
   'history': {
     get: function( req, res, next ) {
       res.render( templates.students.history, {
-        user: req.user
+        user: req.user,
+        history: Note.find({'OSIS': user.OSIS},function(err,notes){
+          if (err)
+            console.log(err);
+          return notes;
+        })
       } );
     }
   },
