@@ -1,5 +1,6 @@
 {{#yield-styles}}
-<link type="text/css" href="../style/css/masterearlyexcuse.css" rel="stylesheet">
+<link type="text/css" href="../style/css/history.css" rel="stylesheet">
+<link rel="stylesheet" href="../style/css/font-awesome.min.css">
 {{/yield-styles}}
 
 {{#yield-header}}
@@ -15,8 +16,8 @@
 <table class="absence-notes">
   <thead>
     <tr class="absence-header">
-      <th>Date</th>
       <th>Name</th>
+      <th>Date</th>
       <th>Osis</th>
       <th>Homeroom</th>
       <th>Periods</th>
@@ -24,29 +25,25 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>
-        <a href="/">6/6/2016</a>
+    <tr class="tablerow">
+      <td class="tablelink">
+        <a href="/">Kevin Yan</a>
       </td>
-      <td>
-        Kevin Yan
+      <td class="tablelink">
+        6/6/2016
       </td>
-      <td>
+      <td class="tablelink">
         205440076
       </td>
-      <td>
+      <td class="tablelink">
         7XX
       </td>
-      <td>
+      <td class="tablelink">
         5-10
       </td>
       <td class="options">
-        <a href="#" class="approve">
-          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-        </a>
-        <a href="#" class="deny">
-          <i class="fa fa-times-circle-o" aria-hidden="true"></i>
-        </a>
+        <i id="approve" class="fa fa-check-circle-o approve" aria-hidden="true"></i>
+        <i id="deny" class="fa fa-times-circle-o deny" aria-hidden="true"></i>
       </td>
     </tr>
   </tbody>
@@ -55,4 +52,6 @@
 {{/yield-content}}
 
 {{#yield-scripts}}
+<script src="../../js/history.js"></script>
+<script src="../../js/admin_approve.js"></script>
 {{/yield-scripts}}

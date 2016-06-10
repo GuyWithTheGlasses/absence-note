@@ -7,7 +7,10 @@ module.exports = {
     'earlyexcuses': 'masterearlyexcuse',
     'history': 'masterhistory',
     'students': 'masterstudents',
-    'absence': 'index'
+    'absence': 'adminabsence',
+    'earlyexcuse': 'adminearlyexcuse',
+    'historyabsence': 'historyabsence',
+    'historyearlyexcuse': 'histoaryearlyexcuse'
   },
   'students': {
     'index': 'student',
@@ -20,13 +23,17 @@ module.exports = {
     },
     'earlyexcuse': {
       'create': 'earlyexcuse',
-      'view': 'index',
+      'view': 'viewearlyexcuse',
       'list': 'history',
     },
   },
   'teachers': {
     'index': 'teacher',
     'pending_requests': 'teacherpending',
-    'absences': 'teacherabsences'
+    'absences': 'teacherabsences',
+    'absence': 'teacherabsence',
+    'earlyexcuse': 'teacherearlyexcuse',
+    'pending_absence': 'pendingteacherabsence',
+    'pending_earlyexcuse': 'pendingteacherearlyexcuse'
   }
 };
