@@ -12,16 +12,16 @@ module.exports = {
   },
   post: function( req, res ) { // Receives updated profile
     var studentForm = req.body;
-    var studentFormParams = require( '../../config/forms' ).student;
-    for ( var field in studentForm ) {
-      if ( !( studentForm.field in studentFormParams ) ) {
-        delete studentFormParams.field;
-      }
-    }
-    Student.find( req.user, function( err, student ) {
-      if ( err ) return res.json( messages.students.profile.edit_fail( err ) );
-      return res.json( messages.students.profile.edit_success( student ) );
-    } );
+    // var studentFormParams = require( '../../config/forms' ).student;
+    // for ( var field in studentForm ) {
+    //   if ( !( studentForm.field in studentFormParams ) ) {
+    //     delete studentFormParams.field;
+    //   }
+    // }
+    Student.findByIdAndUpdate( req.user._id, studentForm, function(err, doc){
+      if(err) return res.send(err);
+      else return res.json({success:true});
+    });
   },
   'ajax': {
     get: function( req, res ) {

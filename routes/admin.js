@@ -10,14 +10,14 @@ if ( process.env.env == 'development' ) {} else {
 
 router.get( '/', handler.index.get );
 
-router.post( '/absence/:id/approve', handler.absence.id.approve );
-router.post( '/absence/:id/deny', handler.absence.id.deny );
+router.post( '/note/:id/approve', handler.note.id.approve );
+router.post( '/note/:id/deny', handler.note.id.deny );
 
-router.get( '/absence/:id', handler.absence.id.get );
+router.get( '/note/:id', handler.note.id.get );
 
-router.get( '/absences', handler.absences.get );
-router.get( '/earlyexcuses', handler.earlyexcuses.get );
-router.get( '/students', handler.students.get );
-router.get( '/history', handler.history.get );
+router.get( '/absences', handler.absences );
+router.get( '/earlyexcuses', handler.earlyexcuses );
+router.get( '/students', handler.students );
+router.get( '/history', handler.history );
 
 module.exports = router;

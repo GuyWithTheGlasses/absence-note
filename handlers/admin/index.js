@@ -3,21 +3,21 @@ var Note = require('../../models/notes').Note;
 var Excuse = require('../../models/notes').EarlyExcuse;
 var Absence = require('../../models/notes').Absence;
 var Student = require('../../models/accounts').Student;
-var templates = require( '../../config/templates' );
+var templates = require('../../config/templates');
 module.exports = {
   'index': {
-    get: function( req, res ) {
-      Absence.find( function( err, docs ) {
-        if ( err ) return next( err );
-        else return res.render( templates.admin.index, {
+    get: function(req, res) {
+      Absence.find(function(err, docs) {
+        if (err) return next(err);
+        else return res.render(templates.admin.index, {
           absences: docs
-        } );
-      } );
+        });
+      });
     }
   },
   'check': {
-    loggedIn: function( req, res, next ) {
-      if ( !req.user || req.user.type !== 'Admin' ) return res.redirect( '/' );
+    loggedIn: function(req, res, next) {
+      if (!req.user || req.user.type !== 'Admin') return res.redirect('/');
       else return next();
     },
   },
@@ -39,7 +39,7 @@ module.exports = {
       return res.render(templates.admin.history, { user: req.user, notes: notes });
     });
   },
-  'earlyexcuse': function(req, res, next) {
+  'earlyexcuses': function(req, res, next) {
     Excuse.find(function(err, excuses) {
       if (err) return next(err);
       return res.render(templates.admin.earlyexcuse, { user: req.user, excuses: excuses });
