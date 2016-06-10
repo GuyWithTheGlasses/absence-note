@@ -123,3 +123,8 @@ textarea {
     height: 40px; }
   .absence-notes .options {
     width: 80px; }
+  .absence-notes a {
+    color: #000;
+    text-decoration: none; }
+  .absence-notes tr {
+    cursor: pointer; }
