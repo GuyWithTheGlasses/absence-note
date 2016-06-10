@@ -3,8 +3,10 @@ var router = express.Router();
 
 var handler = require( '../handlers/students' );
 
-if ( process.env.env == 'development' ) {} else {
-  router.use( handler.check.loggedIn );
+if ( process.env.env == 'development' )
+  {}
+  else {
+    router.use( handler.check.loggedIn );
 }
 
 

@@ -8,6 +8,8 @@ var accounts = require('./models/accounts');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/absence');
 
+var nodemailerhelp = require('./config/index');
+
 var new_note = new Absence();
 new_note.student = 'Leon Chou';
 new_note.OSIS = 203766068;
@@ -33,10 +35,10 @@ new_note.schedule = {
 // });
 
 /* ------------------ REMOVES --------------------- */
-Absence.remove({ excused_date: new_note.excused_date }, function(err, removed) {
-  console.log('err');
-  //console.log(removed);
-});
+// Absence.remove({ excused_date: new_note.excused_date }, function(err, removed) {
+//   console.log('err');
+//   //console.log(removed);
+// });
 
 
 /* ------------------ QUERIES -------------------- */
@@ -88,4 +90,11 @@ Teacher.find(function(err, teachers) {
     console.log('teacher courses', teacher.courses);
     console.log('teacher notes', teacher.notes);
   });
+});
+
+nodemailerhelp.transporter.sendMail(nodemailerhelp.transport.emailOptions, function(err, info){
+    if(err){
+        return console.log(err);
+    }
+    console.log('Message sent: ' + info.response);
 });
