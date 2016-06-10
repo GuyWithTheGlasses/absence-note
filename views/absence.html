@@ -1,5 +1,7 @@
 {{#yield-styles}}
 <link type="text/css" href="../../style/css/absence.css" rel="stylesheet">
+<link type="text/css" href="../../style/css/pikaday.css" rel="stylesheet">
+<link rel="stylesheet" href="../../style/css/font-awesome.min.css">
 {{/yield-styles}}
 
 {{#yield-header}}
@@ -30,7 +32,8 @@
 
   <div class="form-entry">
     <h3 class="label">Date of Absence, Lateness, or Cut</h3>
-    <input class="input" type="text" name="excused_date">
+    <input id="excused-date" class="input" type="text" name="excused_date">
+    <i id="calendar-button" class="fa fa-calendar" aria-hidden="true"></i>
   </div>
 
   <div class="form-entry">
@@ -181,7 +184,13 @@
 {{#yield-scripts}}
   <script src="../../lib/foreach.js"></script>
   <script src="../../lib/ajax.js"></script>
+<<<<<<< HEAD
+  <script src="../../js/pikaday.js"></script>
+  <!-- <script src="../../lib/pdf.js"></script> -->
+  <script src="../../js/absence.js"></script>
+=======
   <script src="../../lib/pdfkit.js"></script>
   <script src="../../lib/pdf.js"></script>
   <script src="../../student/absence.js"></script>
+>>>>>>> d21ee9245ea850a919f77e273cc765a4f7546672
 {{/yield-scripts}}
