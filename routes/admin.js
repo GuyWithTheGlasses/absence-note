@@ -15,11 +15,6 @@ router.post( '/absence/:id/deny', handler.absence.id.deny );
 
 router.get( '/absence/:id', handler.absence.id.get );
 
-router.post( '/earlyexcuse/:id/approve', handler.earlyexcuse.id.approve );
-router.post( '/earlyexcuse/:id/deny', handler.earlyexcuse.id.deny );
-
-router.get( '/earlyexcuse/:id', handler.earlyexcuse.id.get );
-
 router.get( '/absences', handler.absences.get );
 router.get( '/earlyexcuses', handler.earlyexcuses.get );
 router.get( '/students', handler.students.get );
