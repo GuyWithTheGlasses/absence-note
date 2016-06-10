@@ -9,6 +9,44 @@ Roy Xu
 Kevin Yan  
 
 # Deployment Guide
+
+## To setup nodejs  
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -  
+sudo apt-get install -y nodejs  
+
+## To setup PM2  
+sudo npm install pm2 -g  
+pm2 start --name "absence_note" ./startup.sh  
+
+Run the command you get from the output of this line to start the server on startup
+pm2 startup ubuntu  
+
+## Nginx setup  
+sudo apt-get install nginx  
+
+then create a file named /etc/nginx/sites-available/default
+paste the following:
+  
+server {  
+    listen 80;  
+
+    server_name <example.com>;  
+
+    location / {  
+        proxy_pass http://127.0.0.1:3000;  
+        proxy_http_version 1.1;  
+        proxy_set_header Upgrade $http_upgrade;  
+        proxy_set_header Connection 'upgrade';  
+        proxy_set_header Host $host;  
+        proxy_cache_bypass $http_upgrade;  
+    }  
+}  
+
+then run   
+sudo service nginx restart  
+
+
+## To setup server
 1. Run "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10"
 2. Run "echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list"
 3. Run "sudo apt-get update"
@@ -16,9 +54,9 @@ Kevin Yan
 5. Run "curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -"
 6. Run "sudo apt-get install -y nodejs"
 7. Run "sudo apt-get install git"
-8. Run "npm install"
-9. Run "npm install forever"
-10. Clone the repo and navigate into directory
+8. Run "npm install forever"
+9. Clone the repo and navigate into directory
+10. Run "npm install"
 11. Create a file called ownerstartup.sh
 12. Copy and paste the following into the file -things omitted for obvious reasons
 

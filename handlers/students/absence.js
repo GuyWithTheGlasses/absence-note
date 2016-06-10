@@ -55,7 +55,6 @@ module.exports = {
       res.render(templates.students.absence.create, { user: req.user });
     },
     post: function(req, res, next) {
-      console.log('hi');
       var student = req.user;
       // Checks all the parameters and deletes any that aren't supposed to be there
       var formparams = config.absencenote;
@@ -72,7 +71,6 @@ module.exports = {
       note.homeroom = student.homeroom;
       note.add(function(err) {
         if (err) {
-          console.log('wtf');
           return res.send(err);
         }
         return res.send(messages.student.absence.created(note));
