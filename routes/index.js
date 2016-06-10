@@ -11,6 +11,8 @@ if (process.env.env == 'development') {} else {
 
 router.get('/', handler.index.get);
 router.post('/', handler.index.post);
+router.get('/teachers', handler.teachers);
+
 
 //login and register taken care of with google accounts
 router.get('/login', handler.accounts.login.get);

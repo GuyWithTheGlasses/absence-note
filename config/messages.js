@@ -13,7 +13,7 @@ module.exports = {
     }
   },
   'admin': {
-    'absence': {
+    'note': {
       'notfound': 'The absence you were trying to access cannot be found',
       'approved': {
         success: true,
