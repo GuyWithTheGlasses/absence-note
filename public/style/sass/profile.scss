@@ -2,7 +2,9 @@
 $title: #000;
 $category-underline: #d3d3d3;
 $edit-bg: #d36165;
+$save-bg: #35a43e;
 $edit-text: #fff;
+$button-bg: #41be4b;
 
 .title {
   color: $title;
@@ -62,6 +64,18 @@ $edit-text: #fff;
     padding: 4px 3px 3px 4px;
     width: 19px;
   }
+
+  .fa-floppy-o {
+    background-color: $save-bg;
+    border-radius: 50px;
+    color: $edit-text;
+    cursor: pointer;
+    float: right;
+    height: 19px;
+    margin-bottom: 2px;
+    padding: 4px 3px 3px 4px;
+    width: 19px;
+  }
 }
 
 .courses {
@@ -95,4 +109,19 @@ $edit-text: #fff;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+}
+
+.save-text {
+  border-bottom: 0;
+  text-align: left;
+  width: 320px;
+}
+
+.submit {
+  background-color: $button-bg;
+  display: block;
+  font-size: 20px;
+  height: 50px;
+  margin: 40px auto 60px;
+  width: 200px;
 }

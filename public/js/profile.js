@@ -49,3 +49,22 @@ var tenName = document.getElementById( "10name" );
 new Awesomplete( tenName, {
   list: teachers
 } );
+
+var insert = '<input type="text" class="input save-text"><i class="fa fa-floppy-o" aria-hidden="true"></i>';
+var done = '<i class="fa fa-pencil" aria-hidden="true"></i>';
+var pencils = document.getElementsByClassName( "fa-pencil" );
+
+for ( var x = 0; x < pencils.length; x++ ) {
+  pencils[ x ].addEventListener( "click", function( e ) {
+    e.preventDefault();
+    var parent = this.parentNode;
+    parent.innerHTML = insert;
+    parent.childNodes[ 0 ].focus();
+    parent.childNodes[ 1 ].addEventListener( "click", function( e ) {
+      e.preventDefault();
+      //add ajax here
+      var parent = this.parentNode;
+      parent.innerHTML = done;
+    } );
+  } );
+}
