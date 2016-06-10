@@ -26,7 +26,7 @@ module.exports = {
   },
   'teachers': {
     'index': 'teacher',
-    'pending_requests': 'index',
+    'pending_requests': 'teacherpending',
     'absences': 'teacherabsences'
   }
 };

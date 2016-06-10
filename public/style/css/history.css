@@ -123,6 +123,15 @@ textarea {
     height: 40px; }
   .absence-notes .options {
     width: 80px; }
+  .absence-notes .approve {
+    color: #35993d;
+    font-size: 34px;
+    text-decoration: none; }
+  .absence-notes .deny {
+    color: #cc3136;
+    font-size: 34px;
+    margin-left: 10px;
+    text-decoration: none; }
   .absence-notes a {
     color: #000;
     text-decoration: none; }
