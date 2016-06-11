@@ -4,17 +4,6 @@ var Absence = require('../../models/notes').Absence;
 var Excuse = require('../../models/notes').EarlyExcuse;
 var config = require('../../config/forms');
 
-var intersect = require('intersect');
-
-var fs = require('fs');
-var Teachers = "";
-data = fs.readFileSync('emails_facstaff_20160520.csv', 'utf8');
-data = data.split('\n');
-for (var lineindex in data) {
-  var line = data[lineindex].trim().split(',');
-  Teachers += (line[2].trim() + ', ' + line[1].trim()) + ";";
-}
-
 module.exports = {
   'check': {
     'loggedIn': function(req, res, next) {
@@ -44,9 +33,9 @@ module.exports = {
       });
     }
   },
-  'email': {
+  'names': {
     get: function(req, res, next) {
-      res.send(Teachers);
+      return res.json(Object.keys(require('../../emails').Teachers));
     }
   }
 };

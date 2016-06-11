@@ -20,7 +20,7 @@ module.exports = {
     //     delete studentFormParams.field;
     //   }
     // }
-    console.log(req.user._id);
+    console.log(req.user.id);
     Student.findByIdAndUpdate( req.user._id, studentForm, function(err, doc){
       if(err) return res.send(err);
       else return res.json({success:true});
