@@ -12,12 +12,15 @@ module.exports = {
   },
   post: function( req, res ) { // Receives updated profile
     var studentForm = req.body;
+    console.log('hi');
+    console.log(studentForm);
     // var studentFormParams = require( '../../config/forms' ).student;
     // for ( var field in studentForm ) {
     //   if ( !( studentForm.field in studentFormParams ) ) {
     //     delete studentFormParams.field;
     //   }
     // }
+    console.log(req.user._id);
     Student.findByIdAndUpdate( req.user._id, studentForm, function(err, doc){
       if(err) return res.send(err);
       else return res.json({success:true});
