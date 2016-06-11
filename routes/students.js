@@ -26,4 +26,6 @@ router.post('/profile', handler.profile.post);
 router.get('/', handler.index.get);
 
 router.get('/names', handler.names.get);
+router.post('/me', handler.me.post);
+
 module.exports = router;

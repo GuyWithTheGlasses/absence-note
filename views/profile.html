@@ -1,6 +1,10 @@
 {{#yield-styles}}
 <link type="text/css" href="../style/css/profile.css" rel="stylesheet">
-<link rel="stylesheet" href="../style/css/font-awesome.min.css"> {{/yield-styles}} {{#yield-header}} {{/yield-header}} {{#yield-user}} {{/yield-user}} {{#yield-content}}
+<link rel="stylesheet" href="../style/css/font-awesome.min.css">
+ {{/yield-styles}}
+ {{#yield-header}} {{/yield-header}}
+ {{#yield-user}} {{/yield-user}}
+ {{#yield-content}}
 <h1 class="note title">Profile</h1>
 <h2 id="error" class="error"></h2>
 
@@ -68,10 +72,10 @@
                 Pd. 1
             </td>
             <td>
-                <div class="input teacher" id="1name"></div>
+                <div class="input teacher"></div>
             </td>
             <td>
-                <input id="1code" class="input" type="text" name="1code">
+                <input class="input code" type="text">
             </td>
         </tr>
         <tr>
@@ -79,10 +83,10 @@
                 Pd. 2
             </td>
             <td>
-                <div class="input teacher" id="2name"></div>
+                <div class="input teacher" ></div>
             </td>
             <td>
-                <input id="2code" class="input" type="text" name="2code">
+                <input class="input code" type="text">
             </td>
         </tr>
         <tr>
@@ -90,10 +94,10 @@
                 Pd. 3
             </td>
             <td>
-                <div class="input teacher" id="3name"></div>
+                <div class="input teacher"></div>
             </td>
             <td>
-                <input id="3code" class="input" type="text" name="3code">
+                <input class="input code" type="text" >
             </td>
         </tr>
         <tr>
@@ -101,10 +105,10 @@
                 Pd. 4
             </td>
             <td>
-                <div class="input teacher" id="4name"></div>
+                <div class="input teacher"></div>
             </td>
             <td>
-                <input id="4code" class="input" type="text" name="4code">
+                <input id="4code" class="input code" type="text" name="4code">
             </td>
         </tr>
         <tr>
@@ -115,7 +119,7 @@
                 <div class="input teacher" id="5name"></div>
             </td>
             <td>
-                <input id="5code" class="input" type="text" name="5code">
+                <input id="5code" class="input code" type="text" name="5code">
             </td>
         </tr>
         <tr>
@@ -126,7 +130,7 @@
                 <div class="input teacher" id="6name"></div>
             </td>
             <td>
-                <input id="6code" class="input" type="text" name="6code">
+                <input id="6code" class="input code" type="text" name="6code">
             </td>
         </tr>
         <tr>
@@ -137,7 +141,7 @@
                 <div class="input teacher" id="7name"></div>
             </td>
             <td>
-                <input id="7code" class="input" type="text" name="7code">
+                <input id="7code" class="input code" type="text" name="7code">
             </td>
         </tr>
         <tr>
@@ -148,7 +152,7 @@
                 <div class="input teacher" id="8name"></div>
             </td>
             <td>
-                <input id="8code" class="input" type="text" name="8code">
+                <input id="8code" class="input code" type="text" name="8code">
             </td>
         </tr>
         <tr>
@@ -159,7 +163,7 @@
                 <div class="input teacher" id="9name"></div>
             </td>
             <td>
-                <input id="9code" class="input" type="text" name="9code">
+                <input id="9code" class="input code" type="text" name="9code">
             </td>
         </tr>
         <tr>
@@ -170,7 +174,7 @@
                 <div class="input teacher" id="10name"></div>
             </td>
             <td>
-                <input id="10code" class="input" type="text" name="10code">
+                <input id="10code" class="input code" type="text" name="10code">
             </td>
         </tr>
     </tbody>
@@ -179,7 +183,8 @@
 <button id="submit" class="btn submit form-submit-ajax">Save</button>
 
 {{/yield-content}} {{#yield-scripts}}
-<script src="../lib/ajax.js"></script>
 <script src="../lib/complete.ly.1.0.1.min.js"></script>
+<script src="../lib/foreach.js"></script>
+<script src="../lib/ajax.js"></script>
 <script src="../js/profile.js"></script>
 {{/yield-scripts}}
