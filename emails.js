@@ -4,7 +4,10 @@ data = fs.readFileSync('emails_facstaff_20160520.csv', 'utf8');
 data = data.split('\n');
 for (var lineindex in data) {
   var line = data[lineindex].trim().split(',');
-  Teachers[line[1].trim() + ' ' + line[2].trim()] = line[0].trim();
+  var name;
+  if(line[2]) name = line[2].trim() + ', ' + line[1].trim().slice(0,1);
+  else name = line[line.length - 1].trim();
+  Teachers[name] = line[0].trim();
 }
 
 Teachers['Leon Chou'] = 'leonchou123@gmail.com';

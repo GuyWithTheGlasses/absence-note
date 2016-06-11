@@ -32,10 +32,10 @@ var studentSchema = mongoose.Schema({
   homeroom: String,
   phone: String,
   parent: new mongoose.Schema({
-    name: String,
-    relationship: String,
-    phone: String,
-    email: String
+    name: {type:String, default:" "},
+    relationship: {type:String, default:" "},
+    phone: {type:String, default:" "},
+    email: {type:String, default:" "},
   }),
   teachers:[new mongoose.Schema({
     name:String,
