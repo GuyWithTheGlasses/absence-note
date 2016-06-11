@@ -79,7 +79,7 @@ module.exports = {
           }
           transport.sendMail({
             to: emails.Teachers[teacher],
-            html: '<a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
+            html: 'Click on the link below to view the new absence! <a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
           }, function(err) {
             if (err) return res.send(err);
             return res.send(messages.student.absence.created(note));

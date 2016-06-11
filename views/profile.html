@@ -1,204 +1,191 @@
 {{#yield-styles}}
 <link type="text/css" href="../style/css/profile.css" rel="stylesheet">
 <link rel="stylesheet" href="../style/css/font-awesome.min.css">
-{{/yield-styles}}
-
-{{#yield-header}}
-{{/yield-header}}
-
-{{#yield-user}}
-{{/yield-user}}
-
-{{#yield-content}}
-
-
-{{{user}}}
+ {{/yield-styles}}
+ {{#yield-header}} {{/yield-header}}
+ {{#yield-user}} {{/yield-user}}
+ {{#yield-content}}
 <h1 class="note title">Profile</h1>
 <h2 id="error" class="error"></h2>
 
 <h1 class="category name">{{{user.google.name}}}</h1>
 
 <div class="info">
-  <div class="info-line">
-    <h2 class="category-title">Student Email</h2>
-    <h2 class="category-title">Student Homeroom</h2>
-    <h3 id="email" class="category constant">
-      {{#user.google.emails}}
-      {{{value}}}
-      {{/user.google.emails}}
-    </h3>
-    <h3 id="homeroom" class="category variable">
+    <div class="info-line">
+        <h2 class="category-title">Student Email</h2>
+        <h2 class="category-title">Student Homeroom</h2>
+        <h3 id="email" class="category constant">
+            {{#user.google.emails}}
+            {{{value}}}
+            {{/user.google.emails}}
+        </h3>
+        <h3 id="homeroom" class="category variable">
+            {{{user.homeroom}}}
+        </h3>
+    </div>
 
-    </h3>
-  </div>
+    <div class="info-line">
+        <h2 class="category-title">Student OSIS</h2>
+        <h2 class="category-title">Student Phone</h2>
+        <h3 id="OSIS" class="category variable">
+            {{{user.OSIS}}}
+        </h3>
+        <h3 id="phone" class="category variable">
+            {{{user.phone}}}
+        </h3>
+    </div>
 
-  <div class="info-line">
-    <h2 class="category-title">Student OSIS</h2>
-    <h2 class="category-title">Student Phone</h2>
-    <h3 id="OSIS" class="category variable">
-    </h3>
-    <h3 id="phone" class="category variable">
-      347-712-1231
-      <i class="fa fa-pencil" aria-hidden="true"></i>
-    </h3>
-  </div>
+    <div class="info-line">
+        <h2 class="category-title">Guardian Name</h2>
+        <h2 class="category-title">Guardian Relationship</h2>
+        <h3 id="parent-name" class="category variable">
+            {{{user.parent.name}}}
+        </h3>
+        <h3 id="parent-relationship" class="category variable">
+            {{{user.parent.relationship}}}
+        </h3>
+    </div>
 
-  <div class="info-line">
-    <h2 class="category-title">Guardian Name</h2>
-    <h2 class="category-title">Guardian Relationship</h2>
-    <h3 id="parent-name" class="category variable">
-      Chang Zhao Xu
-      <i class="fa fa-pencil" aria-hidden="true"></i>
-    </h3>
-    <h3 id="parent-status" class="category variable">
-      Father
-      <i class="fa fa-pencil" aria-hidden="true"></i>
-    </h3>
-  </div>
-
-  <div class="info-line">
-    <h2 class="category-title">Parent Email</h2>
-    <h2 class="category-title">Parent Phone</h2>
-    <h3 id="parent-email" class="category variable">
-      changxu123@gmail.com
-      <i class="fa fa-pencil" aria-hidden="true"></i>
-    </h3>
-    <h3 id="parent-phone" class="category variable">
-      347-932-8346
-      <i class="fa fa-pencil" aria-hidden="true"></i>
-    </h3>
-  </div>
+    <div class="info-line">
+        <h2 class="category-title">Parent Email</h2>
+        <h2 class="category-title">Parent Phone</h2>
+        <h3 id="parent-email" class="category variable">
+            {{{user.parent.email}}}
+        </h3>
+        <h3 id="parent-phone" class="category variable">
+            {{{user.parent.phone}}}
+        </h3>
+    </div>
 </div>
 
 <h2 class="course-title">Courses</h2>
 <table class="courses">
-  <thead>
-    <tr>
-      <td></td>
-      <td class="table-head">Teacher's Name</td>
-      <td class="table-head">Course Code</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="course-period">
-        Pd. 1
-      </td>
-      <td>
-        <div class="input teacher" id="1name"></div>
-      </td>
-      <td>
-        <input id="1code" class="input" type="text" name="1code">
-      </td>
-    </tr>
-    <tr>
-      <td class="course-period">
-        Pd. 2
-      </td>
-      <td>
-        <div class="input teacher" id="2name"></div>
-      </td>
-      <td>
-        <input id="2code" class="input" type="text" name="2code">
-      </td>
-    </tr>
-    <tr>
-      <td class="course-period">
-        Pd. 3
-      </td>
-      <td>
-        <div class="input teacher" id="3name"></div>
-      </td>
-      <td>
-        <input id="3code" class="input" type="text" name="3code">
-      </td>
-    </tr>
-    <tr>
-      <td class="course-period">
-        Pd. 4
-      </td>
-      <td>
-        <div class="input teacher" id="4name"></div>
-      </td>
-      <td>
-        <input id="4code" class="input" type="text" name="4code">
-      </td>
-    </tr>
-    <tr>
-      <td class="course-period">
-        Pd. 5
-      </td>
-      <td>
-        <div class="input teacher" id="5name"></div>
-      </td>
-      <td>
-        <input id="5code" class="input" type="text" name="5code">
-      </td>
-    </tr>
-    <tr>
-      <td class="course-period">
-        Pd. 6
-      </td>
-      <td>
-        <div class="input teacher" id="6name"></div>
-      </td>
-      <td>
-        <input id="6code" class="input" type="text" name="6code">
-      </td>
-    </tr>
-    <tr>
-      <td class="course-period">
-        Pd. 7
-      </td>
-      <td>
-        <div class="input teacher" id="7name"></div>
-      </td>
-      <td>
-        <input id="7code" class="input" type="text" name="7code">
-      </td>
-    </tr>
-    <tr>
-      <td class="course-period">
-        Pd. 8
-      </td>
-      <td>
-        <div class="input teacher" id="8name"></div>
-      </td>
-      <td>
-        <input id="8code" class="input" type="text" name="8code">
-      </td>
-    </tr>
-    <tr>
-      <td class="course-period">
-        Pd. 9
-      </td>
-      <td>
-        <div class="input teacher" id="9name"></div>
-      </td>
-      <td>
-        <input id="9code" class="input" type="text" name="9code">
-      </td>
-    </tr>
-    <tr>
-      <td class="course-period">
-        Pd. 10
-      </td>
-      <td>
-        <div class="input teacher" id="10name"></div>
-      </td>
-      <td>
-        <input id="10code" class="input" type="text" name="10code">
-      </td>
-    </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <td></td>
+            <td class="table-head">Teacher's Name</td>
+            <td class="table-head">Course Code</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="course-period">
+                Pd. 1
+            </td>
+            <td>
+                <div class="input teacher"></div>
+            </td>
+            <td>
+                <input class="input code" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td class="course-period">
+                Pd. 2
+            </td>
+            <td>
+                <div class="input teacher" ></div>
+            </td>
+            <td>
+                <input class="input code" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td class="course-period">
+                Pd. 3
+            </td>
+            <td>
+                <div class="input teacher"></div>
+            </td>
+            <td>
+                <input class="input code" type="text" >
+            </td>
+        </tr>
+        <tr>
+            <td class="course-period">
+                Pd. 4
+            </td>
+            <td>
+                <div class="input teacher"></div>
+            </td>
+            <td>
+                <input id="4code" class="input code" type="text" name="4code">
+            </td>
+        </tr>
+        <tr>
+            <td class="course-period">
+                Pd. 5
+            </td>
+            <td>
+                <div class="input teacher" id="5name"></div>
+            </td>
+            <td>
+                <input id="5code" class="input code" type="text" name="5code">
+            </td>
+        </tr>
+        <tr>
+            <td class="course-period">
+                Pd. 6
+            </td>
+            <td>
+                <div class="input teacher" id="6name"></div>
+            </td>
+            <td>
+                <input id="6code" class="input code" type="text" name="6code">
+            </td>
+        </tr>
+        <tr>
+            <td class="course-period">
+                Pd. 7
+            </td>
+            <td>
+                <div class="input teacher" id="7name"></div>
+            </td>
+            <td>
+                <input id="7code" class="input code" type="text" name="7code">
+            </td>
+        </tr>
+        <tr>
+            <td class="course-period">
+                Pd. 8
+            </td>
+            <td>
+                <div class="input teacher" id="8name"></div>
+            </td>
+            <td>
+                <input id="8code" class="input code" type="text" name="8code">
+            </td>
+        </tr>
+        <tr>
+            <td class="course-period">
+                Pd. 9
+            </td>
+            <td>
+                <div class="input teacher" id="9name"></div>
+            </td>
+            <td>
+                <input id="9code" class="input code" type="text" name="9code">
+            </td>
+        </tr>
+        <tr>
+            <td class="course-period">
+                Pd. 10
+            </td>
+            <td>
+                <div class="input teacher" id="10name"></div>
+            </td>
+            <td>
+                <input id="10code" class="input code" type="text" name="10code">
+            </td>
+        </tr>
+    </tbody>
 </table>
 
 <button id="submit" class="btn submit form-submit-ajax">Save Schedule</button>
 
-{{/yield-content}}
-
-{{#yield-scripts}}
-<script src="../lib/ajax.js"></script>
+{{/yield-content}} {{#yield-scripts}}
 <script src="../lib/complete.ly.1.0.1.min.js"></script>
+<script src="../lib/foreach.js"></script>
+<script src="../lib/ajax.js"></script>
 <script src="../js/profile.js"></script>
 {{/yield-scripts}}

@@ -3,28 +3,19 @@ ajax( {
   method: 'GET',
   success: function( res ) {
     res = JSON.parse( res );
-    for ( var x = 1; x < 11; x++ ) {
-      var name = completely( document.getElementById( x + 'name' ) );
+    forEachInClass( document, 'input teacher', function( input ) {
+      var name = completely( input );
       name.options = res.sort();
       name.startFrom = 0;
-    }
+    } );
   }
 } );
 
 var insert = '<input type="text" class="input save-text"><i class="fa fa-floppy-o" aria-hidden="true"></i>';
 var done = '<i class="fa fa-pencil" aria-hidden="true"></i>';
-var pencils = document.getElementsByClassName( "fa-pencil" );
-
-
-for ( var x = 0; x < pencils.length; x++ ) {
-  pencils[ x ].addEventListener( "click", createEditField );
-}
-
-var variable = document.getElementsByClassName( "variable" );
 
 var submitData = function( e ) {
   e.preventDefault();
-  console.log( 'pressed' );
   var parent = this.parentNode;
   var change = parent.getElementsByTagName( 'INPUT' )[ 0 ].value;
   if ( !change ) return;
@@ -54,45 +45,76 @@ var createEditField = function( e ) {
   parent.childNodes[ 1 ].addEventListener( "click", submitData );
 };
 
-for ( var x = 0; x < variable.length; x++ ) {
+var variable = document.getElementsByClassName( "variable" );
+for ( var x = variable.length - 1; x >= 0; x-- ) {
   if ( ( variable[ x ].innerHTML ).trim() === "" ) {
     variable[ x ].innerHTML = insert;
     variable[ x ].childNodes[ 0 ].focus();
     variable[ x ].childNodes[ 1 ].addEventListener( "click", submitData );
-    console.log( variable[ x ].childNodes[ 1 ] );
+  } else {
+    variable[ x ].innerHTML += done;
+    variable[ x ].children[ 0 ].addEventListener( 'click', createEditField );
   }
 }
 
-document.getElementById( "submit" ).addEventListener( "click", function( e ) {
-  e.preventDefault();
-  var data = {};
+var pencils = document.getElementsByClassName( "fa-pencil" );
+for ( var x = 0; x < pencils.length; x++ ) {
+  pencils[ x ].addEventListener( "click", createEditField );
+}
 
-  for ( var x = 1; x < 11; x++ ) {
-    data[ x ] = [ document.getElementById( x + "name" ).children[ 0 ].children[ 1 ].value, document.getElementById( x + "code" ).value ];
-  }
-  ajax( {
-    url: "/student/profile",
-    method: "POST",
-    data: data,
-    success: function( res ) {
-      res = JSON.parse( res );
-      if ( res.success ) {} else {
-        document.getElementById( "error" ).innerHTML = res.message;
-      }
-    }
+var setupTeachers = function( user ) {
+  forEachInClass( document, TEACHER_EDIT_TABLE, function( table ) {
+    var period = 0;
+    forEachInTags( table, 'TR', function( input ) {
+      var teacher = user.teachers[ period++ - 1 ];
+      if ( !teacher ) return;
+      forEachInClass( input, 'teacher', function( name ) {
+        forEachInTags( name, 'input', function( inputname ) {
+          inputname.value = teacher.name || "";
+        } );
+      } );
+      forEachInClass( input, 'code', function( code ) {
+        code.value = teacher.course_code || "";
+      } );
+    } );
   } );
-} );
-for ( var x = 1; x < 11; x++ ) {
-  data[ x ] = [ document.getElementById( x + "name" ).children[ 0 ].children[ 1 ].value, document.getElementById( x + "code" ).value ];
-}
+};
+
 ajax( {
-  url: "/student/profile",
-  method: "POST",
-  data: data,
+  url: '/student/me',
+  method: 'POST',
   success: function( res ) {
     res = JSON.parse( res );
-    if ( res.success ) {} else {
-      document.getElementById( "error" ).innerHTML = res.message;
-    }
+    setupTeachers( res );
   }
 } );
+
+var TEACHER_EDIT_TABLE = "courses";
+
+var submitTeachers = function( e ) {
+  forEachInClass( document, TEACHER_EDIT_TABLE, function( table ) {
+    var teachers = [];
+    var period = 0;
+    forEachInTags( table, 'TR', function( input ) {
+      var teacher = {};
+      forEachInClass( input, 'teacher', function( name ) {
+        forEachInTags( name, 'input', function( inputname ) {
+          teacher.name = inputname.value;
+        } );
+      } );
+      forEachInClass( input, 'code', function( code ) {
+        teacher.course_code = code.value;
+      } );
+      teacher.period = period++;
+      if ( period !== 1 ) teachers.push( teacher );
+    } );
+    var data = {
+      teachers: teachers
+    };
+    ajax( {
+      url: '/student/profile',
+      data: data
+    } );
+  } );
+};
+document.getElementsByClassName( 'form-submit-ajax' )[ 0 ].addEventListener( 'click', submitTeachers );

@@ -15,7 +15,7 @@ var accountSchema = mongoose.Schema({
     token: String,
     name: String,
     emails: [new mongoose.Schema({
-      value: { type: String},
+      value: { type: String },
       type: String,
     })]
   },
@@ -30,15 +30,17 @@ var studentSchema = mongoose.Schema({
   // makes sure the OSIS is 9 digits long
   OSIS: { type: Number, min: [99999999, OSIS_ERROR_MESSAGE], max: [1000000000, OSIS_ERROR_MESSAGE] },
   homeroom: String,
-  parents: [new mongoose.Schema({
+  phone: String,
+  parent: new mongoose.Schema({
     name: String,
     relationship: String,
-    phone: String
-  })],
-  teachers:[new mongoose.Schema({
-    name:String,
+    phone: String,
+    email: String,
+  }),
+  teachers: [new mongoose.Schema({
+    name: String,
     period: Number,
-    course_code:String
+    course_code: String
   })],
   // list of notes
   notes: [mongoose.Schema.Types.ObjectId],
@@ -62,11 +64,11 @@ var teacherSchema = mongoose.Schema({
 teacherSchema.methods.approve = function(note_ID, callback) {
   Note.findByIdAndUpdate(note_ID, function(err, note) {
     if (err)
-        return callback(err);
+      return callback(err);
     for (var courseIndex in note.schedule) {
-        var course = note.schedule[courseIndex];
-        if (course.Teacher == this.objectId)
-            course.approved = true;
+      var course = note.schedule[courseIndex];
+      if (course.Teacher == this.objectId)
+        course.approved = true;
     }
   });
   var noteIndex = this.notes.pending.indexOf(note_ID);

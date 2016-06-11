@@ -37,6 +37,11 @@ module.exports = {
     get: function(req, res, next) {
       return res.json(Object.keys(require('../../emails').Teachers));
     }
+  },
+  'me':{
+    post:function(req, res){
+      return res.json(req.user);
+    }
   }
 };
 
