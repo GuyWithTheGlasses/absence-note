@@ -30,11 +30,13 @@ var studentSchema = mongoose.Schema({
   // makes sure the OSIS is 9 digits long
   OSIS: { type: Number, min: [99999999, OSIS_ERROR_MESSAGE], max: [1000000000, OSIS_ERROR_MESSAGE] },
   homeroom: String,
-  parents: [new mongoose.Schema({
+  phone: String,
+  parent: new mongoose.Schema({
     name: String,
     relationship: String,
-    phone: String
-  })],
+    phone: String,
+    email: String
+  }),
   teachers:[new mongoose.Schema({
     name:String,
     period: Number,

@@ -13,14 +13,6 @@ ajax({
 
 var insert = '<input type="text" class="input save-text"><i class="fa fa-floppy-o" aria-hidden="true"></i>';
 var done = '<i class="fa fa-pencil" aria-hidden="true"></i>';
-var pencils = document.getElementsByClassName("fa-pencil");
-
-
-for (var x = 0; x < pencils.length; x++) {
-  pencils[x].addEventListener("click", createEditField);
-}
-
-var variable = document.getElementsByClassName("variable");
 
 var submitData = function(e) {
   e.preventDefault();
@@ -54,13 +46,21 @@ var createEditField = function(e) {
   parent.childNodes[1].addEventListener("click", submitData);
 };
 
-for (var x = 0; x < variable.length; x++) {
+var variable = document.getElementsByClassName("variable");
+for (var x = variable.length - 1; x >= 0; x--) {
   if ((variable[x].innerHTML).trim() === "") {
     variable[x].innerHTML = insert;
     variable[x].childNodes[0].focus();
     variable[x].childNodes[1].addEventListener("click", submitData);
-    console.log(variable[x].childNodes[1]);
+  }else{
+    variable[x].innerHTML += done;
+    variable[x].children[0].addEventListener('click', createEditField);
   }
+}
+
+var pencils = document.getElementsByClassName("fa-pencil");
+for (var x = 0; x < pencils.length; x++) {
+  pencils[x].addEventListener("click", createEditField);
 }
 
 document.getElementById("submit").addEventListener("click", function(e) {
