@@ -28,9 +28,6 @@ module.exports = {
       } else return next();
     }
   },
-  'teachers':function(req, res){
-    return res.json(Object.keys(require('../emails').Teachers));
-  }
 };
 
 module.exports.accounts = require('./accounts');

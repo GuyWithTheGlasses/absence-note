@@ -25,5 +25,5 @@ router.post('/profile', handler.profile.post);
 
 router.get('/', handler.index.get);
 
-router.get('/email', handler.email.get);
+router.get('/names', handler.names.get);
 module.exports = router;
