@@ -161,3 +161,13 @@ label {
   font-size: 18px;
   text-align: center;
 }
+
+.teacher-name {
+  border-bottom: 1px solid $underline;
+  min-width: 300px;
+}
+
+.teacher-code {
+  border-bottom: 1px solid $underline;
+  min-width: 200px;
+}

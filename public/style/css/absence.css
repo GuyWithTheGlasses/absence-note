@@ -220,3 +220,11 @@ label {
   color: #f00;
   font-size: 18px;
   text-align: center; }
+
+.teacher-name {
+  border-bottom: 1px solid #d2d2d2;
+  min-width: 300px; }
+
+.teacher-code {
+  border-bottom: 1px solid #d2d2d2;
+  min-width: 200px; }
