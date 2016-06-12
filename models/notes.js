@@ -133,7 +133,6 @@ var absenceSchema = mongoose.Schema({
   excused: {
     type: String,
     enum: ABSENCE_EXCUSED_ENUM,
-    lowercase: true
   }
 });
 
