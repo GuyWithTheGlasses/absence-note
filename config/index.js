@@ -41,10 +41,10 @@ module.exports = function(app, dirname) {
     sendMail: function(options, callback) {
       emailoptions = this.emailOptions(options);
       console.log(emailoptions);
-      transporter.sendMail(emailoptions, callback);
+      // transporter.sendMail(emailoptions, callback);
     }
   };
-  
+
   return {
     passport: passport,
     transport: transport

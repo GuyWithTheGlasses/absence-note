@@ -55,20 +55,20 @@
     </thead>
     <tbody>
       {{#user.teachers}}
-      <tr>
+      <tr class="table-period">
         <td>
           <input class="checkbox" type="checkbox" name="select" {{#approved}}checked{{/approved}}>
           <label class="checkbox-label" for="select">Pd. {{{period}}}</label>
         </td>
         <td class="teacher-name">
-          <p>
+          <div>
             {{{name}}}
-          </p>
+          </div>
         </td>
         <td class="teacher-code">
-          <p>
+          <div>
             {{{code}}}
-          </p>
+          </div>
         </td>
       </tr>
       {{/user.teachers}}

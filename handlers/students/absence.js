@@ -72,22 +72,22 @@ module.exports = {
       note.OSIS = student.OSIS;
       note.homeroom = student.homeroom;
       for (var teacherkey in student.teachers) {
-        teacher = student.teachers.teacherkey;
-        console.log(teacher.name);
+        teacher = student.teachers[teacherkey];
+        console.log("Name", teacher.name, " Period", teacher.period);
         note.add(function(err) {
           if (err) {
             return res.send(err);
           }
-          // transport.sendMail({
-          //   to: emails.Teachers[teacher],
-          //   subject:'Absence ' + req.user.google.name + 'Period ' + teacher.period,
-          //   html: req.user.google.name + ' in your period ' + teacher.period + 'class has requested your approval for an absence on ' + absence.excused_date + '<br><a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
-          // }, function(err) {
-          //   if (err) return res.send(err);
-          // });
-            return res.send(messages.student.absence.created(note));
+          transport.sendMail({
+            to: emails.Teachers[teacher],
+            subject: 'Absence ' + req.user.google.name + 'Period ' + teacher.period,
+            html: req.user.google.name + ' in your period ' + teacher.period + ' class has requested your approval for an absence on ' + absence.excused_date + '<br><a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
+          }, function(err) {
+            if (err) return res.send(err);
+          });
         });
       }
-    }
-  },
+      return res.send(messages.student.absence.created(note));
+    },
+  }
 };
