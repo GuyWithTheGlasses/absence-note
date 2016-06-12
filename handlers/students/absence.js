@@ -73,6 +73,7 @@ module.exports = {
       note.homeroom = student.homeroom;
       for (var teacherkey in student.teachers) {
         teacher = student.teachers.teacherkey;
+        console.log(teacher.name);
         note.add(function(err) {
           if (err) {
             return res.send(err);
