@@ -20,9 +20,7 @@ ajax( {
       } );
       input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ].addEventListener( "keydown", function( e ) {
         if ( event.keyCode == 9 ) {
-          console.log( input.parentNode.parentNode.nextElementSibling.children[ 1 ].children[ 0 ].children );
-
-          // input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ].focus();
+          input.parentNode.parentNode.nextElementSibling.children[ 1 ].children[ 0 ].children[ 0 ].children[ 1 ].focus();
         }
         if ( event.keyCode == 13 ) {
           document.getElementById( "submit" ).click();
