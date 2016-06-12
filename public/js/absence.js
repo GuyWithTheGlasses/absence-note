@@ -79,23 +79,22 @@ var setupForms = function(event) {
         return;
       }
       //Otherwise, ok to send input data to the server
-      // submit(form, {
-      //   url: '/student/absence/create',
-      //   method: 'POST',
-      //   data: formdata,
-      //   success: function(res) {
-      //     res = JSON.parse(res);
-      //     console.log(res);
-      //     if (res.success) {
-      //       // return window.location = '/student/history';
-      //     } else {
-      //       forEachInClass(form, ABSENCE_FORM_CLASS, function(element) {
-      //         element.innerHTML = res;
-      //       });
-      //     }
-      //   },
-      //   complete: function() {}
-      // }, ERROR_MESSAGE);
+      submit(form, {
+        url: '/student/absence/create',
+        method: 'POST',
+        data: formdata,
+        success: function(res) {
+          res = JSON.parse(res);
+          if (res.success) {
+            return window.location = '/student/history';
+          } else {
+            forEachInClass(form, ABSENCE_FORM_CLASS, function(element) {
+              element.innerHTML = res;
+            });
+          }
+        },
+        complete: function() {}
+      }, ERROR_MESSAGE);
     };
     forEachInClass(form, SUBMIT_BUTTON, function(submit) {
       submit.addEventListener('click', submitForm);
@@ -158,10 +157,12 @@ var getData = function(form) {
     }
   });
 
-  forEachInClass(form, 'excusemestopreading btn', function(button){
-    console.log(button);
+  forEachInClass(form, 'excusemestopreading btn final', function(button){
+    if(button.checked){
+      data.kind = button.getAttribute('id');
+    }
   });
-  // return data;
+  return data;
 };
 
 document.addEventListener('DOMContentLoaded', setupForms);

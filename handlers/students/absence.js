@@ -63,7 +63,7 @@ module.exports = {
       var absence = req.body;
       var periods = absence.periods;
       data.schedule = [];
-      for (var index = 0; index < student.schedule.length; index++) {
+      for (var index in student.teachers) {
         var period = student.teachers[index];
         if (periods[index]) data.schedule.push({
           'Period': period.period,

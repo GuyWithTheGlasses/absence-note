@@ -63,7 +63,6 @@ var noteSchema = mongoose.Schema({
  */
 noteSchema.methods.add = function(callback) {
   note = this;
-  console.log(note);
   accounts.Student.findOneAndUpdate({
     OSIS: this.OSIS
   }, { "$push": { "notes": note._id } }, function(err, student){
