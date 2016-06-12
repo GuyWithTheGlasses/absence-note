@@ -19,10 +19,10 @@ new_note.corrections = null;
 new_note.submission_date = "05/21";
 new_note.excused_date = "05/14";
 new_note.excuse = "Went to dentist";
-new_note.kind = "absence";
+new_note.kind = "Absence";
 new_note.schedule = {
   'Period': 1,
-  //'Teacher': mongoose.Types.ObjectId("104139858999820438162"),
+  'Teacher': 'Johnny So',
   'Course Code': 'LOL',
   'approved': false
 };
@@ -78,19 +78,19 @@ new_note.schedule = {
 // for (var key in dict) console.log(key);
 //
 // /* ---------- TEACHER METHODS -------------- */
-// Teacher.find(function(err, teachers) {
-//   console.log('teachers', teachers);
-//   Teacher.findById(teachers[0]._id, function(err, teacher) {
-//     console.log('teacher', teacher);
-//     console.log('teacher name', teacher.google.name);
-//     // teacher.courses.push('LOL');
-//     // teacher.save(function(err){
-//     //   console.log('err', err);
-//     // });
-//     console.log('teacher courses', teacher.courses);
-//     console.log('teacher notes', teacher.notes);
-//   });
-// });
+Teacher.find(function(err, teachers) {
+  console.log('teachers', teachers);
+  Teacher.findById(teachers[0]._id, function(err, teacher) {
+    console.log('teacher', teacher);
+    console.log('teacher name', teacher.google.name);
+    // teacher.courses.push('LOL');
+    // teacher.save(function(err){
+    //   console.log('err', err);
+    // });
+    console.log('teacher courses', teacher.courses);
+    console.log('teacher notes', teacher.notes);
+  });
+});
 //
 // nodemailerhelp.transporter.sendMail(nodemailerhelp.transport.emailOptions, function(err, info){
 //     if(err){

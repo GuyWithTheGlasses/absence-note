@@ -68,7 +68,8 @@ noteSchema.methods.add = function(callback) {
   });
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
-    accounts.Teacher.findByIdAndUpdate(course.Teacher, { "notes.pending": { $push: note._id } });
+    accounts.Teacher.findOneAndUpdate({"google.name": course.Teacher}, {$push: { "notes.pending": note._id}} );
+    //accounts.Teacher.findByIdAndUpdate(course.Teacher, { "notes.pending": { $push: note._id } });
   }
   console.log(note);
   note.save(function(err) {
