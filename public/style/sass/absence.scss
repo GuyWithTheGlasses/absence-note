@@ -45,6 +45,7 @@ label {
 }
 
 .courses {
+  border-spacing: 20px 5px;
   margin: 10px auto 0;
 }
 
@@ -164,10 +165,15 @@ label {
 
 .teacher-name {
   border-bottom: 1px solid $underline;
+  border-spacing: 20px;
+  font-size: 18px;
   min-width: 300px;
+  text-align: center;
 }
 
 .teacher-code {
   border-bottom: 1px solid $underline;
+  font-size: 18px;
   min-width: 200px;
+  text-align: center;
 }

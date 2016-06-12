@@ -125,6 +125,7 @@ label {
   text-align: center; }
 
 .courses {
+  border-spacing: 20px 5px;
   margin: 10px auto 0; }
 
 .table-container {
@@ -223,8 +224,13 @@ label {
 
 .teacher-name {
   border-bottom: 1px solid #d2d2d2;
-  min-width: 300px; }
+  border-spacing: 20px;
+  font-size: 18px;
+  min-width: 300px;
+  text-align: center; }
 
 .teacher-code {
   border-bottom: 1px solid #d2d2d2;
-  min-width: 200px; }
+  font-size: 18px;
+  min-width: 200px;
+  text-align: center; }
