@@ -3,7 +3,8 @@ ajax( {
   method: 'GET',
   success: function( res ) {
     res = JSON.parse( res );
-    res.push(['LUNCH', 'PHYSICAL EDUCATION FREE', 'PHYSICS FREE', 'BIOLOGY FREE', 'FREE']);
+
+    Array.prototype.push.apply(res, ['LUNCH', 'PHYSICAL EDUCATION FREE', 'PHYSICS FREE', 'BIOLOGY FREE', 'FREE']);
     forEachInClass( document, 'input teacher', function( input ) {
       var name = completely( input );
       name.options = res.sort();
@@ -11,7 +12,6 @@ ajax( {
       input.childNodes[ 0 ].childNodes[ 2 ].addEventListener( "keyup", function( e ) {
         e.preventDefault();
         if ( event.keyCode == 9 ) {
-          console.log( input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ] );
           input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ].focus();
         }
       } );
