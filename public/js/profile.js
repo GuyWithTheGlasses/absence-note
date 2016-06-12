@@ -7,6 +7,13 @@ ajax( {
       var name = completely( input );
       name.options = res.sort();
       name.startFrom = 0;
+      input.childNodes[ 0 ].childNodes[ 2 ].addEventListener( "keyup", function( e ) {
+        e.preventDefault();
+        if ( event.keyCode == 9 ) {
+          console.log( input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ] );
+          input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ].focus();
+        }
+      } );
     } );
   }
 } );
@@ -43,6 +50,12 @@ var createEditField = function( e ) {
   parent.innerHTML = insert;
   parent.childNodes[ 0 ].focus();
   parent.childNodes[ 1 ].addEventListener( "click", submitData );
+  parent.childNodes[ 0 ].addEventListener( "keyup", function( event ) {
+    event.preventDefault();
+    if ( event.keyCode == 13 ) {
+      parent.childNodes[ 1 ].click();
+    }
+  } );
 };
 
 var variable = document.getElementsByClassName( "variable" );
