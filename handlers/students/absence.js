@@ -79,7 +79,8 @@ module.exports = {
           }
           transport.sendMail({
             to: emails.Teachers[teacher],
-            html: 'Click on the link below to view the new absence! <a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
+            subject:'Absence ' + req.user.google.name + 'Period ' + teacher.period,
+            html: req.user.google.name + ' in your period ' + teacher.period + 'class has requested your approval for an absence on ' + absence.excused_date + '<br><a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
           }, function(err) {
             if (err) return res.send(err);
             return res.send(messages.student.absence.created(note));

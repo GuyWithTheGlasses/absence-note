@@ -17,6 +17,7 @@
     "gulp-nodemon": "^2.0.7",
     "hogan-express": "^0.5.2",
     "intersect": "^1.0.1",
+    "jspdf": "^1.2.61",
     "mongoose": "^4.4.12",
     "morgan": "~1.6.1",
     "nodemailer": "^2.4.1",
