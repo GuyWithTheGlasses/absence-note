@@ -2,38 +2,44 @@ module.exports = {
   'index': 'index',
   'logout': 'index',
   'admin': {
-    'index': 'admin',
-    'absences': 'masterabsence',
-    'earlyexcuses': 'masterearlyexcuse',
-    'history': 'masterhistory',
-    'students': 'masterstudents',
-    'absence': 'adminabsence',
-    'earlyexcuse': 'adminearlyexcuse',
-    'historyabsence': 'historyabsence',
-    'historyearlyexcuse': 'histoaryearlyexcuse'
-  },
-  'students': {
-    'index': 'student',
-    'history': 'history',
-    'profile': 'profile',
+    'index': 'admin/index',
+    'absences': 'admin/absences',
+    'earlyexcuses': 'admin/earlyexcuses',
+    'history': 'admin/history',
+    'students': 'admin/students',
     'absence': {
-      'create': 'absence',
-      'view': 'viewabsence',
-      'list': 'history'
+      'pending': 'admin/pending/absence',
+      'history': 'admin/view/absence'
     },
     'earlyexcuse': {
-      'create': 'earlyexcuse',
-      'view': 'viewearlyexcuse',
-      'list': 'history',
+      'pending': 'admin/pending/earlyexcuse',
+      'history': 'admin/view/earlyexcuse'
+    }
+  },
+  'students': {
+    'index': 'student/index',
+    'history': 'student/history',
+    'profile': 'student/profile',
+    'absence': {
+      'create': 'student/create/absence',
+      'view': 'student/view/absence'
+    },
+    'earlyexcuse': {
+      'create': 'student/create/earlyexcuse',
+      'view': 'student/view/earlyexcuse'
     },
   },
   'teachers': {
-    'index': 'teacher',
-    'pending_requests': 'teacherpending',
-    'absences': 'teacherabsences',
-    'absence': 'teacherabsence',
-    'earlyexcuse': 'teacherearlyexcuse',
-    'pending_absence': 'pendingteacherabsence',
-    'pending_earlyexcuse': 'pendingteacherearlyexcuse'
+    'index': 'teacher/index',
+    'pending_requests': 'teacher/pending',
+    'history': 'teacher/history',
+    'absence': {
+      'view': 'teacher/view/absence',
+      'pending': 'teacher/pending/absence'
+    },
+    'earlyexcuse': {
+      'view': 'teacher/view/earlyexcuse',
+      'pending': 'teacher/pending/earlyexcuse'
+    }
   }
 };
