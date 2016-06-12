@@ -40,12 +40,14 @@ label {
 }
 
 .table-head {
+  font-size: 20px;
   font-weight: bold;
+  height: 40px;
   text-align: center;
 }
 
 .courses {
-  border-spacing: 20px 5px;
+  border-spacing: 0 1px;
   margin: 10px auto 0;
 }
 
@@ -164,16 +166,33 @@ label {
 }
 
 .teacher-name {
-  border-bottom: 1px solid $underline;
-  border-spacing: 20px;
   font-size: 18px;
-  min-width: 300px;
   text-align: center;
+  width: 300px;
+
+  div {
+    border-bottom: 1px solid $underline;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 auto;
+    width: 280px;
+  }
 }
 
 .teacher-code {
-  border-bottom: 1px solid $underline;
   font-size: 18px;
-  min-width: 200px;
   text-align: center;
+  width: 200px;
+
+  div {
+    border-bottom: 1px solid $underline;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 auto;
+    width: 180px;
+  }
+}
+
+.unchecked {
+  background-color: $underline;
 }

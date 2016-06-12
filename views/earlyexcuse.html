@@ -38,6 +38,37 @@
     <textarea class="explanation" name="excuse"></textarea>
   </div>
 
+  <h3 class="label">Classes</h3>
+  <table class="courses">
+    <thead>
+      <tr>
+        <td></td>
+        <td class="table-head">Teacher's Name</td>
+        <td class="table-head">Course Code</td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#user.teachers}}
+      <tr>
+        <td>
+          <input id="{{{period}}}select" class="checkbox" type="checkbox" name="1select" checked>
+          <label class="checkbox-label" for="{{{period}}}select">Pd. {{{period}}}</label>
+        </td>
+        <td class="teacher-name">
+          <div>
+            {{{name}}}
+          </div>
+        </td>
+        <td class="teacher-code">
+          <div>
+            {{{code}}}
+          </div>
+        </td>
+      </tr>
+      {{/user.teachers}}
+    </tbody>
+  </table>
+
   <div class="type-box">
     <button id="submit" class="btn submit form-submit-ajax">Submit</button>
   </div>
