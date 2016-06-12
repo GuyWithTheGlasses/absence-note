@@ -38,7 +38,7 @@ module.exports = {
           user: req.user,
           pending_reqs: pending_notes
         });
-      })
+      });
     }
   },
   'note': require('./note')

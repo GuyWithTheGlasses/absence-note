@@ -2,6 +2,7 @@ var templates = require('../../config/templates');
 var Note = require('../../models/notes').Note;
 var Absence = require('../../models/notes').Absence;
 var Excuse = require('../../models/notes').EarlyExcuse;
+var ObjectId = require('mongoose').Schema.Types.ObjectId;
 var config = require('../../config/forms');
 
 module.exports = {
@@ -24,8 +25,9 @@ module.exports = {
   'history': {
     get: function(req, res, next) {
       Note.find({
-        _id: { $in: req.user.notes }
+        _id: { $in : req.user.notes }
       }, function(err, notes) {
+        if(err) return next(err);
         res.render(templates.students.history, {
           user: req.user,
           notes: notes

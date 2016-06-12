@@ -29,7 +29,7 @@ var noteSchema = mongoose.Schema({
   },
   homeroom: String,
   excused_date: Date,
-  submission_date: Date,
+  submission_date: {type: Date, default: Date.now },
   excuse: String,
   parent: new mongoose.Schema({
     'Signature': new mongoose.Schema({
@@ -44,7 +44,7 @@ var noteSchema = mongoose.Schema({
   }),
   schedule: [new mongoose.Schema({
     'Period': Number,
-    'Teacher': mongoose.Schema.Types.ObjectId,
+    'Teacher': String,
     'Course Code': String,
     'approved': {
       type: Boolean,
@@ -63,9 +63,11 @@ var noteSchema = mongoose.Schema({
  */
 noteSchema.methods.add = function(callback) {
   note = this;
+  console.log(note);
   accounts.Student.findOneAndUpdate({
     OSIS: this.OSIS
-  }, { "notes": { $push: note._id } });
+  }, { "$push": { "notes": note._id } }, function(err, student){
+  });
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
     accounts.Teacher.findByIdAndUpdate(course.Teacher, { "notes.pending": { $push: note._id } });
