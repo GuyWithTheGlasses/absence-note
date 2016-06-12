@@ -71,32 +71,36 @@ module.exports = {
           'Course Code': period.course_code
         });
       }
+      console.log(data.schedule);
       absence.parent = {
         'name':student.parent.name,
         'number':student.parent.phone
       };
       for (var param in absence) data[param] = absence[param];
       // Adds known information to the note
-      var note = new Absence(absence);
+      var note = new Absence(data);
       note.student = student.google.name;
       note.OSIS = student.OSIS;
       note.homeroom = student.homeroom;
+      note.kind = 'Absence';
       note.add(function(err) {
         if (err) {
           return res.send(err);
         }
         for (var teacherkey in student.teachers) {
           teacher = student.teachers[teacherkey];
-          transport.sendMail({
-            to: emails.Teachers[teacher],
-            subject: 'Absence ' + req.user.google.name + 'Period ' + teacher.period,
-            html: req.user.google.name + ' in your period ' + teacher.period + ' class has requested your approval for an absence on ' + absence.excused_date + '<br><a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
-          }, function(err) {
-            if (err) return res.send(err);
-          });
+          // transport.sendMail({
+          //   to: emails.Teachers[teacher],
+          //   subject: 'Absence ' + req.user.google.name + 'Period ' + teacher.period,
+          //   html: req.user.google.name + ' in your period ' + teacher.period + ' class has requested your approval for an absence on ' + absence.excused_date + '<br><a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
+          // }, function(err) {
+          //   if (err) {
+          //     return res.send(err);
+          //   }
+          // });
         }
+        return res.send(messages.student.absence.created(note));
       });
-      return res.send(messages.student.absence.created(note));
     },
   }
 };

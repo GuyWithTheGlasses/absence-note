@@ -12,7 +12,6 @@
 
 
 <h1 class="note title">History</h1>
-{{{notes}}}
 
 <table class="absence-notes">
   <thead>
@@ -24,20 +23,22 @@
     </tr>
   </thead>
   <tbody>
+    {{#notes}}
+    {{{schedule}}}
     <tr class="tablerow">
       <td class="tablelink">
-        <a href="/">5/27/2016</a>
+        <a href="/student/{{{kind}}}/{{{_id}}}">{{{formatted_date}}}</a>
       </td>
       <td class="tablelink">
-        Absence Note
+        {{{kind}}} Note
       </td>
       <td class="tablelink">
-        1-10
+        {{#schedule}}{{{Period}}}&nbsp  {{/schedule}}
       </td>
       <td class="tablelink">
-        Pending
       </td>
     </tr>
+    {{/notes}}
   </tbody>
 </table>
 

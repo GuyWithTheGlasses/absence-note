@@ -28,6 +28,13 @@ module.exports = {
         _id: { $in : req.user.notes }
       }, function(err, notes) {
         if(err) return next(err);
+        notes = notes.map(function(note){
+          var excused_date = new Date(note.excused_date);
+          console.log((excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear());
+          note.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
+          console.log(note.formatted_date);
+          return note;
+        });
         res.render(templates.students.history, {
           user: req.user,
           notes: notes

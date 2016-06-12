@@ -10,7 +10,7 @@ var ABSENCE_EXCUSED_ENUM = {
 };
 
 var KIND_ENUM = {
-  values: 'absence earlyexcuse'.split(' '),
+  values: 'Absence EarlyExcuse'.split(' '),
   message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
 };
 
@@ -18,7 +18,6 @@ var noteSchema = mongoose.Schema({
   kind: {
     type: String,
     enum: KIND_ENUM,
-    lowercase: true
   },
   student: String,
   // makes sure the OSIS is 9 digits long
@@ -43,7 +42,7 @@ var noteSchema = mongoose.Schema({
     'Contact Number': String
   }),
   schedule: [new mongoose.Schema({
-    'Period': Number,
+    'Period': String,
     'Teacher': String,
     'Course Code': String,
     'approved': {
@@ -71,7 +70,7 @@ noteSchema.methods.add = function(callback) {
     var course = this.schedule[courseIndex];
     accounts.Teacher.findByIdAndUpdate(course.Teacher, { "notes.pending": { $push: note._id } });
   }
-
+  console.log(note);
   note.save(function(err) {
     if (err) {
       console.log("Error in saving");

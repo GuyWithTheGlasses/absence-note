@@ -85,8 +85,10 @@ var setupForms = function(event) {
         data: formdata,
         success: function(res) {
           res = JSON.parse(res);
+          console.log(res);
           if (res.success) {
-            return window.location = '/student/history';
+            window.location = '/student/history';
+            return;
           } else {
             forEachInClass(form, ABSENCE_FORM_CLASS, function(element) {
               element.innerHTML = res;
@@ -157,11 +159,12 @@ var getData = function(form) {
     }
   });
 
-  forEachInClass(form, 'excusemestopreading btn final', function(button){
-    if(button.checked){
-      data.kind = button.getAttribute('id');
+  forEachInClass(form, 'excusemestopreading btn final', function(button) {
+    if (button.checked) {
+      data.excused = button.getAttribute('id');
     }
   });
+  console.log(data);
   return data;
 };
 

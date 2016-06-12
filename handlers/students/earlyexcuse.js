@@ -59,6 +59,7 @@ module.exports = {
       note.student = student.google.name;
       note.OSIS = student.OSIS;
       note.homeroom = student.homeroom;
+      note.kind = 'EarlyExcuse';
       note.add(function(err) {
         if (err)
           return res.send(err);
