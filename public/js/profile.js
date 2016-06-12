@@ -14,12 +14,18 @@ ajax( {
         if ( event.keyCode == 9 ) {
           input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ].focus();
         }
+        if ( event.keyCode == 13 ) {
+          document.getElementById( "submit" ).click();
+        }
       } );
       input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ].addEventListener( "keydown", function( e ) {
         if ( event.keyCode == 9 ) {
-          console.log(input.parentNode.parentNode.nextElementSibling.children[1].children[0].children);
+          console.log( input.parentNode.parentNode.nextElementSibling.children[ 1 ].children[ 0 ].children );
 
           // input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ].focus();
+        }
+        if ( event.keyCode == 13 ) {
+          document.getElementById( "submit" ).click();
         }
       } );
     } );
@@ -134,6 +140,9 @@ var submitTeachers = function( e ) {
       data: data,
       success: function( res ) {
         document.getElementById( "success" ).innerHTML = "Successfully Updated";
+        setTimeout( function() {
+          document.getElementById( "success" ).innerHTML = "";
+        }, 2000 );
       }
     } );
   } );
