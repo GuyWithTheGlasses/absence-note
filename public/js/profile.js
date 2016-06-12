@@ -1,3 +1,5 @@
+var TEACHER_EDIT_TABLE = "courses";
+
 ajax( {
   url: '/student/names',
   method: 'GET',
@@ -9,19 +11,43 @@ ajax( {
       name.options = res.sort();
       name.startFrom = 0;
       input.childNodes[ 0 ].childNodes[ 2 ].addEventListener( "keydown", function( e ) {
-        e.preventDefault();
         if ( event.keyCode == 9 ) {
           input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ].focus();
         }
       } );
       input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ].addEventListener( "keydown", function( e ) {
-        e.preventDefault();
         if ( event.keyCode == 9 ) {
           console.log(input.parentNode.parentNode.nextElementSibling.children[1].children[0]);
 
           // input.parentNode.parentNode.childNodes[ 5 ].childNodes[ 1 ].focus();
         }
       } );
+    } );
+    var setupTeachers = function( user ) {
+      forEachInClass( document, TEACHER_EDIT_TABLE, function( table ) {
+        var period = 0;
+        forEachInTags( table, 'TR', function( input ) {
+          var teacher = user.teachers[ period++ - 1 ];
+          if ( !teacher ) return;
+          forEachInClass( input, 'teacher', function( name ) {
+            forEachInTags( name, 'input', function( inputname ) {
+              inputname.value = teacher.name || "";
+            } );
+          } );
+          forEachInClass( input, 'code', function( code ) {
+            code.value = teacher.course_code || "";
+          } );
+        } );
+      } );
+    };
+    ajax( {
+      url: '/student/me',
+      method: 'POST',
+      success: function( res ) {
+        res = JSON.parse( res );
+        console.log( res );
+        setupTeachers( res );
+      }
     } );
   }
 } );
@@ -83,35 +109,6 @@ for ( var x = 0; x < pencils.length; x++ ) {
   pencils[ x ].addEventListener( "click", createEditField );
 }
 
-var setupTeachers = function( user ) {
-  forEachInClass( document, TEACHER_EDIT_TABLE, function( table ) {
-    var period = 0;
-    forEachInTags( table, 'TR', function( input ) {
-      var teacher = user.teachers[ period++ - 1 ];
-      if ( !teacher ) return;
-      forEachInClass( input, 'teacher', function( name ) {
-        forEachInTags( name, 'input', function( inputname ) {
-          inputname.value = teacher.name || "";
-        } );
-      } );
-      forEachInClass( input, 'code', function( code ) {
-        code.value = teacher.course_code || "";
-      } );
-    } );
-  } );
-};
-
-ajax( {
-  url: '/student/me',
-  method: 'POST',
-  success: function( res ) {
-    res = JSON.parse( res );
-    setupTeachers( res );
-  }
-} );
-
-var TEACHER_EDIT_TABLE = "courses";
-
 var submitTeachers = function( e ) {
   forEachInClass( document, TEACHER_EDIT_TABLE, function( table ) {
     var teachers = [];
@@ -134,7 +131,10 @@ var submitTeachers = function( e ) {
     };
     ajax( {
       url: '/student/profile',
-      data: data
+      data: data,
+      success: function( res ) {
+        document.getElementById( "success" ).innerHTML = "Successfully Updated";
+      }
     } );
   } );
 };
