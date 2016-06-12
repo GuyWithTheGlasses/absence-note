@@ -3,7 +3,7 @@ ajax( {
   method: 'GET',
   success: function( res ) {
     res = JSON.parse( res );
-    res.push( [ 'LUNCH', 'PHYSICAL EDUCATION FREE', 'PHYSICS FREE', 'BIOLOGY FREE', 'FREE' ] );
+    Array.prototype.push.apply( res, [ 'LUNCH', 'PHYSICAL EDUCATION FREE', 'PHYSICS FREE', 'BIOLOGY FREE', 'FREE' ] );
     forEachInClass( document, 'input teacher', function( input ) {
       var name = completely( input );
       name.options = res.sort();

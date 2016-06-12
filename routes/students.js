@@ -20,7 +20,7 @@ router.use(handler.profile.finished);
 router.get('/absence/create', handler.absence.create.get);
 router.post('/absence/create', handler.absence.create.post);
 router.get('/earlyexcuse/create', handler.earlyexcuse.create.get);
-router.post('/earlyexcuse', handler.earlyexcuse.create.post);
+router.post('/earlyexcuse/create', handler.earlyexcuse.create.post);
 
 router.get('/absence/:id', handler.absence.id.get);
 router.post('/absence/:post', handler.absence.id.post);
