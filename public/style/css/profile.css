@@ -203,3 +203,9 @@ textarea {
 
 .code {
   padding: 0; }
+
+.success {
+  color: #1d8a1d;
+  font-size: 18px;
+  margin: 0;
+  text-align: center; }
