@@ -1,4 +1,4 @@
-var Note = require('../../models/notes').Note;
+var Note = require( '../../models/notes' ).Note;
 var Absence = require( '../../models/notes' ).Absence;
 var templates = require( '../../config/templates' );
 var mongoose = require( 'mongoose' );
@@ -16,23 +16,25 @@ module.exports = {
       } );
     }
   },
-  'absences': {
+  'history': {
     get: function( req, res, next ) {
-      res.render( templates.teachers.absences, {
+      res.render( templates.teachers.history, {
         user: req.user
       } );
     }
   },
   'pending_requests': {
     get: function( req, res, next ) {
-      Note.find({
-        _id:{$in:req.user.notes.pending}
-      }, function(err, pending_notes){
+      Note.find( {
+        _id: {
+          $in: req.user.notes.pending
+        }
+      }, function( err, pending_notes ) {
         res.render( templates.teachers.pending_requests, {
           user: req.user,
           pending_reqs: pending_notes
         } );
-      })
+      } )
     }
   },
   'note': require( './note' )

@@ -43,7 +43,6 @@
     <h3 class="label">Explanation</h3>
     <textarea class="explanation" name="excuse"></textarea>
   </div>
-
   <h3 class="label">Classes</h3>
   <table class="courses">
     <thead>
@@ -57,8 +56,8 @@
       {{#user.teachers}}
       <tr class="table-period">
         <td>
-          <input class="checkbox" type="checkbox" name="select" {{#approved}}checked{{/approved}}>
-          <label class="checkbox-label" for="select">Pd. {{{period}}}</label>
+          <input id="{{{period}}}select" class="checkbox" type="checkbox" name="{{{period}}}select" checked>
+          <label class="checkbox-label" for="{{{period}}}select">Pd. {{{period}}}</label>
         </td>
         <td class="teacher-name">
           <div>

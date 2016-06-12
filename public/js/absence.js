@@ -168,6 +168,9 @@ var TABLE_PERIODS = "table-period";
 
 forEachInClass( document, TABLE_PERIODS, function( period ) {
   var checkbox = period.childNodes[ 1 ].childNodes[ 1 ];
+  if ( !checkbox.checked ) {
+    period.classList.add( "unchecked" );
+  }
   checkbox.addEventListener( "click", function( e ) {
     if ( checkbox.checked ) {
       period.classList.remove( "unchecked" );
