@@ -11,14 +11,14 @@ mongoose.connect('mongodb://localhost:27017/absence');
 var nodemailerhelp = require('./config/index');
 
 var new_note = new Absence();
-new_note.student = 'Leon Chou';
-new_note.OSIS = 203766068;
-new_note.homeroom = '7QQ';
+new_note.student = 'Johnny So';
+new_note.OSIS = 205131501;
+new_note.homeroom = '7EE';
 new_note.excused = 'absence-excuse';
 new_note.corrections = null;
-new_note.submission_date = "05/21";
-new_note.excused_date = "05/14";
-new_note.excuse = "Went to dentist";
+new_note.submission_date = "06/13";
+new_note.excused_date = "06/10";
+new_note.excuse = "fever";
 new_note.kind = "Absence";
 new_note.schedule = {
   'Period': 1,
@@ -88,7 +88,11 @@ Teacher.find(function(err, teachers) {
     //   console.log('err', err);
     // });
     console.log('teacher courses', teacher.courses);
-    console.log('teacher notes', teacher.notes);
+    console.log('teacher notes.pending[0]', teacher.notes.pending[0]);
+    teacher.approve(teacher.notes.pending[0],function(err){
+      if (err)
+        console.log(err);
+    })
   });
 });
 //

@@ -68,8 +68,11 @@ noteSchema.methods.add = function(callback) {
   });
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
-    accounts.Teacher.findOneAndUpdate({"google.name": course.Teacher}, {$push: { "notes.pending": note._id}} );
-    //accounts.Teacher.findByIdAndUpdate(course.Teacher, { "notes.pending": { $push: note._id } });
+    accounts.Teacher.findOneAndUpdate({"google.name": course.Teacher}, {"$push": { "notes.pending": note._id}}, function(err,teacher){
+      if (err)
+        console.log('err',err);
+      console.log('teacher name',teacher.google.name);
+    } );
   }
   console.log(note);
   note.save(function(err) {
@@ -106,18 +109,17 @@ noteSchema.methods.delete = function(callback) {
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
     if (this.approved) {
-      accounts.Teacher.findByIdAndUpdate(course.Teacher, { "notes.approved": { $pull: note._id } });
+      accounts.Teacher.findOneAndUpdate({"google.name": course.Teacher}, { "$pull": { "notes.approved": note._id } });
     }
     if (!(this.approved)) {
-      accounts.Teacher.findByIdAndUpdate(
-        course.Teacher,
+      accounts.Teacher.findOneAndUpdate({"google.name": course.Teacher},
         function(err, teacher) {
           if (err)
             return callback(err);
           if (note._id in teacher.notes.denied)
-            return { "notes.denied": { $pull: note._id } };
+            return { "$pull": { "notes.denied": note._id } };
           else
-            return { "notes.pending": { $pull: note._id } };
+            return { "$pull": { "notes.pending": note._id } };
         });
     }
   }

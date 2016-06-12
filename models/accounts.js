@@ -67,7 +67,7 @@ teacherSchema.methods.approve = function(note_ID, callback) {
       return callback(err);
     for (var courseIndex in note.schedule) {
       var course = note.schedule[courseIndex];
-      if (course.Teacher == this.objectId)
+      if (course.Teacher == this.google.name)
         course.approved = true;
     }
   });
