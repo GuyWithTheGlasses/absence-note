@@ -17,7 +17,7 @@ module.exports = {
     for ( var field in studentForm ) {
       if(field.includes('-')) {
         newfield = field.split('-');
-        updated.$set[newfield[0]] = updated.$set[newfield[0]] || {};
+        updated.$set[newfield[0]] = updated.$set[newfield[0]] || req.user[newfield[0]] || {};
         updated.$set[newfield[0]][newfield[1]] = studentForm[field];
       }else{
         updated.$set[field] = studentForm[field];
