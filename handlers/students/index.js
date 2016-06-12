@@ -28,7 +28,7 @@ module.exports = {
       }, function(err, notes) {
         res.render(templates.students.history, {
           user: req.user,
-          history: notes
+          notes: notes
         });
       });
     }
