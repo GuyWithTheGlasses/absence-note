@@ -78,6 +78,7 @@ var setupForms = function(event) {
       if (formdata.error) {
         return;
       }
+      console.log("form is filled");
       //Otherwise, ok to send input data to the server
       submit(form, {
         url: '/student/absence/create',
@@ -90,6 +91,7 @@ var setupForms = function(event) {
             window.location = '/student/history';
             return;
           } else {
+            console.log("response unsuccessful");
             forEachInClass(form, ABSENCE_FORM_CLASS, function(element) {
               element.innerHTML = res;
             });

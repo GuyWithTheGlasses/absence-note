@@ -30,7 +30,6 @@ var setupForms = function(event) {
     var createPDF = function(event) {
       return;
     }
-
     //Create function to submit absence note form
     //Will be assigned to Submit button, not called yet
     var submitForm = function(event) {
