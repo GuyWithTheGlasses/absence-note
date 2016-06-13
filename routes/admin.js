@@ -10,6 +10,8 @@ if ( process.env.env == 'development' ) {} else {
 
 router.get( '/', handler.index.get );
 
+router.get('/student/:id', handler.student.id.get);
+
 router.post( '/note/:id/approve', handler.note.id.approve );
 router.post( '/note/:id/deny', handler.note.id.deny );
 

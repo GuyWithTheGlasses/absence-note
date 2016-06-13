@@ -10,52 +10,45 @@
 {{/yield-user}}
 
 {{#yield-content}}
-<h1 class="note title">Early Excuse Note</h1>
+<h1 class="note title">Absence Note</h1>
 <div class="form-entry">
   <h3 class="label">Name</h3>
-  <h3 class="info">{{{excuse.student}}}</h3>
+  <h3 class="info">{{{absence.student}}}</h3>
 </div>
 
 <div class="form-entry">
   <h3 class="label">OSIS</h3>
-  <h3 class="info">{{{excuse.OSIS}}}</h3>
+  <h3 class="info">{{{absence.OSIS}}}</h3>
 </div>
 
 <div class="form-entry">
   <h3 class="label">Homeroom</h3>
-  <h3 class="info">{{{excuse.homeroom}}}</h3>
+  <h3 class="info">{{{absence.homeroom}}}</h3>
 </div>
 
 <div class="form-entry">
-  <h3 class="label">Date of Excuse</h3>
-  <h3 class="info">{{{excuse.formatted_date}}}</h3>
+  <h3 class="label">Type</h3>
+  <h3 class="info">{{{absence.excused}}}</h3>
 </div>
 
 <div class="form-entry">
-  <h3 class="label">Time of Submission</h3>
-  <h3 class="info">{{{excuse.current_time}}}</h3>
+  <h3 class="label">Date of Absence, Lateness, or Cut</h3>
+  <h3 class="info">{{{absence.formatted_date}}}</h3>
 </div>
-
-<div class="form-entry">
-  <h3 class="label">Time of Excuse</h3>
-  <h3 class="info">{{{excuse.exiting_time}}}</h3>
-</div>
-
 
 <div class="form-entry">
   <h3 class="label">Explanation</h3>
-  <h3 class="info">{{{excuse.excuse}}}</h3>
+  <h3 class="info">{{{absence.excuse}}}</h3>
 </div>
 <div class="form-entry">
   <h3 class="label">Parent</h3>
   <h3 class="info">
-    {{{excuse.parent}}}
+    {{{absence.parent.email}}}
   </h3>
 </div>
 
 <h3 class="label">Classes</h3>
-
-<table class="courses space-{{{excuse.approved}}}">
+<table class="courses space-{{{absence.approved}}}">
   <thead>
     <tr>
       <td></td>
@@ -65,7 +58,7 @@
     </tr>
   </thead>
   <tbody>
-    {{#excuse.schedule}}
+    {{#absence.schedule}}
     <tr class="table-period">
       <td>
         <label class="checkbox-label" for="{{{period}}}select">Pd. {{{Period}}}</label>
@@ -84,10 +77,10 @@
         <i class="fa fa-{{{approved}}}" aria-hidden="true"></i>
       </td>
     </tr>
-    {{/excuse.schedule}}
+    {{/absence.schedule}}
   </tbody>
 </table>
-<div class="type-box show-{{{excuse.approved}}}">
+<div class="type-box show-{{{absence.approved}}}">
   <button id="approve" class="btn submit form-submit-ajax">Approve</button>
   <button id="deny" class="btn deny form-submit-ajax">Deny</button>
 </div>

@@ -66,6 +66,15 @@ module.exports = {
           if (!absence) return next(messages.admin.note.notfound);
           var excused_date = new Date(absence.excused_date);
           absence.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
+          absence = JSON.parse(JSON.stringify(absence));
+          absence.schedule = absence.schedule.map(function(period) {
+            if (period.approved) {
+              period.approved = 'check';
+            } else {
+              period.approved = "times";
+            }
+            return period;
+          });
           return res.render(templates.admin.absence.pending, { user: req.user, absence: absence });
         });
       }
@@ -79,7 +88,16 @@ module.exports = {
           if (!excuse) return next(messages.admin.note.notfound);
           var excused_date = new Date(excuse.excused_date);
           excuse.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
-          return res.render(templates.admin.earlyexcuse.pending, { user: req.user, excuse:excuse});
+          excuse = JSON.parse(JSON.stringify(excuse));
+          excuse.schedule = excuse.schedule.map(function(period) {
+            if (period.approved) {
+              period.approved = 'check';
+            } else {
+              period.approved = "times";
+            }
+            return period;
+          });
+          return res.render(templates.admin.earlyexcuse.pending, { user: req.user, excuse: excuse });
         });
       }
     }

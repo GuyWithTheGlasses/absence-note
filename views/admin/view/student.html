@@ -1,0 +1,87 @@
+{{#yield-styles}}
+<link type="text/css" href="../../style/css/profile.css" rel="stylesheet">
+<link rel="stylesheet" href="../../style/css/font-awesome.min.css">
+ {{/yield-styles}}
+ {{#yield-header}} {{/yield-header}}
+ {{#yield-user}} {{/yield-user}}
+ {{#yield-content}}
+<h1 class="note title">Profile</h1>
+<h2 id="error" class="error"></h2>
+
+<h1 class="category name">{{{student.name}}}</h1>
+
+<div class="info">
+    <div class="info-line">
+        <h2 class="category-title">Student Email</h2>
+        <h2 class="category-title">Student Homeroom</h2>
+        <h3 id="email" class="category constant">
+            {{#student.google.emails}}
+            {{{value}}}
+            {{/student.google.emails}}
+        </h3>
+        <h3 id="homeroom" class="category variable">
+            {{{student.homeroom}}}
+        </h3>
+    </div>
+
+    <div class="info-line">
+        <h2 class="category-title">Student OSIS</h2>
+        <h2 class="category-title">Student Phone</h2>
+        <h3 id="OSIS" class="category variable">
+            {{{student.OSIS}}}
+        </h3>
+        <h3 id="phone" class="category variable">
+            {{{student.phone}}}
+        </h3>
+    </div>
+
+    <div class="info-line">
+        <h2 class="category-title">Guardian Name</h2>
+        <h2 class="category-title">Guardian Relationship</h2>
+        <h3 id="parent-name" class="category variable">
+            {{{student.parent.name}}}
+        </h3>
+        <h3 id="parent-relationship" class="category variable">
+            {{{student.parent.relationship}}}
+        </h3>
+    </div>
+
+    <div class="info-line">
+        <h2 class="category-title">Parent Email</h2>
+        <h2 class="category-title">Parent Phone</h2>
+        <h3 id="parent-email" class="category variable">
+            {{{student.parent.email}}}
+        </h3>
+        <h3 id="parent-phone" class="category variable">
+            {{{student.parent.phone}}}
+        </h3>
+    </div>
+</div>
+
+<h2 class="course-title">Courses</h2>
+<table class="courses">
+    <thead>
+        <tr>
+            <td></td>
+            <td class="table-head">Teacher's Name</td>
+            <td class="table-head">Course Code</td>
+        </tr>
+    </thead>
+    <tbody>
+        {{#student.teachers}}
+        <tr>
+            <td class="course-period">
+                Pd. {{{period}}}
+            </td>
+            <td>
+                {{{name}}}
+            </td>
+            <td>
+                {{{course_code}}}
+            </td>
+        </tr>
+        {{/student.teachers}}
+    </tbody>
+</table>
+
+{{/yield-content}}

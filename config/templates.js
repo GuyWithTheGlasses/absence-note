@@ -8,10 +8,13 @@ module.exports = {
     'history': 'admin/history',
     'students': 'admin/students',
     'absence': {
-      'pending': 'admin/pending/absence',
+      'pending': 'admin/view/absence'
     },
     'earlyexcuse': {
-      'pending': 'admin/pending/earlyexcuse',
+      'pending': 'admin/view/earlyexcuse'
+    },
+    'student': {
+      'view': 'admin/view/student'
     }
   },
   'students': {

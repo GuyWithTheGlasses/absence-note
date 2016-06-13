@@ -38,6 +38,17 @@ module.exports = {
       return res.render(templates.admin.students, { user: req.user, students: students });
     });
   },
+  'student':{
+    'id':{
+      get:function(req, res,next){
+        Student.findById(req.params.id, function(err, student){
+          if(err) return next(err);
+          if(!student) return next();
+          return res.render(templates.admin.student.view, {student:student});
+        });
+      }
+    }
+  },
   'history': function(req, res, next) {
     Note.find(function(err, notes) {
       if (err) return next(err);
