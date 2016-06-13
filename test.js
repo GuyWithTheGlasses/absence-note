@@ -1,5 +1,4 @@
 var Teacher = require('./models/accounts').Teacher;
-var Absence = require('./models/notes').Absence;
 var notes = require('./models/notes');
 var Absence = notes.Absence;
 var EarlyExcuse = notes.EarlyExcuse;
@@ -10,16 +9,20 @@ mongoose.connect('mongodb://localhost:27017/absence');
 
 var nodemailerhelp = require('./config/index');
 
-var new_note = new Absence();
+//var new_note = new Absence();
+var new_note = new EarlyExcuse();
 new_note.student = 'Johnny So';
 new_note.OSIS = 205131501;
 new_note.homeroom = '7EE';
-new_note.excused = 'absence-excuse';
+//new_note.excused = 'absence-excuse';
 new_note.corrections = null;
 new_note.submission_date = "06/13";
 new_note.excused_date = "06/10";
 new_note.excuse = "fever";
-new_note.kind = "Absence";
+//new_note.kind = "Absence";
+new_note.kind = "EarlyExcuse";
+new_note.current_time = "9:00 AM";
+new_note.exiting_time = "12:00 PM";
 new_note.schedule = {
   'Period': 1,
   'Teacher': 'Johnny So',
