@@ -1,3 +1,4 @@
+
 var Note = require('../../models/notes').Note;
 var Absence = require('../../models/notes').Absence;
 var templates = require('../../config/templates');

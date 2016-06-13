@@ -26,13 +26,17 @@ module.exports = {
     },
     deny: function(req, res) {
       var id = req.params.id;
-      Note.findById(id, function(err, note) {
+      req.user.deny(id,function(err){
         if (err) return res.send(err);
-        note.deny(function(err) {
-          if (err) return res.send(err);
-          else return res.send({ success: true });
-        });
+        else return res.send({success:true});
       });
+      // Note.findById(id, function(err, note) {
+      //   if (err) return res.send(err);
+      //   note.deny(function(err) {
+      //     if (err) return res.send(err);
+      //     else return res.send({ success: true });
+      //   });
+      // });
     },
   },
   absence: function(req, res, next) {

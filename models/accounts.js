@@ -64,26 +64,46 @@ var teacherSchema = mongoose.Schema({
   type: { type: String, default: 'Teacher' }
 });
 
-teacherSchema.methods.approve = function(note_ID, callback) {
-  var teacher = this;
-  console.log(teacher);
-  Note.findById(note_ID, function(err, note){
-    if(err) console.log(err);
-    note.schedule.forEach(function(period){
-      if(period.Teacher === teacher.google.name){
-        period.approved = true;
-      }
-    });
-    note.save(function(err, note){
-      if(err) return callback(err);
+// teacherSchema.methods.approve = function(note_ID, callback) {
+//   var teacher = this;
+//   console.log(teacher);
+//   Note.findById(note_ID, function(err, note){
+//     if(err) console.log(err);
+//     note.schedule.forEach(function(period){
+//       if(period.Teacher === teacher.google.name){
+//         period.approved = true;
+//       }
+//     });
+//     note.save(function(err, note){
+//       if(err) return callback(err);
+//
+//       teacher.notes.pending.splice(teacher.notes.pending.indexOf(note_ID), 1);
+//       teacher.notes.approved = teacher.notes.approved.push(note_ID) || [note_ID];
+//       teacher.save(function(err){
+//         return callback(err);
+//       });
+//     });
+//   });
+// };
 
-      teacher.notes.pending.splice(teacher.notes.pending.indexOf(note_ID), 1);
-      teacher.notes.approved = teacher.notes.approved.push(note_ID) || [note_ID];
-      teacher.save(function(err){
-        return callback(err);
-      });
-    });
+teacherSchema.methods.approve = function(note_ID, callback) {
+  Note.findByIdAndUpdate(note_ID, function(err, note) {
+    if (err)
+      return callback(err);
+    for (var courseIndex in note.schedule) {
+      var course = note.schedule[courseIndex];
+      if (course.Teacher == this.objectId)
+        course.approved = true;
+    }
   });
+  var noteIndex = this.notes.pending.indexOf(note_ID);
+  var noteIDFromArray = this.notes.pending.splice(noteIndex, 1)[0];
+  this.notes.approved.push(noteIDFromArray);
+  this.save(function(err) {
+    if (err)
+      return callback(err);
+  });
+
 };
 
 teacherSchema.methods.deny = function(note_ID, callback) {
