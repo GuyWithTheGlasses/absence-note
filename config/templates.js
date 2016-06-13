@@ -36,11 +36,9 @@ module.exports = {
     'history': 'teacher/history',
     'absence': {
       'view': 'teacher/view/absence',
-      'pending': 'teacher/pending/absence'
     },
     'earlyexcuse': {
       'view': 'teacher/view/earlyexcuse',
-      'pending': 'teacher/pending/earlyexcuse'
     }
   }
 };

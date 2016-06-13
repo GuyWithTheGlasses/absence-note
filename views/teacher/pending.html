@@ -12,7 +12,7 @@
 {{#yield-content}}
 
 <h1 class="note title">History</h1>
-
+<h3 id="response" class="response"></h3>
 <table class="absence-notes">
   <thead>
     <tr class="absence-header">
@@ -24,30 +24,34 @@
     </tr>
   </thead>
   <tbody>
+    {{#pending_reqs}}
     <tr class="tablerow">
       <td class="tablelink">
-        <a href="/">Roy Xu</a>
+        <a href="/teacher/note/{{{kind}}}/{{{_id}}}">{{{student}}}</a>
       </td>
       <td class="tablelink">
-        5/27/2016
+        {{{formatted_date}}}
       </td>
       <td class="tablelink">
-        Absence Note
+        {{{kind}}} Note
       </td>
       <td class="tablelink">
-        8
+        {{{corresponding_pd.Period}}}
       </td>
       <td class="options">
-        <i id="approve" class="fa fa-check-circle-o approve" aria-hidden="true"></i>
-        <i id="deny" class="fa fa-times-circle-o deny" aria-hidden="true"></i>
+        <i id="{{{_id}}}" class="fa fa-check-circle-o approve" aria-hidden="true"></i>
+        <i id="{{{_id}}}" class="fa fa-times-circle-o deny" aria-hidden="true"></i>
       </td>
     </tr>
+    {{/pending_reqs}}
   </tbody>
 </table>
 
 {{/yield-content}}
 
 {{#yield-scripts}}
+<script src="../../lib/foreach.js"></script>
+<script src="../../lib/ajax.js"></script>
 <script src="../../js/history.js"></script>
 <script src="../../js/teacher_approve.js"></script>
 {{/yield-scripts}}

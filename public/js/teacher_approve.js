@@ -1,21 +1,25 @@
-document.getElementById( "approve" ).addEventListener( "click", function( e ) {
-  e.preventDefault();
-  ajax( {
-    url: "/teacher/approve",
-    method: "POST",
-    success: function( res ) {
-      console.log( res );
-    }
-  } );
-} );
+forEachInClass(document, 'approve', function(button) {
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    ajax({
+      url: "/teacher/note/" + this.getAttribute('id') + "/approve",
+      method: "POST",
+      success: function(res) {
+        document.getElementById("response").innerHTML = "Approved";
+      }
+    });
+  });
+});
 
-document.getElementById( "deny" ).addEventListener( "click", function( e ) {
-  e.preventDefault();
-  ajax( {
-    url: "/teacher/deny",
-    method: "POST",
-    success: function( res ) {
-      console.log( res );
-    }
-  } );
-} );
+forEachInClass(document, 'deny', function(button) {
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    ajax({
+      url: "/teacher/note/" + this.getAttribute('id') + "/deny",
+      method: "POST",
+      success: function(res) {
+        document.getElementById("response").innerHTML = "Denied";
+      }
+    });
+  });
+});

@@ -5,7 +5,6 @@ forEachInClass(document, 'approve', function(button) {
       url: "/admin/note/" + this.getAttribute('id') + "/approve",
       method: "POST",
       success: function(res) {
-        console.log("hi");
         document.getElementById("response").innerHTML = "Approved";
       }
     });
