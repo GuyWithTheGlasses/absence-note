@@ -30,11 +30,11 @@ var setupForms = function(event) {
     var createPDF = function(event){
         return;
     }
-    
     //Create function to submit absence note form
     //Will be assigned to Submit button, not called yet
     var submitForm = function(event) {
       event.preventDefault();
+      
       var formdata = getData(form);
       //If one of the inputs is blank, that's no good
       if(formdata.error){
@@ -70,7 +70,7 @@ var getData = function(form) {
   var data = {};
   //Get the standalone entries in the form
   forEachInClass(form, FORM_ENTRIES, function(entry) {
-    //Single-line inputs
+    //Single-line input corresponding to each entry
     forEachInClass(entry, LINE_INPUT, function(input) {
       //Make sure inputs aren't empty
       if(input.value === ''){
@@ -82,7 +82,7 @@ var getData = function(form) {
       }
       data[input.name] = input.value;
     });
-    //Paragraph inputs
+    //Or the paragraph input
     forEachInClass(entry, EXPLANATION_INPUT, function(input) {
       //Nothing empty for you
       if(input.value === ''){
