@@ -66,6 +66,7 @@ var teacherSchema = mongoose.Schema({
 
 teacherSchema.methods.approve = function(note_ID, callback) {
   var teacher = this;
+  console.log(teacher);
   Note.findById(note_ID, function(err, note){
     if(err) console.log(err);
     note.schedule.forEach(function(period){
@@ -75,12 +76,12 @@ teacherSchema.methods.approve = function(note_ID, callback) {
     });
     note.save(function(err, note){
       if(err) return callback(err);
-      teacher.pending = teacher.pending.map(function(note){
-        if(note === note_ID) return;
-        else return note;
+
+      teacher.notes.pending.splice(teacher.notes.pending.indexOf(note_ID), 1);
+      teacher.notes.approved = teacher.notes.approved.push(note_ID) || [note_ID];
+      teacher.save(function(err){
+        return callback(err);
       });
-      teacher.approved.push(note_ID);
-      return callback();
     });
   });
 };
