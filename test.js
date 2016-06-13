@@ -62,6 +62,8 @@ new_note.schedule = {
 //   console.log('notes[0].student',notes[0].student);
 //   Note.findById(notes[0]._id,function(err,note){
 //     console.log(note);
+//     console.log('note date',note.excused_date);
+//     console.log('note schedule[0].Teacher',note.schedule[0].Teacher);
 //   });
 // });
 
@@ -91,7 +93,8 @@ Teacher.find(function(err, teachers) {
     console.log('teacher notes.pending[0]', teacher.notes.pending[0]);
     teacher.approve(teacher.notes.pending[0],function(err){
       if (err)
-        console.log(err);
+        return console.log(err);
+      return;
     })
   });
 });

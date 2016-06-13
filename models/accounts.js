@@ -64,11 +64,16 @@ var teacherSchema = mongoose.Schema({
 teacherSchema.methods.approve = function(note_ID, callback) {
   Note.findByIdAndUpdate(note_ID, function(err, note) {
     if (err)
+      console.log('err occurred in querying');
       return callback(err);
     for (var courseIndex in note.schedule) {
       var course = note.schedule[courseIndex];
-      if (course.Teacher == this.google.name)
-        course.approved = true;
+      console.log(course.Teacher);
+      console.log(this.google.name);
+      if (course.Teacher == this.google.name){
+        console.log("yay");
+        return {"$set" : {"course.approved" : true}};
+      }
     }
   });
   var noteIndex = this.notes.pending.indexOf(note_ID);
