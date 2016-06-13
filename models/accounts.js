@@ -51,11 +51,14 @@ var Student = Account.discriminator('Student', studentSchema);
 module.exports.Student = Student;
 
 var teacherSchema = mongoose.Schema({
-  notes: new mongoose.Schema({
-    denied: [mongoose.Schema.Types.ObjectId],
-    pending: [mongoose.Schema.Types.ObjectId],
-    approved: [mongoose.Schema.Types.ObjectId]
-  }),
+  notes: {
+    type: new mongoose.Schema({
+      denied: [mongoose.Schema.Types.ObjectId],
+      pending: [mongoose.Schema.Types.ObjectId],
+      approved: [mongoose.Schema.Types.ObjectId]
+    }),
+    default: {}
+  },
   // list of courses taught
   courses: [String],
   type: { type: String, default: 'Teacher' }
@@ -65,14 +68,14 @@ teacherSchema.methods.approve = function(note_ID, callback) {
   Note.findByIdAndUpdate(note_ID, function(err, note) {
     if (err)
       console.log('err occurred in querying');
-      return callback(err);
+    return callback(err);
     for (var courseIndex in note.schedule) {
       var course = note.schedule[courseIndex];
       console.log(course.Teacher);
       console.log(this.google.name);
-      if (course.Teacher == this.google.name){
+      if (course.Teacher == this.google.name) {
         console.log("yay");
-        return {"$set" : {"course.approved" : true}};
+        return { "$set": { "course.approved": true } };
       }
     }
   });
