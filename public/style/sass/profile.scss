@@ -6,6 +6,7 @@ $save-bg: #35a43e;
 $edit-text: #fff;
 $button-bg: #41be4b;
 $error: #f00;
+$success: #1d8a1d;
 
 .title {
   color: $title;
@@ -114,7 +115,7 @@ $error: #f00;
 
 .save-text {
   border-bottom: 0;
-  text-align: left;
+  text-align: center;
   width: 320px;
 }
 
@@ -144,5 +145,16 @@ $error: #f00;
 .error {
   color: $error;
   font-size: 18px;
+  text-align: center;
+}
+
+.code {
+  padding: 0;
+}
+
+.success {
+  color: $success;
+  font-size: 18px;
+  margin: 0;
   text-align: center;
 }

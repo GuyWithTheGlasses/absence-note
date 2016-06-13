@@ -11,18 +11,18 @@ mongoose.connect('mongodb://localhost:27017/absence');
 var nodemailerhelp = require('./config/index');
 
 var new_note = new Absence();
-new_note.student = 'Leon Chou';
-new_note.OSIS = 203766068;
-new_note.homeroom = '7QQ';
+new_note.student = 'Johnny So';
+new_note.OSIS = 205131501;
+new_note.homeroom = '7EE';
 new_note.excused = 'absence-excuse';
 new_note.corrections = null;
-new_note.submission_date = "05/21";
-new_note.excused_date = "05/14";
-new_note.excuse = "Went to dentist";
-new_note.kind = "absence";
+new_note.submission_date = "06/13";
+new_note.excused_date = "06/10";
+new_note.excuse = "fever";
+new_note.kind = "Absence";
 new_note.schedule = {
   'Period': 1,
-  //'Teacher': mongoose.Types.ObjectId("104139858999820438162"),
+  'Teacher': 'Johnny So',
   'Course Code': 'LOL',
   'approved': false
 };
@@ -62,6 +62,8 @@ new_note.schedule = {
 //   console.log('notes[0].student',notes[0].student);
 //   Note.findById(notes[0]._id,function(err,note){
 //     console.log(note);
+//     console.log('note date',note.excused_date);
+//     console.log('note schedule[0].Teacher',note.schedule[0].Teacher);
 //   });
 // });
 
@@ -78,19 +80,24 @@ new_note.schedule = {
 // for (var key in dict) console.log(key);
 //
 // /* ---------- TEACHER METHODS -------------- */
-// Teacher.find(function(err, teachers) {
-//   console.log('teachers', teachers);
-//   Teacher.findById(teachers[0]._id, function(err, teacher) {
-//     console.log('teacher', teacher);
-//     console.log('teacher name', teacher.google.name);
-//     // teacher.courses.push('LOL');
-//     // teacher.save(function(err){
-//     //   console.log('err', err);
-//     // });
-//     console.log('teacher courses', teacher.courses);
-//     console.log('teacher notes', teacher.notes);
-//   });
-// });
+Teacher.find(function(err, teachers) {
+  console.log('teachers', teachers);
+  Teacher.findById(teachers[0]._id, function(err, teacher) {
+    console.log('teacher', teacher);
+    console.log('teacher name', teacher.google.name);
+    // teacher.courses.push('LOL');
+    // teacher.save(function(err){
+    //   console.log('err', err);
+    // });
+    console.log('teacher courses', teacher.courses);
+    console.log('teacher notes.pending[0]', teacher.notes.pending[0]);
+    teacher.approve(teacher.notes.pending[0],function(err){
+      if (err)
+        return console.log(err);
+      return;
+    })
+  });
+});
 //
 // nodemailerhelp.transporter.sendMail(nodemailerhelp.transport.emailOptions, function(err, info){
 //     if(err){

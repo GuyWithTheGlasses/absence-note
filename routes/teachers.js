@@ -9,7 +9,7 @@ if ( process.env.env == 'development' ) {} else {
 
 router.get( '/', handlers.index.get );
 
-router.get( '/absences', handlers.absences.get );
+router.get( '/history', handlers.history.get );
 router.get( '/pending_requests', handlers.pending_requests.get );
 
 // router.get('/absence/pending', handlers.absence.id.pending); // View a list of all pending absences

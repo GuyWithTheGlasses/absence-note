@@ -10,7 +10,7 @@ var ABSENCE_EXCUSED_ENUM = {
 };
 
 var KIND_ENUM = {
-  values: 'absence earlyexcuse'.split(' '),
+  values: 'Absence EarlyExcuse'.split(' '),
   message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
 };
 
@@ -18,7 +18,6 @@ var noteSchema = mongoose.Schema({
   kind: {
     type: String,
     enum: KIND_ENUM,
-    lowercase: true
   },
   student: String,
   // makes sure the OSIS is 9 digits long
@@ -29,7 +28,7 @@ var noteSchema = mongoose.Schema({
   },
   homeroom: String,
   excused_date: Date,
-  submission_date: Date,
+  submission_date: {type: Date, default: Date.now },
   excuse: String,
   parent: new mongoose.Schema({
     'Signature': new mongoose.Schema({
@@ -43,8 +42,8 @@ var noteSchema = mongoose.Schema({
     'Contact Number': String
   }),
   schedule: [new mongoose.Schema({
-    'Period': Number,
-    'Teacher': mongoose.Schema.Types.ObjectId,
+    'Period': String,
+    'Teacher': String,
     'Course Code': String,
     'approved': {
       type: Boolean,
@@ -65,12 +64,17 @@ noteSchema.methods.add = function(callback) {
   note = this;
   accounts.Student.findOneAndUpdate({
     OSIS: this.OSIS
-  }, { "notes": { $push: note._id } });
+  }, { "$push": { "notes": note._id } }, function(err, student){
+  });
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
-    accounts.Teacher.findByIdAndUpdate(course.Teacher, { "notes.pending": { $push: note._id } });
+    accounts.Teacher.findOneAndUpdate({"google.name": course.Teacher}, {"$push": { "notes.pending": note._id}}, function(err,teacher){
+      if (err)
+        console.log('err',err);
+      console.log('teacher name',teacher.google.name);
+    } );
   }
-
+  console.log(note);
   note.save(function(err) {
     if (err) {
       console.log("Error in saving");
@@ -105,18 +109,17 @@ noteSchema.methods.delete = function(callback) {
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
     if (this.approved) {
-      accounts.Teacher.findByIdAndUpdate(course.Teacher, { "notes.approved": { $pull: note._id } });
+      accounts.Teacher.findOneAndUpdate({"google.name": course.Teacher}, { "$pull": { "notes.approved": note._id } });
     }
     if (!(this.approved)) {
-      accounts.Teacher.findByIdAndUpdate(
-        course.Teacher,
+      accounts.Teacher.findOneAndUpdate({"google.name": course.Teacher},
         function(err, teacher) {
           if (err)
             return callback(err);
           if (note._id in teacher.notes.denied)
-            return { "notes.denied": { $pull: note._id } };
+            return { "$pull": { "notes.denied": note._id } };
           else
-            return { "notes.pending": { $pull: note._id } };
+            return { "$pull": { "notes.pending": note._id } };
         });
     }
   }
@@ -133,7 +136,6 @@ var absenceSchema = mongoose.Schema({
   excused: {
     type: String,
     enum: ABSENCE_EXCUSED_ENUM,
-    lowercase: true
   }
 });
 

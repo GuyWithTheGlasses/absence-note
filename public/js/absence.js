@@ -28,17 +28,17 @@ excused.addEventListener("click", function(e) {
   correctionBox.style.display = "none";
 });
 
-var picker = new Pikaday( {
-  field: document.getElementById( 'excused-date' ),
+var picker = new Pikaday({
+  field: document.getElementById('excused-date'),
   disableWeekends: true
-} );
+});
 
-var calendar = document.getElementById( "calendar-button" );
+var calendar = document.getElementById("calendar-button");
 
-calendar.addEventListener( "click", function( e ) {
+calendar.addEventListener("click", function(e) {
   e.preventDefault();
   picker.show();
-} );
+});
 
 var setupForms = function(event) {
   console.log("DOM content loaded, ready to add forms");
@@ -68,18 +68,15 @@ var setupForms = function(event) {
       event.preventDefault();
     };
     //Create function to submit absence note form
-    //Will be assigned to Submit button, not called yet
-    var createPDF = function(event){
-        return;
-    }
+
     //Create function to create PDF of absence note
     //Will be assigned to Print PDF button, not called yet
     var submitForm = function(event) {
       event.preventDefault();
       var formdata = getData(form);
       //If one of the inputs is blank, that's no good
-      if(formdata.error){
-          return;
+      if (formdata.error) {
+        return;
       }
       console.log("form is filled");
       //Otherwise, ok to send input data to the server
@@ -91,8 +88,8 @@ var setupForms = function(event) {
           res = JSON.parse(res);
           console.log(res);
           if (res.success) {
-             console.log("response successful");
-             return window.location = '/student/history';
+            window.location = '/student/history';
+            return;
           } else {
             console.log("response unsuccessful");
             forEachInClass(form, ABSENCE_FORM_CLASS, function(element) {
@@ -115,25 +112,25 @@ var getData = function(form) {
   //Get radio button data here - stored in data['type']
   forEachInClass(document, RADIO_BUTTON, function(button) {
     if (button.classList.contains('clicked')) {
-      data['type'] = button.id;
+      data.type = button.id;
     }
   });
   //Get the standalone entries in the form
   forEachInClass(form, FORM_ENTRIES, function(entry) {
     forEachInClass(entry, TEXT_INPUT, function(input) {
       //Make sure inputs aren't empty
-      if(input.value === ''){
+      if (input.value === '') {
         var error_div = document.getElementById('error');
         error_div.innerHTML = "Required fields missing.";
         window.location = '#error';
-        data.error = true; 
+        data.error = true;
         return;
       }
       data[input.name] = input.value;
     });
     forEachInClass(entry, EXPLANATION_INPUT, function(input) {
       //Nothing empty for you
-      if(input.value === ''){
+      if (input.value === '') {
         var error_div = document.getElementById('error');
         error_div.innerHTML = "Required fields missing.";
         window.location = '#error';
@@ -144,12 +141,13 @@ var getData = function(form) {
     });
   });
   //Get the teachers and periods
+  data.periods = [];
   forEachInClass(form, PERIOD_CHECKBOX, function(box) {
     if (box.checked) {
-      data[box.name] = true;
+      data.periods.push(true);
       forEachInClass(box.parentNode.parentNode, TEXT_INPUT, function(input) {
         //Please have filled in inputs
-        if(input.value === ''){
+        if (!(input.value)) {
           var error_div = document.getElementById('error');
           error_div.innerHTML = "Required fields missing.";
           window.location = '#error';
@@ -159,10 +157,33 @@ var getData = function(form) {
         data[input.name] = input.value;
       });
     } else {
-      data[box.name] = false;
+      data.periods.push(false);
     }
   });
+
+  forEachInClass(form, 'excusemestopreading btn final', function(button) {
+    if (button.checked) {
+      data.excused = button.getAttribute('id');
+    }
+  });
+  console.log(data);
   return data;
 };
 
 document.addEventListener('DOMContentLoaded', setupForms);
+
+var TABLE_PERIODS = "table-period";
+
+forEachInClass(document, TABLE_PERIODS, function(period) {
+  var checkbox = period.childNodes[1].childNodes[1];
+  if (!checkbox.checked) {
+    period.classList.add("unchecked");
+  }
+  checkbox.addEventListener("click", function(e) {
+    if (checkbox.checked) {
+      period.classList.remove("unchecked");
+    } else {
+      period.classList.add("unchecked");
+    }
+  });
+});

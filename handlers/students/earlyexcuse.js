@@ -52,14 +52,17 @@ module.exports = {
       var formparams = config.earlyexcusenote;
       var excuse = req.body;
       for (var key in excuse) {
-        if (!(key in formparams)) delete excuse.key;
+        if (!(key in formparams))
+          delete excuse.key;
       }
       var note = new Excuse(excuse);
       note.student = student.google.name;
       note.OSIS = student.OSIS;
       note.homeroom = student.homeroom;
+      note.kind = 'EarlyExcuse';
       note.add(function(err) {
-        if (err) return res.send(err);
+        if (err)
+          return res.send(err);
         return res.send(messages.student.excuse.created(note));
       });
     }

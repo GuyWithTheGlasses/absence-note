@@ -176,7 +176,7 @@ textarea {
 
 .save-text {
   border-bottom: 0;
-  text-align: left;
+  text-align: center;
   width: 320px; }
 
 .submit {
@@ -199,4 +199,13 @@ textarea {
 .error {
   color: #f00;
   font-size: 18px;
+  text-align: center; }
+
+.code {
+  padding: 0; }
+
+.success {
+  color: #1d8a1d;
+  font-size: 18px;
+  margin: 0;
   text-align: center; }

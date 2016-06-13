@@ -121,10 +121,13 @@ label {
   width: 600px; }
 
 .table-head {
+  font-size: 20px;
   font-weight: bold;
+  height: 40px;
   text-align: center; }
 
 .courses {
+  border-spacing: 0 1px;
   margin: 10px auto 0; }
 
 .table-container {
@@ -220,3 +223,28 @@ label {
   color: #f00;
   font-size: 18px;
   text-align: center; }
+
+.teacher-name {
+  font-size: 18px;
+  text-align: center;
+  width: 300px; }
+  .teacher-name div {
+    border-bottom: 1px solid #d2d2d2;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 auto;
+    width: 280px; }
+
+.teacher-code {
+  font-size: 18px;
+  text-align: center;
+  width: 200px; }
+  .teacher-code div {
+    border-bottom: 1px solid #d2d2d2;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 auto;
+    width: 180px; }
+
+.unchecked {
+  background-color: #d2d2d2; }

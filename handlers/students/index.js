@@ -2,6 +2,7 @@ var templates = require('../../config/templates');
 var Note = require('../../models/notes').Note;
 var Absence = require('../../models/notes').Absence;
 var Excuse = require('../../models/notes').EarlyExcuse;
+var ObjectId = require('mongoose').Schema.Types.ObjectId;
 var config = require('../../config/forms');
 
 module.exports = {
@@ -24,11 +25,19 @@ module.exports = {
   'history': {
     get: function(req, res, next) {
       Note.find({
-        _id: { $in: req.user.notes }
+        _id: { $in : req.user.notes }
       }, function(err, notes) {
+        if(err) return next(err);
+        notes = notes.map(function(note){
+          var excused_date = new Date(note.excused_date);
+          console.log((excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear());
+          note.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
+          console.log(note.formatted_date);
+          return note;
+        });
         res.render(templates.students.history, {
           user: req.user,
-          history: notes
+          notes: notes
         });
       });
     }
@@ -36,6 +45,11 @@ module.exports = {
   'names': {
     get: function(req, res, next) {
       return res.json(Object.keys(require('../../emails').Teachers));
+    }
+  },
+  'me':{
+    post:function(req, res){
+      return res.json(req.user);
     }
   }
 };

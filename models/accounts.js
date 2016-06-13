@@ -15,7 +15,7 @@ var accountSchema = mongoose.Schema({
     token: String,
     name: String,
     emails: [new mongoose.Schema({
-      value: { type: String},
+      value: { type: String },
       type: String,
     })]
   },
@@ -35,12 +35,12 @@ var studentSchema = mongoose.Schema({
     name: String,
     relationship: String,
     phone: String,
-    email: String
+    email: String,
   }),
-  teachers:[new mongoose.Schema({
-    name:String,
+  teachers: [new mongoose.Schema({
+    name: String,
     period: Number,
-    course_code:String
+    course_code: String
   })],
   // list of notes
   notes: [mongoose.Schema.Types.ObjectId],
@@ -51,11 +51,14 @@ var Student = Account.discriminator('Student', studentSchema);
 module.exports.Student = Student;
 
 var teacherSchema = mongoose.Schema({
-  notes: new mongoose.Schema({
-    denied: [mongoose.Schema.Types.ObjectId],
-    pending: [mongoose.Schema.Types.ObjectId],
-    approved: [mongoose.Schema.Types.ObjectId]
-  }),
+  notes: {
+    type: new mongoose.Schema({
+      denied: [mongoose.Schema.Types.ObjectId],
+      pending: [mongoose.Schema.Types.ObjectId],
+      approved: [mongoose.Schema.Types.ObjectId]
+    }),
+    default: {}
+  },
   // list of courses taught
   courses: [String],
   type: { type: String, default: 'Teacher' }
@@ -64,11 +67,16 @@ var teacherSchema = mongoose.Schema({
 teacherSchema.methods.approve = function(note_ID, callback) {
   Note.findByIdAndUpdate(note_ID, function(err, note) {
     if (err)
-        return callback(err);
+      console.log('err occurred in querying');
+    return callback(err);
     for (var courseIndex in note.schedule) {
-        var course = note.schedule[courseIndex];
-        if (course.Teacher == this.objectId)
-            course.approved = true;
+      var course = note.schedule[courseIndex];
+      console.log(course.Teacher);
+      console.log(this.google.name);
+      if (course.Teacher == this.google.name) {
+        console.log("yay");
+        return { "$set": { "course.approved": true } };
+      }
     }
   });
   var noteIndex = this.notes.pending.indexOf(note_ID);
