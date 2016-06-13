@@ -137,3 +137,13 @@ textarea {
     text-decoration: none; }
   .absence-notes tr {
     cursor: pointer; }
+
+.fa-times {
+  color: #d36165;
+  font-size: 30px !important;
+  margin-left: 10px; }
+
+.fa-check {
+  color: #41be4b;
+  font-size: 30px !important;
+  margin-left: 10px; }

@@ -29,10 +29,15 @@ module.exports = {
       }, function(err, notes) {
         if(err) return next(err);
         notes = notes.map(function(note){
+          note = JSON.parse(JSON.stringify(note));
           var excused_date = new Date(note.excused_date);
-          console.log((excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear());
           note.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
-          console.log(note.formatted_date);
+          if(note.approved){
+            note.approved = 'check';
+          }else{
+            note.approved = 'times';
+          }
+
           return note;
         });
         res.render(templates.students.history, {

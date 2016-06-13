@@ -20,9 +20,24 @@ module.exports = {
       var student = req.user;
       Absence.findById(req.params.id, function(err, absence) {
         if (err) return next(err);
-        if (student.OSIS == absence.OSIS)
-          return res.render(templates.students.absence.id, { user: req.user, absence: absence });
-        else return next(messages.student.absence.noMatch);
+        if (student.OSIS != absence.OSIS) return next(messages.student.absence.noMatch);
+        var formatted = {};
+        var excused_date = new Date(absence.excused_date);
+        absence.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
+        for(var key in absence){
+          formatted[key] = absence[key];
+        }
+        formatted.schedule = [];
+        for (var periodkey in absence.schedule){
+          var period = JSON.parse(JSON.stringify(absence.schedule[periodkey]));
+          if(period.approved){
+            period.approved = 'check';
+          }else {
+            period.approved = 'times';
+          }
+          formatted.schedule.push(period);
+        }
+        return res.render(templates.students.absence.view, { user: req.user, absence: formatted });
       });
     },
     post: function(req, res) {
@@ -71,12 +86,12 @@ module.exports = {
           'Course Code': period.course_code
         });
       }
-      console.log(data.schedule);
       absence.parent = {
-        'name':student.parent.name,
-        'number':student.parent.phone
+        'name': student.parent.name,
+        'number': student.parent.phone
       };
       for (var param in absence) data[param] = absence[param];
+      console.log(data);
       // Adds known information to the note
       var note = new Absence(data);
       note.student = student.google.name;
@@ -89,15 +104,13 @@ module.exports = {
         }
         for (var teacherkey in student.teachers) {
           teacher = student.teachers[teacherkey];
-          // transport.sendMail({
-          //   to: emails.Teachers[teacher],
-          //   subject: 'Absence ' + req.user.google.name + 'Period ' + teacher.period,
-          //   html: req.user.google.name + ' in your period ' + teacher.period + ' class has requested your approval for an absence on ' + absence.excused_date + '<br><a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
-          // }, function(err) {
-          //   if (err) {
-          //     return res.send(err);
-          //   }
-          // });
+          if(emails.Teachers[teacher.name]){
+            transport.sendMail({
+              subject: 'Absence ' + req.user.google.name + ' Period ' + teacher.period,
+              to: emails.Teachers[teacher.name],
+              html: req.user.google.name + ' in your period ' + teacher.period + ' class has requested your approval for an absence on ' + absence.excused_date + '<br><a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
+            });
+          }
         }
         return res.send(messages.student.absence.created(note));
       });

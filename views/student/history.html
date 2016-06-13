@@ -1,5 +1,6 @@
 {{#yield-styles}}
 <link type="text/css" href="../style/css/history.css" rel="stylesheet">
+<link type="text/css" href="../style/css/font-awesome.min.css" rel="stylesheet">
 {{/yield-styles}}
 
 {{#yield-header}}
@@ -24,7 +25,6 @@
   </thead>
   <tbody>
     {{#notes}}
-    {{{schedule}}}
     <tr class="tablerow">
       <td class="tablelink">
         <a href="/student/{{{kind}}}/{{{_id}}}">{{{formatted_date}}}</a>
@@ -36,6 +36,7 @@
         {{#schedule}}{{{Period}}}&nbsp  {{/schedule}}
       </td>
       <td class="tablelink">
+        <i class="fa fa-{{{approved}}}" aria-hidden="true"></i>
       </td>
     </tr>
     {{/notes}}

@@ -6,6 +6,9 @@ module.exports = function(app, dirname) {
   var mongoose = require('mongoose');
   mongoose.connect(config.db.url);
 
+  var favicon = require('serve-favicon');
+  app.use(favicon(path.join(dirname, 'favico.ico')));
+
   var morgan = require('morgan');
   app.use(morgan(config.morgan.format, config.morgan.options));
 
@@ -40,8 +43,7 @@ module.exports = function(app, dirname) {
     emailOptions: config.nodemailer.emailOptions,
     sendMail: function(options, callback) {
       emailoptions = this.emailOptions(options);
-      console.log(emailoptions);
-      // transporter.sendMail(emailoptions, callback);
+      transporter.sendMail(emailoptions, callback);
     }
   };
 

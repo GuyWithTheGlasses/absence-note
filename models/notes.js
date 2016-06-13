@@ -69,9 +69,7 @@ noteSchema.methods.add = function(callback) {
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
     accounts.Teacher.findOneAndUpdate({"google.name": course.Teacher}, {"$push": { "notes.pending": note._id}}, function(err,teacher){
-      if (err)
-        console.log('err',err);
-      console.log('teacher name',teacher.google.name);
+      if (err) console.log('err',err);
     } );
   }
   console.log(note);

@@ -3,6 +3,8 @@ $title: #000;
 $table-line: #d2d2d2;
 $approve: #35993d;
 $deny: #cc3136;
+$button-bg: #41be4b;
+$button-bg1: #d36165;
 
 .title {
   color: $title;
@@ -64,4 +66,15 @@ $deny: #cc3136;
     cursor: pointer;
   }
 
+}
+.fa-times {
+  color: $button-bg1;
+  font-size: 30px !important;
+  margin-left: 10px;
+}
+
+.fa-check {
+  color: $button-bg;
+  font-size: 30px !important;
+  margin-left: 10px;
 }

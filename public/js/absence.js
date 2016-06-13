@@ -110,7 +110,7 @@ var getData = function(form) {
   //Get radio button data here - stored in data['type']
   forEachInClass(document, RADIO_BUTTON, function(button) {
     if (button.classList.contains('clicked')) {
-      data.type = button.id;
+      data.excused = button.id;
     }
   });
   //Get the standalone entries in the form
@@ -156,12 +156,6 @@ var getData = function(form) {
       });
     } else {
       data.periods.push(false);
-    }
-  });
-
-  forEachInClass(form, 'excusemestopreading btn final', function(button) {
-    if (button.checked) {
-      data.excused = button.getAttribute('id');
     }
   });
   console.log(data);
