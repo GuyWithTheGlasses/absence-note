@@ -22,27 +22,29 @@
     </tr>
   </thead>
   <tbody>
+    {{#absences}}
     <tr class="tablerow">
       <td class="tablelink">
-        <a href="/">Roy Xu</a>
+        <a href="/admin/{{{kind}}}/{{{_id}}}">{{{student}}}</a>
       </td>
       <td class="tablelink">
-        5/27/2016
+        {{{formatted_date}}}
       </td>
       <td class="tablelink">
-        210283021
+        {{{OSIS}}}
       </td>
       <td class="tablelink">
-        7RR
+        {{{homeroom}}}
       </td>
       <td class="tablelink">
-        1-10
+        {{#schedule}}{{{Period}}}&nbsp  {{/schedule}}
       </td>
       <td class="options">
-        <i id="approve" class="fa fa-check-circle-o approve" aria-hidden="true"></i>
-        <i id="deny" class="fa fa-times-circle-o deny" aria-hidden="true"></i>
+        <i id="{{{_id}}}" class="fa fa-check-circle-o approve" aria-hidden="true"></i>
+        <i id="{{{_id}}}" class="fa fa-times-circle-o deny" aria-hidden="true"></i>
       </td>
     </tr>
+    {{/absences}}
   </tbody>
 </table>
 
@@ -50,6 +52,8 @@
 {{/yield-content}}
 
 {{#yield-scripts}}
+<script src="../../lib/ajax.js"></script>
+<script src="../../lib/foreach.js"></script>
 <script src="../../js/history.js"></script>
 <script src="../../js/admin_approve.js"></script>
 {{/yield-scripts}}

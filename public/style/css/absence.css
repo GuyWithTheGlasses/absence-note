@@ -248,3 +248,9 @@ label {
 
 .unchecked {
   background-color: #d2d2d2; }
+
+.show-true {
+  display: none; }
+
+.space-true {
+  margin-bottom: 30px; }

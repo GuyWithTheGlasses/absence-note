@@ -24,15 +24,15 @@ module.exports = {
         var formatted = {};
         var excused_date = new Date(absence.excused_date);
         absence.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
-        for(var key in absence){
+        for (var key in absence) {
           formatted[key] = absence[key];
         }
         formatted.schedule = [];
-        for (var periodkey in absence.schedule){
+        for (var periodkey in absence.schedule) {
           var period = JSON.parse(JSON.stringify(absence.schedule[periodkey]));
-          if(period.approved){
+          if (period.approved) {
             period.approved = 'check';
-          }else {
+          } else {
             period.approved = 'times';
           }
           formatted.schedule.push(period);
@@ -86,15 +86,17 @@ module.exports = {
           'Course Code': period.course_code
         });
       }
-      absence.parent = {
-        'name': student.parent.name,
-        'number': student.parent.phone
-      };
       for (var param in absence) data[param] = absence[param];
       console.log(data);
       // Adds known information to the note
       var note = new Absence(data);
       note.student = student.google.name;
+      note.parent = {
+        'name': student.parent.name,
+        'phone': student.parent.phone,
+        'email': student.parent.email,
+        'relationship': student.parent.relationship
+      };
       note.OSIS = student.OSIS;
       note.homeroom = student.homeroom;
       note.kind = 'Absence';
@@ -104,7 +106,7 @@ module.exports = {
         }
         for (var teacherkey in student.teachers) {
           teacher = student.teachers[teacherkey];
-          if(emails.Teachers[teacher.name]){
+          if (emails.Teachers[teacher.name]) {
             transport.sendMail({
               subject: 'Absence ' + req.user.google.name + ' Period ' + teacher.period,
               to: emails.Teachers[teacher.name],

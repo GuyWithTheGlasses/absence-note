@@ -18,28 +18,30 @@
       <th>Student</th>
       <th>Date</th>
       <th>Type</th>
+      <th>Homeroom</th>
       <th>Periods</th>
-      <th>Status</th>
     </tr>
   </thead>
   <tbody>
+    {{#notes}}
     <tr class="tablerow">
       <td class="tablelink">
-        <a href="/">Roy Xu</a>
+        <a href="/admin/{{{kind}}}/{{{_id}}}">{{{student}}}</a>
       </td>
       <td class="tablelink">
-        5/27/2016
+        {{{formatted_date}}}
       </td>
       <td class="tablelink">
-        Absence Note
+        {{{kind}}}
       </td>
       <td class="tablelink">
-        1-10
+        {{{homeroom}}}
       </td>
       <td class="tablelink">
-        Pending
+        {{#schedule}}{{{Period}}}&nbsp  {{/schedule}}
       </td>
     </tr>
+    {{/notes}}
   </tbody>
 </table>
 

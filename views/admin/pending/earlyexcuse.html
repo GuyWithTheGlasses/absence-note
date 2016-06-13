@@ -13,56 +13,49 @@
 <h1 class="note title">Early Excuse Note</h1>
 <div class="form-entry">
   <h3 class="label">Name</h3>
-  <h3 class="info">Roy Xu</h3>
+  <h3 class="info">{{{excuse.student}}}</h3>
 </div>
 
 <div class="form-entry">
   <h3 class="label">OSIS</h3>
-  <h3 class="info">210961116</h3>
+  <h3 class="info">{{{excuse.OSIS}}}</h3>
 </div>
 
 <div class="form-entry">
   <h3 class="label">Homeroom</h3>
-  <h3 class="info">7RR</h3>
-</div>
-
-<div class="form-entry">
-  <h3 class="label">Type</h3>
-  <h3 class="info">Correction</h3>
+  <h3 class="info">{{{excuse.homeroom}}}</h3>
 </div>
 
 <div class="form-entry">
   <h3 class="label">Date of Excuse</h3>
-  <h3 class="info">5/16/16</h3>
+  <h3 class="info">{{{excuse.formatted_date}}}</h3>
 </div>
 
 <div class="form-entry">
   <h3 class="label">Time of Submission</h3>
-  <h3 class="info">3:00 PM</h3>
+  <h3 class="info">{{{excuse.current_time}}}</h3>
 </div>
 
 <div class="form-entry">
   <h3 class="label">Time of Excuse</h3>
-  <h3 class="info">2:00 PM</h3>
+  <h3 class="info">{{{excuse.exiting_time}}}</h3>
 </div>
 
 
 <div class="form-entry">
   <h3 class="label">Explanation</h3>
-  <h3 class="info">Was Sick</h3>
+  <h3 class="info">{{{excuse.excuse}}}</h3>
 </div>
 <div class="form-entry">
   <h3 class="label">Parent</h3>
   <h3 class="info">
-    xu.chang123@yahoo.com
-    <i class="fa fa-times" aria-hidden="true"></i>
-    <i class="fa fa-check" aria-hidden="true"></i>
+    {{{excuse.parent}}}
   </h3>
 </div>
 
 <h3 class="label">Classes</h3>
 
-<table class="courses">
+<table class="courses space-{{{excuse.approved}}}">
   <thead>
     <tr>
       <td></td>
@@ -72,154 +65,36 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    {{#excuse.schedule}}
+    <tr class="table-period">
       <td>
-        <label class="checkbox-label" for="1select">Pd. 1</label>
+        <label class="checkbox-label" for="{{{period}}}select">Pd. {{{Period}}}</label>
+      </td>
+      <td class="teacher-name">
+        <div>
+          {{{Teacher}}}
+        </div>
+      </td>
+      <td class="teacher-code">
+        <div>
+          {{{Course Code}}}
+        </div>
       </td>
       <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label class="checkbox-label" for="2select">Pd. 2</label>
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <i class="fa fa-times" aria-hidden="true"></i>
+        <i class="fa fa-{{{approved}}}" aria-hidden="true"></i>
       </td>
     </tr>
-    <tr>
-      <td>
-        <label class="checkbox-label" for="3select">Pd. 3</label>
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label class="checkbox-label" for="4select">Pd. 4</label>
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label class="checkbox-label" for="5select">Pd. 5</label>
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label class="checkbox-label" for="6select">Pd. 6</label>
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label class="checkbox-label" for="7select">Pd. 7</label>
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label class="checkbox-label" for="8select">Pd. 8</label>
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label class="checkbox-label" for="9select">Pd. 9</label>
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label class="checkbox-label" for="10select">Pd. 10</label>
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </td>
-    </tr>
+    {{/excuse.schedule}}
   </tbody>
 </table>
-<div class="type-box">
+<div class="type-box show-{{{excuse.approved}}}">
   <button id="approve" class="btn submit form-submit-ajax">Approve</button>
   <button id="deny" class="btn deny form-submit-ajax">Deny</button>
 </div>
 {{/yield-content}}
 
 {{#yield-scripts}}
+<script src="../../lib/ajax.js"></script>
+<script src="../../lib/foreach.js"></script>
 <script src="../../js/admin_approve.js"></script>
 {{/yield-scripts}}

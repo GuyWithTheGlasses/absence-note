@@ -18,40 +18,44 @@
     <tr class="absence-header">
       <th>Name</th>
       <th>Date</th>
-      <th>Osis</th>
+      <th>OSIS</th>
       <th>Homeroom</th>
       <th>Periods</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
+    {{#excuses}}
     <tr class="tablerow">
       <td class="tablelink">
-        <a href="/">Kevin Yan</a>
+        <a href="/admin/{{{kind}}}/{{{_id}}}">{{{student}}}</a>
       </td>
       <td class="tablelink">
-        6/6/2016
+        {{{formatted_date}}}
       </td>
       <td class="tablelink">
-        205440076
+        {{{OSIS}}}
       </td>
       <td class="tablelink">
-        7XX
+        {{{homeroom}}}
       </td>
       <td class="tablelink">
-        5-10
+        {{#schedule}}{{{Period}}}&nbsp  {{/schedule}}
       </td>
       <td class="options">
-        <i id="approve" class="fa fa-check-circle-o approve" aria-hidden="true"></i>
-        <i id="deny" class="fa fa-times-circle-o deny" aria-hidden="true"></i>
+        <i id="{{{_id}}}" class="fa fa-check-circle-o approve" aria-hidden="true"></i>
+        <i id="{{{_id}}}" class="fa fa-times-circle-o deny" aria-hidden="true"></i>
       </td>
     </tr>
+    {{/excuses}}
   </tbody>
 </table>
 
 {{/yield-content}}
 
 {{#yield-scripts}}
+<script src="../../lib/ajax.js"></script>
+<script src="../../lib/foreach.js"></script>
 <script src="../../js/history.js"></script>
 <script src="../../js/admin_approve.js"></script>
 {{/yield-scripts}}

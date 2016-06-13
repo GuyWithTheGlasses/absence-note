@@ -9,11 +9,9 @@ module.exports = {
     'students': 'admin/students',
     'absence': {
       'pending': 'admin/pending/absence',
-      'history': 'admin/view/absence'
     },
     'earlyexcuse': {
       'pending': 'admin/pending/earlyexcuse',
-      'history': 'admin/view/earlyexcuse'
     }
   },
   'students': {

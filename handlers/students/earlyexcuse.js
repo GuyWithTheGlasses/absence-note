@@ -89,6 +89,12 @@ module.exports = {
       }
       var note = new Excuse(data);
       note.student = student.google.name;
+      note.parent = {
+        'name': student.parent.name,
+        'phone': student.parent.phone,
+        'email': student.parent.email,
+        'relationship': student.parent.relationship
+      };
       note.OSIS = student.OSIS;
       note.homeroom = student.homeroom;
       note.kind = 'EarlyExcuse';

@@ -31,15 +31,10 @@ var noteSchema = mongoose.Schema({
   submission_date: {type: Date, default: Date.now },
   excuse: String,
   parent: new mongoose.Schema({
-    'Signature': new mongoose.Schema({
-      'signature': {
-        type: String,
-        default: 'Unsigned'
-      },
-      'date': Date
-    }),
-    'Name': String,
-    'Contact Number': String
+    'name': String,
+    'phone': String,
+    'email': String,
+    'relationship':String
   }),
   schedule: [new mongoose.Schema({
     'Period': String,

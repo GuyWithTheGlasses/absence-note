@@ -24,6 +24,11 @@ module.exports = {
   'absences': function(req, res, next) {
     Absence.find(function(err, absences) {
       if (err) return next(err);
+      absences = absences.map(function(note){
+        var excused_date = new Date(note.excused_date);
+        note.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
+        return note;
+      });
       return res.render(templates.admin.absences, { user: req.user, absences: absences });
     });
   },
@@ -36,13 +41,23 @@ module.exports = {
   'history': function(req, res, next) {
     Note.find(function(err, notes) {
       if (err) return next(err);
+      notes = notes.map(function(note){
+        var excused_date = new Date(note.excused_date);
+        note.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
+        return note;
+      });
       return res.render(templates.admin.history, { user: req.user, notes: notes });
     });
   },
   'earlyexcuses': function(req, res, next) {
     Excuse.find(function(err, excuses) {
       if (err) return next(err);
-      return res.render(templates.admin.earlyexcuse, { user: req.user, excuses: excuses });
+      excuses = excuses.map(function(note){
+        var excused_date = new Date(note.excused_date);
+        note.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
+        return note;
+      });
+      return res.render(templates.admin.earlyexcuses, { user: req.user, excuses: excuses });
     });
   }
 };

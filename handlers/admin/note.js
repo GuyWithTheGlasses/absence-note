@@ -1,6 +1,9 @@
 var Note = require('../../models/notes').Note;
 var templates = require('../../config/templates');
 var messages = require('../../config/messages');
+var ObjectId = require('mongoose').Schema.Types.ObjectId;
+var Absence = require('../../models/notes').Absence;
+var Excuse = require('../../models/notes').EarlyExcuse;
 module.exports = {
   get: function(req, res, next) {
     Note.find({ 'approved': false }, function(err, pending_notes) {
@@ -30,9 +33,11 @@ module.exports = {
     },
     approve: function(req, res) {
       if (req.user && req.user.type == 'Admin' && req.isAuthenticated()) {
-        Note.findAndUpdate({ _id: ObjectId(req.params.id) }, { approved: true }, function(err, note) {
-          if (err) return res.send(err);
-          return res.send(messages.admin.note.approved);
+        Note.findById(req.params.id, function(err, note) {
+          note.approve(function(err) {
+            if (err) return res.send(err);
+            return res.send(messages.admin.note.approved);
+          });
         });
       } else {
         res.send({
@@ -53,4 +58,30 @@ module.exports = {
       });
     }
   },
+  absence: {
+    id: {
+      get: function(req, res, next) {
+        Absence.findById(req.params.id, function(err, absence) {
+          if (err) return next(err);
+          if (!absence) return next(messages.admin.note.notfound);
+          var excused_date = new Date(absence.excused_date);
+          absence.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
+          return res.render(templates.admin.absence.pending, { user: req.user, absence: absence });
+        });
+      }
+    }
+  },
+  earlyexcuse: {
+    id: {
+      get: function(req, res, next) {
+        Excuse.findById(req.params.id, function(err, excuse) {
+          if (err) return next(err);
+          if (!excuse) return next(messages.admin.note.notfound);
+          var excused_date = new Date(excuse.excused_date);
+          excuse.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
+          return res.render(templates.admin.earlyexcuse.pending, { user: req.user, excuse:excuse});
+        });
+      }
+    }
+  }
 };

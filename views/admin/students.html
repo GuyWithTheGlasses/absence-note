@@ -23,23 +23,25 @@
     </tr>
   </thead>
   <tbody>
+    {{#students}}
     <tr class="tablerow">
       <td class="tablelink">
-        <a href="#">Kevin Yan</a>
+        <a href="#">{{{google.name}}}</a>
       </td>
       <td class="tablelink">
-        205440076
+        {{{OSIS}}}
       </td>
       <td class="tablelink">
-        7XX
+        {{{homeroom}}}
       </td>
       <td class="tablelink">
-        Chang Zhao Xu
+        {{{parent.name}}}
       </td>
       <td class="tablelink">
-        347-742-4204
+        {{{parent.phone}}}
       </td>
     </tr>
+    {{/students}}
   </tbody>
 </table>
 

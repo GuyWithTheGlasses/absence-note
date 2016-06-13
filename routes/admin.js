@@ -13,7 +13,8 @@ router.get( '/', handler.index.get );
 router.post( '/note/:id/approve', handler.note.id.approve );
 router.post( '/note/:id/deny', handler.note.id.deny );
 
-router.get( '/note/:id', handler.note.id.get );
+router.get( '/absence/:id', handler.note.absence.id.get );
+router.get( '/earlyexcuse/:id', handler.note.earlyexcuse.id.get );
 
 router.get( '/absences', handler.absences );
 router.get( '/earlyexcuses', handler.earlyexcuses );
