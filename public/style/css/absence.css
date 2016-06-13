@@ -254,3 +254,8 @@ label {
 
 .space-true {
   margin-bottom: 30px; }
+
+.response {
+  color: #41be4b;
+  font-size: 18px;
+  text-align: center; }

@@ -86,6 +86,7 @@ noteSchema.methods.approve = function(callback) {
   this.save(function(err) {
     if (err && callback && typeof callback == 'function')
       return callback(err);
+      return callback();
   });
 };
 
@@ -118,7 +119,8 @@ noteSchema.methods.delete = function(callback) {
   }
   note.remove(function(err) {
     if (err)
-      throw callback(err);
+      return callback(err);
+    return callback();
   });
 };
 

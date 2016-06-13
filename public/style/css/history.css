@@ -147,3 +147,8 @@ textarea {
   color: #41be4b;
   font-size: 30px !important;
   margin-left: 10px; }
+
+.response {
+  color: #41be4b;
+  font-size: 18px;
+  text-align: center; }
