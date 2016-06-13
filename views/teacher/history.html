@@ -17,25 +17,31 @@
     <tr class="absence-header">
       <th>Student</th>
       <th>Date</th>
+      <th>Homeroom</th>
       <th>Type</th>
-      <th>Period</th>
+      <th>Periods</th>
     </tr>
   </thead>
   <tbody>
+    {{#notes}}
     <tr class="tablerow">
       <td class="tablelink">
-        <a href="/">Roy Xu</a>
+        <a href="/teacher/note/{{{kind}}}/{{{_id}}}">{{{student}}}</a>
       </td>
       <td class="tablelink">
-        5/27/2016
+        {{{formatted_date}}}
       </td>
       <td class="tablelink">
-        Absence Note
+        {{{homeroom}}}
       </td>
       <td class="tablelink">
-        8
+        {{{kind}}}
+      </td>
+      <td class="tablelink">
+        {{#schedule}}{{{Period}}}&nbsp  {{/schedule}}
       </td>
     </tr>
+    {{/notes}}
   </tbody>
 </table>
 
