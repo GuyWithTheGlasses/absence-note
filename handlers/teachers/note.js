@@ -49,7 +49,6 @@ module.exports = {
         return period.Teacher === req.user.google.name;
       });
       note.schedule = note.schedule.map(function(period){
-        console.log(period);
         if(period.approved){
           period.status = 'check';
         }else{

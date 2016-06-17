@@ -64,13 +64,10 @@ noteSchema.methods.add = function(callback) {
   for (var courseIndex in this.schedule) {
     var course = this.schedule[courseIndex];
     accounts.Teacher.findOneAndUpdate({"google.name": course.Teacher}, {"$push": { "notes.pending": note._id}}, function(err,teacher){
-      if (err) console.log('err',err);
     } );
   }
-  console.log(note);
   note.save(function(err) {
     if (err) {
-      console.log("Error in saving");
       callback(err);
     } else return callback();
   });

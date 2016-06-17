@@ -69,13 +69,10 @@ module.exports = {
       var student = req.user;
       var excuse = req.body;
       var periods = excuse.periods;
-      console.log(periods);
       var data = {};
       data.schedule = [];
       for (var index in student.teachers) {
         var period = student.teachers[index];
-        console.log(period);
-        console.log(periods[index]);
         if (periods[index]) data.schedule.push({
           'Period': period.period,
           'Teacher': period.name,

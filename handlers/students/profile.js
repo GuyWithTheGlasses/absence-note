@@ -12,7 +12,6 @@ module.exports = {
   },
   post: function( req, res ) { // Receives updated profile
     var studentForm = req.body;
-    console.log(studentForm);
     var updated = {$set:{}};
     for ( var field in studentForm ) {
       if(field.includes('-')) {
@@ -23,7 +22,6 @@ module.exports = {
         updated.$set[field] = studentForm[field];
       }
     }
-    console.log(updated);
     Student.findByIdAndUpdate( req.user._id, updated, {upsert:true}, function(err, doc){
       if(err) return res.send(err);
       else return res.json({success:true});

@@ -8,7 +8,6 @@ module.exports = {
       res.render(templates.index);
     },
     post: function(req, res, next) {
-      console.log('Posted to index!');
       next();
     }
   },

@@ -47,8 +47,6 @@ module.exports = function(passport) {
               newAccount = new accounts.Student();
             }
           }
-
-          console.log(profile.emails);
           // To make sure I get only what I want
           newAccount.google.id = profile.id;
           newAccount.google.token = token;
