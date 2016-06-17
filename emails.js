@@ -10,9 +10,8 @@ for (var lineindex in data) {
   Teachers[name] = line[0].trim();
 }
 
-Teachers['Leon Chou'] = 'leonchou123@gmail.com';
+//Teachers['Leon Chou'] = 'leonchou123@gmail.com';
 Teachers['Johnny So'] = 'jso123450@gmail.com';
-//Teachers['Johnny So'] = 'jso@stuy.edu';
 
 var emails = {
   'Teachers': Teachers,
