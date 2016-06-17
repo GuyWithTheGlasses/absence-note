@@ -19,7 +19,9 @@ module.exports = {
   },
   'history': {
     get: function(req, res, next) {
-      Note.find(function(err, notes) {
+      Note.find({
+        _id:{$in:req.user.notes.approved}
+      },function(err, notes) {
         if (err) return next(err);
         notes = JSON.parse(JSON.stringify(notes));
         notes = notes.map(function(note){

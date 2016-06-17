@@ -87,7 +87,6 @@ module.exports = {
         });
       }
       for (var param in absence) data[param] = absence[param];
-      console.log(data);
       // Adds known information to the note
       var note = new Absence(data);
       note.student = student.google.name;
@@ -113,6 +112,13 @@ module.exports = {
               html: req.user.google.name + ' in your period ' + teacher.period + ' class has requested your approval for an absence on ' + absence.excused_date + '<br><a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
             });
           }
+        }
+        if(req.user.parent.email){
+          transport.sendMail({
+            subject: 'Absence ' + req.user.google.name + ' ' + note.date,
+            to: req.user.parent.email,
+            html: req.user.google.name + ' has submitted an absence excuse for ' + note.date,
+          });
         }
         return res.send(messages.student.absence.created(note));
       });
