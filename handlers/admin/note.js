@@ -86,9 +86,9 @@ module.exports = {
         Excuse.findById(req.params.id, function(err, excuse) {
           if (err) return next(err);
           if (!excuse) return next(messages.admin.note.notfound);
+          excuse = JSON.parse(JSON.stringify(excuse));
           var excused_date = new Date(excuse.excused_date);
           excuse.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
-          excuse = JSON.parse(JSON.stringify(excuse));
           excuse.schedule = excuse.schedule.map(function(period) {
             if (period.approved) {
               period.approved = 'check';

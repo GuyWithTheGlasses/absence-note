@@ -65,16 +65,19 @@ module.exports = {
   earlyexcuse: function(req, res, next) {
     Excuse.findById(req.params.id, function(err, note) {
       if (err) return next(err);
+      note = JSON.parse(JSON.stringify(note));
       var excused_date = new Date(note.excused_date);
       note.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
-      var own_period = note.schedule.find(function(period) {
-        return period.Teacher === req.user.google.name;
+      note.schedule = note.schedule.map(function(period){
+        if(period.approved){
+          period.status = 'check';
+        }else{
+          period.status = 'times';
+        }
+        return period;
       });
-      if (own_period.approved) note.status = 'check';
-      else note.status = 'times';
       res.render(templates.teachers.earlyexcuse.view, {
         note: note,
-        own_period: own_period
       });
     });
   }
