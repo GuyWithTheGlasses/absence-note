@@ -48,6 +48,9 @@ module.exports = {
       var own_period = note.schedule.find(function(period) {
         return period.Teacher === req.user.google.name;
       });
+      var teacher_approved = false;
+      if (note.schedule[note.schedule.indexOf(own_period)].approved)
+        var teacher_approved = true;
       note.schedule = note.schedule.map(function(period){
         if(period.approved){
           period.status = 'check';
@@ -58,7 +61,8 @@ module.exports = {
       });
       res.render(templates.teachers.absence.view, {
         note: note,
-        own_period: own_period
+        own_period: own_period,
+        teacher_approved: teacher_approved
       });
     });
   },
@@ -76,8 +80,15 @@ module.exports = {
         }
         return period;
       });
+      var own_period = note.schedule.find(function(period) {
+        return period.Teacher === req.user.google.name;
+      });
+      var teacher_approved = false;
+      if (note.schedule[note.schedule.indexOf(own_period)].approved)
+        var teacher_approved = true;
       res.render(templates.teachers.earlyexcuse.view, {
         note: note,
+        teacher_approved : teacher_approved
       });
     });
   }
