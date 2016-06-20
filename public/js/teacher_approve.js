@@ -1,7 +1,7 @@
 forEachInClass( document, 'approve', function( button ) {
   button.addEventListener( 'click', function( e ) {
     e.preventDefault();
-    if ( this.parentNode.parentNode.tagName == "tr" ) {
+    if ( this.parentNode.parentNode.tagName == "TR" ) {
       this.parentNode.parentNode.style.display = "none";
     } else {
       forEachInClass( document, 'approve', function( button ) {
@@ -24,7 +24,7 @@ forEachInClass( document, 'approve', function( button ) {
 forEachInClass( document, 'deny', function( button ) {
   button.addEventListener( 'click', function( e ) {
     e.preventDefault();
-    if ( this.parentNode.parentNode.tagName == "tr" ) {
+    if ( this.parentNode.parentNode.tagName == "TR" ) {
       this.parentNode.parentNode.style.display = "none";
     } else {
       forEachInClass( document, 'approve', function( button ) {
