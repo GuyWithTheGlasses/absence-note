@@ -16,27 +16,16 @@ var masterBox = document.getElementById( "master-box" );
 var correction = document.getElementById( "correction" );
 var excused = document.getElementById( "excused" );
 
-correction.style["background-color"] = "#00bfff";
-excused.style["background-color"] = "#00bfff";
-
 correction.addEventListener( "click", function( e ) {
   e.preventDefault();
   correctionBox.style.display = "block";
   excusedBox.style.display = "none";
-  correction.style["background-color"] = "#00b300";
-  forEachInClass(correctionBox, RADIO_BUTTON, function(button){
-      button.style["background-color"] = "#00bfff";
-  })
 } );
 
 excused.addEventListener( "click", function( e ) {
   e.preventDefault();
   excusedBox.style.display = "block";
   correctionBox.style.display = "none";
-  excused.style["background-color"] = "#00b300";
-  forEachInClass(excusedBox, RADIO_BUTTON, function(button){
-      button.style["background-color"] = "#00bfff";
-  })
 } );
 
 var picker = new Pikaday( {
