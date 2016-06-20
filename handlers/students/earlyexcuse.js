@@ -103,7 +103,7 @@ module.exports = {
             transport.sendMail({
               subject: 'Early Excuse ' + req.user.google.name + ' Period ' + teacher.period,
               to: emails.Teachers[teacher.name],
-              html: req.user.google.name + ' in your period ' + teacher.period + ' class has requested your approval for early leave on ' + note.excused_date + '<br><a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Early Excuse Note</a>'
+              html: req.user.google.name + ' in your period ' + teacher.period + ' class has requested your approval for early leave on ' + note.excused_date + '<br><a href="stuyabsence.stuycs.com/teacher/note/"' + note._id + '">View Early Excuse Note</a>'
             });
           }
         }
