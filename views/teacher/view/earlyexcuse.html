@@ -87,15 +87,15 @@
     {{/note.schedule}}
   </tbody>
 </table>
-<h3 id="response" class="response show-{{{excuse.approved}}}"></h3>
-<!-- <div class="type-box show-{{{excuse.approved}}}">
-  <button id="approve" class="btn submit form-submit-ajax">Approve</button>
-  <button id="deny" class="btn deny form-submit-ajax">Deny</button>
-</div> -->
+<h3 id="response" class="response show-{{{note.approved}}}"></h3>
+<div class="type-box show-{{{note.approved}}}">
+  <button id="{{{note._id}}}" class="btn submit approve">Approve</button>
+  <button id="{{{note._id}}}" class="btn deny">Deny</button>
+</div>
 {{/yield-content}}
 
 {{#yield-scripts}}
-<script src="../../lib/ajax.js"></script>
-<script src="../../lib/foreach.js"></script>
-<script src="../../js/teacher_approve.js"></script>
+<script src="../../../lib/ajax.js"></script>
+<script src="../../../lib/foreach.js"></script>
+<script src="../../../js/teacher_approve.js"></script>
 {{/yield-scripts}}

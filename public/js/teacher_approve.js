@@ -3,6 +3,13 @@ forEachInClass( document, 'approve', function( button ) {
     e.preventDefault();
     if ( this.parentNode.parentNode.tagName == "tr" ) {
       this.parentNode.parentNode.style.display = "none";
+    } else {
+      forEachInClass( document, 'approve', function( button ) {
+        button.style.display = "none";
+      } );
+      forEachInClass( document, 'deny', function( button ) {
+        button.style.display = "none";
+      } );
     }
     ajax( {
       url: "/teacher/note/" + this.getAttribute( 'id' ) + "/approve",
@@ -19,6 +26,13 @@ forEachInClass( document, 'deny', function( button ) {
     e.preventDefault();
     if ( this.parentNode.parentNode.tagName == "tr" ) {
       this.parentNode.parentNode.style.display = "none";
+    } else {
+      forEachInClass( document, 'approve', function( button ) {
+        button.style.display = "none";
+      } );
+      forEachInClass( document, 'deny', function( button ) {
+        button.style.display = "none";
+      } );
     }
     ajax( {
       url: "/teacher/note/" + this.getAttribute( 'id' ) + "/deny",
