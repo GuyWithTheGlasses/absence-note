@@ -8,6 +8,11 @@ $textarea-line: #ccc;
 $label-underline: #d2d2d2;
 $error: #f00;
 
+.checkbox-hidden::before {
+  border: 0 !important;
+  display: none !important;
+}
+
 label {
   font-size: 22px;
 }

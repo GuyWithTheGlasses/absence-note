@@ -94,6 +94,10 @@ textarea {
   margin-top: -70px;
   text-decoration: none; }
 
+.checkbox-hidden::before {
+  border: 0 !important;
+  display: none !important; }
+
 label {
   font-size: 22px; }
 
