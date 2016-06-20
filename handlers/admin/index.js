@@ -22,7 +22,7 @@ module.exports = {
     },
   },
   'absences': function(req, res, next) {
-    Absence.find({'approved':false},function(err, absences) {
+    Absence.find({'pending':true},function(err, absences) {
       if (err) return next(err);
       absences = absences.map(function(note){
         var excused_date = new Date(note.excused_date);
@@ -50,7 +50,7 @@ module.exports = {
     }
   },
   'history': function(req, res, next) {
-    Note.find({'approved':true},function(err, notes) {
+    Note.find({'pending':false},function(err, notes) {
       if (err) return next(err);
       notes = notes.map(function(note){
         var excused_date = new Date(note.excused_date);
@@ -61,7 +61,7 @@ module.exports = {
     });
   },
   'earlyexcuses': function(req, res, next) {
-    Excuse.find({'approved':false},function(err, excuses) {
+    Excuse.find({'pending':true},function(err, excuses) {
       if (err) return next(err);
       excuses = excuses.map(function(note){
         var excused_date = new Date(note.excused_date);
