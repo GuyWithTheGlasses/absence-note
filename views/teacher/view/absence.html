@@ -73,7 +73,7 @@
           {{{Course Code}}}
         </div>
       </td>
-      <td>
+      <td class="status-container">
         <i class="fa fa-{{{status}}}" aria-hidden="true"></i>
       </td>
     </tr>
@@ -86,7 +86,7 @@
   <button id="{{{note._id}}}" class="btn deny">Deny</button>
 </div>
 <center>
-  <button class="btn"><a href="//pdfcrowd.com/url_to_pdf/">Save to PDF</a></button>
+  <button onclick="event.preventDefault(); window.print();"class="btn pdf">Print/Save</button>
 </center>
 {{/yield-content}}
 

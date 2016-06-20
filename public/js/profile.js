@@ -49,7 +49,6 @@ ajax({
       method: 'POST',
       success: function(res) {
         res = JSON.parse(res);
-        console.log(res);
         setupTeachers(res);
       }
     });
@@ -164,5 +163,5 @@ var saveProfile = function(e){
   });
 };
 forEachInClass(document, "save-profile", function(button){
-    button.addEventListener(saveProfile);
+    button.addEventListener('click',saveProfile);
 });

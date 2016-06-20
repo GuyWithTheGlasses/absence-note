@@ -24,7 +24,6 @@ module.exports = {
       var student = req.user;
       Excuse.findById(req.params.id, function(err, excuse) {
         if (err) return next(err);
-        if (student.OSIS != excuse.OSIS) return next(messages.student.excuse.noMatch);
         var formatted = {};
         var excused_date = new Date(excuse.excused_date);
         excuse.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();

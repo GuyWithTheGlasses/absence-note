@@ -38,7 +38,7 @@ module.exports = {
     "unset": "keep",
     "cookie": {
       "path": '/',
-      "maxAge": 1 * 24 * 60 * 60, // In seconds
+      "maxAge": null, // In seconds
       "httpOnly":true,
     }
   },

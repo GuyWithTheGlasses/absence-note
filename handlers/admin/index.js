@@ -52,6 +52,7 @@ module.exports = {
   'history': function(req, res, next) {
     Note.find({'pending':false},function(err, notes) {
       if (err) return next(err);
+      notes = JSON.parse(JSON.stringify(notes));
       notes = notes.map(function(note){
         var excused_date = new Date(note.excused_date);
         note.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();

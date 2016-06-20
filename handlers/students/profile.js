@@ -17,6 +17,9 @@ module.exports = {
       for ( var field in studentForm ) {
         if(field.includes('-')) {
           newfield = field.split('-');
+          if (!student[newfield[0]]) {
+            student[newfield[0]] = {};
+          }
           student[newfield[0]][newfield[1]] = studentForm[field];
         }else{
           student[field] = studentForm[field];

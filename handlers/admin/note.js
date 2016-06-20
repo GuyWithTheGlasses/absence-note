@@ -28,6 +28,9 @@ module.exports = {
       Note.findById(req.params.id, function(err, note) {
         if (err) return next(err);
         if (!note) return next(messages.admin.note.notfound);
+        note = JSON.parse(JSON.stringify(note));
+        var excused_date = new Date(note.excused_date);
+        note.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
         return res.render(templates.admin.note, { note: note });
       });
     },
@@ -64,6 +67,7 @@ module.exports = {
         Absence.findById(req.params.id, function(err, absence) {
           if (err) return next(err);
           if (!absence) return next(messages.admin.note.notfound);
+          absence = JSON.parse(JSON.stringify(absence));
           var excused_date = new Date(absence.excused_date);
           absence.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
           absence = JSON.parse(JSON.stringify(absence));
