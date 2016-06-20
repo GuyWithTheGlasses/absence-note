@@ -114,9 +114,9 @@ module.exports = {
         }
         if(req.user.parent.email){
           transport.sendMail({
-            subject: 'Absence ' + req.user.google.name + ' ' + note.date,
+            subject: 'Absence ' + req.user.google.name + ' ' + absence.excused_date,
             to: req.user.parent.email,
-            html: req.user.google.name + ' has submitted an absence excuse for ' + note.date,
+            html: req.user.google.name + ' has submitted an absence excuse for ' + absence.excused_date,
           });
         }
         return res.send(messages.student.absence.created(note));

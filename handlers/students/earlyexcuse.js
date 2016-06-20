@@ -106,6 +106,15 @@ module.exports = {
             });
           }
         }
+        if(req.user.parent.email){
+          var excused_date = new Date(note.excused_date);
+          date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
+          transport.sendMail({
+            subject: 'Early Excuse ' + req.user.google.name + ' ' + date,
+            to: req.user.parent.email,
+            html: req.user.google.name + ' has submitted an early excuse for ' + date,
+          });
+        }
         return res.send(messages.student.excuse.created(note));
       });
     }
