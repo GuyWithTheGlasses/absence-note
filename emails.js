@@ -12,6 +12,7 @@ for (var lineindex in data) {
 
 //Teachers['Leon Chou'] = 'leonchou123@gmail.com';
 Teachers['Johnny So'] = 'jso123450@gmail.com';
+Teachers['Roy Xu'] = 'rx367@nyu.edu';
 
 var emails = {
   'Teachers': Teachers,
