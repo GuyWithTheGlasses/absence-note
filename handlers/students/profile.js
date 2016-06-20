@@ -12,19 +12,23 @@ module.exports = {
   },
   post: function( req, res ) { // Receives updated profile
     var studentForm = req.body;
-    var updated = {$set:{}};
-    for ( var field in studentForm ) {
-      if(field.includes('-')) {
-        newfield = field.split('-');
-        updated.$set[newfield[0]] = updated.$set[newfield[0]] || req.user[newfield[0]] || {};
-        updated.$set[newfield[0]][newfield[1]] = studentForm[field];
-      }else{
-        updated.$set[field] = studentForm[field];
+    Student.findById(req.user._id, function(err, student){
+      if(err) return res.json(err);
+      for ( var field in studentForm ) {
+        if(field.includes('-')) {
+          newfield = field.split('-');
+          if (!student[newfield[0]]) {
+            student[newfield[0]] = {};
+          }
+          student[newfield[0]][newfield[1]] = studentForm[field];
+        }else{
+          student[field] = studentForm[field];
+        }
       }
-    }
-    Student.findByIdAndUpdate( req.user._id, updated, {upsert:true}, function(err, doc){
-      if(err) return res.send(err);
-      else return res.json({success:true});
+      student.save(function(err){
+        if(err) res.json(err);
+        else res.json({success:true});
+      });
     });
   },
   'ajax': {

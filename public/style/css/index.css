@@ -94,6 +94,16 @@ textarea {
   margin-top: -70px;
   text-decoration: none; }
 
+.pdf {
+  background-color: #41be4b;
+  font-size: 20px;
+  height: 50px;
+  margin-bottom: 80px;
+  width: 200px; }
+
+.status-container {
+  text-align: center !important; }
+
 body {
   background: url("../../img/stuyvesant.jpg") center center no-repeat;
   background-size: cover;

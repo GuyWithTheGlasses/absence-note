@@ -32,19 +32,14 @@ module.exports = {
   "session": {
     "name": "sessionid",
     // "proxy":true,
-    "resave": false,
-    "saveUninitialized": false,
+    "resave": true,
+    "saveUninitialized": true,
     "secret": process.env.SECRET || "kek",
-    "store": new MongoStore( {
-      "mongooseConnection": mongoose.connection
-    } ),
     "unset": "keep",
     "cookie": {
-      "secure": false, // Must be HTTPS
       "path": '/',
-      "maxAge": 1 * 24 * 60 * 60, // In seconds
-      "httpOnly": false, // coincides with secure option ^
-      // "firstPartyOnly":true // Only from server
+      "maxAge": null, // In seconds
+      "httpOnly":true,
     }
   },
   "passport": {

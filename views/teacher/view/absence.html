@@ -54,7 +54,7 @@
       <td></td>
       <td class="table-head">Teacher's Name</td>
       <td class="table-head">Course Code</td>
-      <td class="table-head">Status</td>
+      <td class="table-head">Teacher Approved</td>
     </tr>
   </thead>
   <tbody>
@@ -73,7 +73,7 @@
           {{{Course Code}}}
         </div>
       </td>
-      <td>
+      <td class="status-container">
         <i class="fa fa-{{{status}}}" aria-hidden="true"></i>
       </td>
     </tr>
@@ -85,6 +85,9 @@
   <button id="{{{note._id}}}" class="btn submit approve">Approve</button>
   <button id="{{{note._id}}}" class="btn deny">Deny</button>
 </div>
+<center>
+  <button onclick="event.preventDefault(); window.print();"class="btn pdf">Print/Save</button>
+</center>
 {{/yield-content}}
 
 {{#yield-scripts}}

@@ -20,7 +20,6 @@ module.exports = {
       var student = req.user;
       Absence.findById(req.params.id, function(err, absence) {
         if (err) return next(err);
-        if (student.OSIS != absence.OSIS) return next(messages.student.absence.noMatch);
         var formatted = {};
         var excused_date = new Date(absence.excused_date);
         absence.formatted_date = (excused_date.getMonth() + 1) + '/' + excused_date.getDate() + '/' + excused_date.getFullYear();
@@ -109,7 +108,7 @@ module.exports = {
             transport.sendMail({
               subject: 'Absence ' + req.user.google.name + ' Period ' + teacher.period,
               to: emails.Teachers[teacher.name],
-              html: req.user.google.name + ' in your period ' + teacher.period + ' class has requested your approval for an absence on ' + absence.excused_date + '<br><a href="absence-note.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
+              html: req.user.google.name + ' in your period ' + teacher.period + ' class has requested your approval for an absence on ' + absence.excused_date + '<br><a href="stuyabsence.stuycs.com/teacher/note/"' + note._id + '">View Absence Note</a>'
             });
           }
         }

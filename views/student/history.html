@@ -20,7 +20,7 @@
       <th>Date</th>
       <th>Type</th>
       <th>Periods</th>
-      <th>Status</th>
+      <th class="status-container">Admin Approved</th>
     </tr>
   </thead>
   <tbody>
@@ -35,7 +35,7 @@
       <td class="tablelink">
         {{#schedule}}{{{Period}}}&nbsp  {{/schedule}}
       </td>
-      <td class="tablelink">
+      <td class="tablelink status-container">
         <i class="fa fa-{{{approved}}}" aria-hidden="true"></i>
       </td>
     </tr>
