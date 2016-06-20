@@ -56,7 +56,7 @@ ajax( {
 } );
 
 var insert = '<input type="text" class="input save-text"><i class="fa fa-floppy-o" aria-hidden="true"></i>';
-var insert_phone = '<input type="text" class="input save-text" placeholder="123-456-789"><i class="fa fa-floppy-o" aria-hidden="true"></i>';
+var insert_phone = '<input type="text" class="input save-text" placeholder="123-456-7890"><i class="fa fa-floppy-o" aria-hidden="true"></i>';
 var done = '<i class="fa fa-pencil" aria-hidden="true"></i>';
 
 var submitData = function( e ) {
@@ -92,7 +92,6 @@ var createEditField = function( e ) {
   }
   parent.childNodes[ 0 ].focus();
   parent.childNodes[ 1 ].addEventListener( "click", submitData );
-  console.log( parent.childNodes[ 0 ] );
   parent.childNodes[ 0 ].addEventListener( "keyup", function( event ) {
     event.preventDefault();
     if ( event.keyCode == 13 ) {

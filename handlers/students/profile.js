@@ -12,24 +12,26 @@ module.exports = {
   },
   post: function( req, res ) { // Receives updated profile
     var studentForm = req.body;
-    Student.findById(req.user._id, function(err, student){
-      if(err) return res.json(err);
+    Student.findById( req.user._id, function( err, student ) {
+      if ( err ) return res.json( err );
       for ( var field in studentForm ) {
-        if(field.includes('-')) {
-          newfield = field.split('-');
-          if (!student[newfield[0]]) {
-            student[newfield[0]] = {};
+        if ( field.includes( '-' ) ) {
+          newfield = field.split( '-' );
+          if ( !student[ newfield[ 0 ] ] ) {
+            student[ newfield[ 0 ] ] = {};
           }
-          student[newfield[0]][newfield[1]] = studentForm[field];
-        }else{
-          student[field] = studentForm[field];
+          student[ newfield[ 0 ] ][ newfield[ 1 ] ] = studentForm[ field ];
+        } else {
+          student[ field ] = studentForm[ field ];
         }
       }
-      student.save(function(err){
-        if(err) res.json(err);
-        else res.json({success:true});
-      });
-    });
+      student.save( function( err ) {
+        if ( err ) res.json( err );
+        else res.json( {
+          success: true
+        } );
+      } );
+    } );
   },
   'ajax': {
     get: function( req, res ) {
@@ -37,9 +39,9 @@ module.exports = {
       res.json( req.user );
     }
   },
-  'finished':function(req, res, next){
+  'finished': function( req, res, next ) {
     var student = req.user;
-    if(student.OSIS && student.homeroom && student.phone && student.parent && student.parent.name && student.parent.relationship && student.parent.phone && student.parent.email) return next();
-    else return res.redirect('/student/profile');
+    if ( student.OSIS && student.homeroom && student.phone && student.parent && student.parent.name && student.parent.relationship && student.parent.phone && student.parent.email ) return next();
+    else return res.redirect( '/student/profile' );
   }
 };
