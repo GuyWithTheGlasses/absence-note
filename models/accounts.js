@@ -73,13 +73,15 @@ teacherSchema.methods.approve = function(note_ID, callback) {
       if (course.Teacher == this.google.name)
         course.approved = true;
     }
+    note.save(function(err) {
+      if (err) return callback(err);
+    });
   });
   var noteIndex = this.notes.pending.indexOf(note_ID);
   var noteIDFromArray = this.notes.pending.splice(noteIndex, 1)[0];
   this.notes.approved.push(noteIDFromArray);
   this.save(function(err) {
-    if (err)
-      return callback(err);
+    return callback(err);
   });
 
 };
@@ -93,13 +95,15 @@ teacherSchema.methods.deny = function(note_ID, callback) {
       if (course.Teacher == this.google.name)
         course.approved = false;
     }
+    note.save(function(err) {
+      if (err) return callback(err);
+    });
   });
   var noteIndex = this.notes.pending.indexOf(note_ID);
   var noteIDFromArray = this.notes.pending.splice(noteIndex, 1)[0];
   this.notes.denied.push(noteIDFromArray);
   this.save(function(err) {
-    if (err)
-      return callback(err);
+    return callback(err);
   });
 
 };
