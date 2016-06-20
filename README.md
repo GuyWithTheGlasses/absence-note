@@ -23,7 +23,7 @@ $ sudo apt-get install -y nodejs
 12. Copy and paste the following into the file -things omitted for obvious reasons
 
     export env=production
-    export PORT=80
+    export PORT=3000
     export OWNER="Is owner"
 
     export SECRET= <SECRET KEY>
@@ -62,7 +62,7 @@ server {
     server_name <example.com>;  
 
     location / {  
-        proxy_pass http://127.0.0.1:3000;  
+        proxy_pass http://0.0.0.1:3000;  
         proxy_http_version 1.1;  
         proxy_set_header Upgrade $http_upgrade;  
         proxy_set_header Connection 'upgrade';  
@@ -127,5 +127,3 @@ $ sudo service nginx restart
   * Approve/Deny for admin and teacher
 - June 10
   * Finished frontend (all pages created)
-
-
