@@ -109,9 +109,7 @@ textarea {
 
 .absence-notes {
   border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
+  margin: 30px auto 80px;
   width: 900px; }
   .absence-notes th {
     border-bottom: 1px solid #000;

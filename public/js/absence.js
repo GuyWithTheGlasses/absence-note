@@ -48,7 +48,7 @@ var setupForms = function( event ) {
       event.preventDefault();
       //When this button is clicked
       //Delete all other "clicked" classes
-      if ( this.id == "lateness-excuse" || this.id == "lateness-correction" ) {
+      if ( this.id == "lateness-excuse" || this.id == "lateness-correction" || this.id == "cuts" ) {
         forEachInClass( document, "checkbox-label", function( checkbox ) {
           checkbox.classList.remove( "checkbox-hidden" );
         } );
