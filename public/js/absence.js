@@ -25,7 +25,7 @@ correction.addEventListener( "click", function( e ) {
   excusedBox.style.display = "none";
   correction.style["background-color"] = "#00b300";
   forEachInClass(correctionBox, RADIO_BUTTON, function(button){
-      button.style["background-color"] = "#d36165";
+      button.style["background-color"] = "#00bfff";
   })
 } );
 
@@ -35,7 +35,7 @@ excused.addEventListener( "click", function( e ) {
   correctionBox.style.display = "none";
   excused.style["background-color"] = "#00b300";
   forEachInClass(excusedBox, RADIO_BUTTON, function(button){
-      button.style["background-color"] = "#d36165";
+      button.style["background-color"] = "#00bfff";
   })
 } );
 
