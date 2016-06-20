@@ -8,6 +8,8 @@ var Absence = notes.Absense;
 var EarlyExcuse = notes.EarlyExcuse;
 
 var OSIS_ERROR_MESSAGE = 'Please enter a valid OSIS';
+var PHONE_ERROR_MESSAGE = 'Please enter a valid phone number following ###-###-###';
+var EMAIL_ERROR_MESSAGE = 'Please enter a valid email';
 
 var accountSchema = mongoose.Schema({
   google: {
@@ -30,12 +32,39 @@ var studentSchema = mongoose.Schema({
   // makes sure the OSIS is 9 digits long
   OSIS: { type: Number, min: [99999999, OSIS_ERROR_MESSAGE], max: [1000000000, OSIS_ERROR_MESSAGE] },
   homeroom: String,
-  phone: String,
+  phone: {
+    type: String,
+    validate: {
+      validator: function(v) {
+        return /\d{3}-\d{3}-\d{4}/.test(v);
+      },
+      message: PHONE_ERROR_MESSAGE
+    },
+    required: [true, 'Student Phone Number Required']
+  },
   parent: new mongoose.Schema({
     name: String,
     relationship: String,
-    phone: String,
-    email: String,
+    phone: {
+      type: String,
+      validate: {
+        validator: function(v) {
+          return /\d{3}-\d{3}-\d{4}/.test(v);
+        },
+        message: PHONE_ERROR_MESSAGE
+      },
+      required: [true, 'Parent Phone Number Required']
+    },
+    email: {
+      type: String,
+      validate: {
+        validator: function(e){
+          return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(e);
+        },
+        message: EMAIL_ERROR_MESSAGE
+      },
+      required: [true, 'Parent Email Required']
+    },
   }),
   teachers: [new mongoose.Schema({
     name: String,
