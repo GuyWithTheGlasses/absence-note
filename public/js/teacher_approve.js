@@ -1,25 +1,27 @@
-forEachInClass(document, 'approve', function(button) {
-  button.addEventListener('click', function(e) {
+forEachInClass( document, 'approve', function( button ) {
+  button.addEventListener( 'click', function( e ) {
     e.preventDefault();
-    ajax({
-      url: "/teacher/note/" + this.getAttribute('id') + "/approve",
+    ajax( {
+      url: "/teacher/note/" + this.getAttribute( 'id' ) + "/approve",
       method: "POST",
-      success: function(res) {
-        document.getElementById("response").innerHTML = "Approved";
+      success: function( res ) {
+        document.getElementById( "response" ).innerHTML = "Approved";
+        this.parent.parent.style.display = "none";
       }
-    });
-  });
-});
+    } );
+  } );
+} );
 
-forEachInClass(document, 'deny', function(button) {
-  button.addEventListener('click', function(e) {
+forEachInClass( document, 'deny', function( button ) {
+  button.addEventListener( 'click', function( e ) {
     e.preventDefault();
-    ajax({
-      url: "/teacher/note/" + this.getAttribute('id') + "/deny",
+    ajax( {
+      url: "/teacher/note/" + this.getAttribute( 'id' ) + "/deny",
       method: "POST",
-      success: function(res) {
-        document.getElementById("response").innerHTML = "Denied";
+      success: function( res ) {
+        document.getElementById( "response" ).innerHTML = "Denied";
+        this.parent.parent.style.display = "none";
       }
-    });
-  });
-});
+    } );
+  } );
+} );
