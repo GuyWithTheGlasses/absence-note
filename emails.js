@@ -18,7 +18,8 @@ var emails = {
   'Administrators': {
     'Leon': 'bleepbloopsify@gmail.com',
     'Cintron': 'ccintron@stuy.edu',
-    'Johnny' : 'sharpnkill@gmail.com'
+    'Johnny' : 'sharpnkill@gmail.com',
+    'Roy' : 'royxu652@gmail.com'
   },
 };
 module.exports = emails;

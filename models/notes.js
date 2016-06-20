@@ -48,6 +48,14 @@ var noteSchema = mongoose.Schema({
   approved: {
     type: Boolean,
     default: false
+  },
+  pending: {
+    type: Boolean,
+    default: true
+  },
+  denied: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -80,6 +88,23 @@ noteSchema.methods.add = function(callback) {
  */
 noteSchema.methods.approve = function(callback) {
   this.approved = true;
+  this.pending = false;
+  this.denied = false;
+  this.save(function(err) {
+    if (err && callback && typeof callback == 'function')
+      return callback(err);
+      return callback();
+  });
+};
+
+/**
+ * Method that will set the note's approved value to false
+ * @param  {Function} callback returns null if good else returns err
+ */
+noteSchema.methods.deny = function(callback) {
+  this.approved = false;
+  this.pending = false;
+  this.denied = true;
   this.save(function(err) {
     if (err && callback && typeof callback == 'function')
       return callback(err);
