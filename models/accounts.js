@@ -65,18 +65,19 @@ var teacherSchema = mongoose.Schema({
 });
 
 teacherSchema.methods.approve = function(note_ID, callback) {
-  Note.findByIdAndUpdate(note_ID, function(err, note) {
-    if (err)
-      return callback(err);
-    for (var courseIndex in note.schedule) {
-      var course = note.schedule[courseIndex];
-      if (course.Teacher == this.google.name)
-        course.approved = true;
-    }
-    note.save(function(err) {
+  var name = this.google.name;
+  Note.findById(note_ID,
+    function(err, note) {
       if (err) return callback(err);
+      for (var courseIndex in note.schedule) {
+        var course = note.schedule[courseIndex];
+        if (course.Teacher == name)
+          note.schedule[courseIndex].approved = true;
+      }
+      note.save(function(err) {
+        if (err) return callback(err);
+      });
     });
-  });
   var noteIndex = this.notes.pending.indexOf(note_ID);
   var noteIDFromArray = this.notes.pending.splice(noteIndex, 1)[0];
   this.notes.approved.push(noteIDFromArray);
@@ -93,7 +94,7 @@ teacherSchema.methods.deny = function(note_ID, callback) {
     for (var courseIndex in note.schedule) {
       var course = note.schedule[courseIndex];
       if (course.Teacher == this.google.name)
-        course.approved = false;
+        note.schedule[courseIndex].approved = false;
     }
     note.save(function(err) {
       if (err) return callback(err);
