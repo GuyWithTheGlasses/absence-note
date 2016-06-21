@@ -127,9 +127,25 @@ textarea {
 }
 
 .logout {
-  color: $text-black;
   float: right;
   margin-right: 30px;
   margin-top: -70px;
-  text-decoration: none;
+
+  a {
+    color: $text-black;
+    margin-right: 30px;
+    text-decoration: none;
+  }
+}
+
+.pdf {
+  background-color: $check-color;
+  font-size: 20px;
+  height: 50px;
+  margin-bottom: 80px;
+  width: 200px;
+}
+
+.status-container {
+  text-align: center !important
 }

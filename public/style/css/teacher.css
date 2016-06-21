@@ -88,11 +88,23 @@ textarea {
   outline: 0; }
 
 .logout {
-  color: #000;
   float: right;
   margin-right: 30px;
-  margin-top: -70px;
-  text-decoration: none; }
+  margin-top: -70px; }
+  .logout a {
+    color: #000;
+    margin-right: 30px;
+    text-decoration: none; }
+
+.pdf {
+  background-color: #41be4b;
+  font-size: 20px;
+  height: 50px;
+  margin-bottom: 80px;
+  width: 200px; }
+
+.status-container {
+  text-align: center !important; }
 
 .title {
   color: #000;

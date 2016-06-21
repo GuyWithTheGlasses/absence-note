@@ -49,7 +49,6 @@ ajax({
       method: 'POST',
       success: function(res) {
         res = JSON.parse(res);
-        console.log(res);
         setupTeachers(res);
       }
     });
@@ -156,3 +155,13 @@ var submitTeachers = function(e) {
   });
 };
 document.getElementsByClassName('form-submit-ajax')[0].addEventListener('click', submitTeachers);
+
+var saveProfile = function(e){
+  var data = {};
+  forEachInClass(document, "fa-floppy-o", function(savebutton){
+      savebutton.click();
+  });
+};
+forEachInClass(document, "save-profile", function(button){
+    button.addEventListener('click',saveProfile);
+});

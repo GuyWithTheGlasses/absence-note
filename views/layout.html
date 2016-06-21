@@ -17,7 +17,10 @@
     </div>
     {{/yield-header}}
     {{#yield-user}}
-      <a class="logout" href="/logout">Logout</a>
+    <div class="logout">
+      <a href="https://accounts.google.com/Logout">Google Logout</a>
+      <a href="/logout">Logout</a>
+    </div>
     {{/yield-user}}
     {{{yield-content}}}
   </body>
